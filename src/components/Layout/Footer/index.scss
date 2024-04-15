@@ -1,0 +1,81 @@
+.footer {
+  background-color: #202430;
+  color: lightgrey;
+  padding: 0 6.5rem;
+
+  h3 {
+    color: white;
+  }
+
+  &-menu {
+    display: flex;
+    gap: 3rem;
+    justify-content: flex-start;
+    width: 33%;
+
+    &--list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 3rem;
+  }
+
+  &-student {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+
+    &--title {
+      text-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+      max-width: 55%;
+    }
+
+    &--form {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+  }
+
+  &-email--input {
+    width: 50%;
+  }
+
+  .separator {
+    height: 1.5px;
+    background-color: grey;
+    opacity: 0.3;
+  }
+
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 2rem;
+    color: grey;
+
+    &--links {
+      display: flex;
+      gap: 1rem;
+
+      .social-network {
+        padding: 0.5rem;
+        background-color: grey;
+        border-radius: 50%;
+        color: white;
+      }
+    }
+  }
+}
