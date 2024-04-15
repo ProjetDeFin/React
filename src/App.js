@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Error from "./pages/Error";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
@@ -8,6 +7,9 @@ import Companies from "./pages/Companies";
 import Offers from "./pages/Offers";
 import SignIn from "./pages/SignIn";
 import Students from "./pages/Students";
+import Register from "./pages/Register";
+import Navbar from "./components/Layout/Navbar";
+import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
     element: <SignIn />,
     errorElement: <Error />,
   }, {
+    path: '/register',
+    element: <Register />,
+    errorElement: <Error />,
+  }, {
     path: '/students',
     element: <Students />,
     errorElement: <Error />,
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
 export default function App() {
   return (
       <div className="App">
-        <RouterProvider router={router} />
+        <Layout children={<RouterProvider router={router} />} />
       </div>
   );
 }
