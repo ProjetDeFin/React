@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Error from "./pages/Error";
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home from "./pages/Home";
 import Applications from "./pages/Applications";
 import Companies from "./pages/Companies";
@@ -39,8 +39,8 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <div className="App">
-      {router}
-    </div>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
   );
 }
