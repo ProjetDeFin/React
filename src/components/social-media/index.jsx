@@ -3,6 +3,6 @@ import { Icon } from "@iconify/react";
 
 export default function SocialMedia({ name }) {
     return <div className="social-media">
-        <Icon icon={`${name}`} />
+        {/*<Icon icon={`${name}`} />*/}
     </div>;
 }
