@@ -1,0 +1,44 @@
+.navbar-item{
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    transition: color 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
+
+    &:hover {
+        color: var(--color-primary);
+    }
+
+    &.active::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 0.25rem;
+        position: absolute;
+        background-color: var(--color-primary);;
+        margin-top: 0.75rem;
+    }
+}
+
+.btn-sign {
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+
+    &.sign-in {
+        color: var(--color-primary);
+
+        &:hover {
+            color: var(--color-primary-dark);
+        }
+    }
+
+    &.register {
+        background-color: var(--color-primary);
+        color: #fff;
+
+        &:hover {
+            background-color: var(--color-primary-dark);
+        }
+    }
+}
