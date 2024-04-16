@@ -7,7 +7,7 @@
     font-size: 1rem;
 
     &:hover {
-        color: #0275d8;
+        color: var(--color-primary);
     }
 
     &.active::after {
@@ -16,20 +16,29 @@
         width: 100%;
         height: 0.25rem;
         position: absolute;
-        background-color: #0275d8;
+        background-color: var(--color-primary);;
         margin-top: 0.75rem;
     }
 }
 
 .btn-sign {
     padding: 0.75rem 1.5rem;
+    text-decoration: none;
 
     &.sign-in {
-        color: #0275d8;
+        color: var(--color-primary);
+
+        &:hover {
+            color: var(--color-primary-dark);
+        }
     }
 
     &.register {
-        background-color: #0275d8;
+        background-color: var(--color-primary);
         color: #fff;
+
+        &:hover {
+            background-color: var(--color-primary-dark);
+        }
     }
 }

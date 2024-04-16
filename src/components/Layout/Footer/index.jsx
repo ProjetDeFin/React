@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 import Button from "../../Button";
 import {Input} from "postcss";
 import InputCustom from "../../Form/Input";
+import SocialMedia from "../../social-media";
 
 export default function Footer() {
     return (
@@ -14,7 +15,7 @@ export default function Footer() {
                 </div>
                 <div className="footer-menu">
                     <ul className="footer-menu--list">
-                        <li><Link href="/" children="Accueil"/></li>
+                        <li><Link href="/" children="Accueil" /></li>
                         <li><Link href="/offers" children="Offres"/></li>
                         <li><Link href="/applications" children="Demandes"/></li>
                         <li><Link href="/companies" children="Entreprises"/></li>
@@ -43,10 +44,10 @@ export default function Footer() {
             <div className="footer-bottom">
                 <p>2024 @ Bourse aux stages • Tous droits réservés</p>
                 <div className="footer-bottom--links">
-                    <Link href="" classes="social-network" children={<Icon icon="ri:facebook-fill" />} />
-                    <Link href="" classes="social-network" children={<Icon icon="ri:twitter-fill" />} />
-                    <Link href="" classes="social-network" children={<Icon icon="ri:instagram-line" />} />
-                    <Link href="" classes="social-network" children={<Icon icon="ri:linkedin-fill" />} />
+                    <SocialMedia href="" name="ri:facebook-fill" />
+                    <SocialMedia href="" name="ri:twitter-fill" />
+                    <SocialMedia href="" name="ri:instagram-line" />
+                    <SocialMedia href="" name="ri:linkedin-fill" />
                 </div>
             </div>
         </footer>

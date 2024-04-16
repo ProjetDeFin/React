@@ -10,7 +10,7 @@ export default function Link({
 }) {
     return (
         <a
-            className={`${null !== classes ? classes : 'link'}`}
+            className={`link ${null !== classes ? classes : ''}`}
             href={href}
             {...attributes}
         >

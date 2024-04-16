@@ -1,10 +1,13 @@
 .btn {
-    background-color: #4E49DF;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: white;
     padding: 1rem 2rem;
     transition: background-color 0.3s;
+    border: none;
+    outline: none;
 
     &:hover {
-        background-color: #3E3AA7;
+        color: white;
+        background-color: var(--color-primary-dark);
     }
 }
