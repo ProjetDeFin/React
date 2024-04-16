@@ -1,0 +1,19 @@
+nav {
+  .menu {
+    gap: 2.2em;
+
+    a {
+      padding: 28px 0;
+
+      &.active {
+        border-bottom: 2px solid red;
+      }
+      &:hover {
+        border-bottom: 2px solid red;
+      }
+    }
+  }
+  .account {
+    gap: 1em;
+  }
+}
