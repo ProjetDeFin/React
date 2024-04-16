@@ -8,7 +8,6 @@ import Offers from "./pages/Offers";
 import SignIn from "./pages/SignIn";
 import Students from "./pages/Students";
 import Register from "./pages/Register";
-import Navbar from "./components/Layout/Navbar";
 import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
