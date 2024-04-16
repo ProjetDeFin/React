@@ -48,10 +48,10 @@ export default function Home() {
     };
 
     return (
-        <div className="homepage">
-            <h1>Welcome to the homepage</h1>
-            <p>This is the homepage of the app.</p>
-            <CompaniesForward />
-        </div>
+      <div className="homepage">
+        <h1>Welcome to the homepage</h1>
+        <p>This is the homepage of the app.</p>
+        <CompaniesForward />
+      </div>
     );
 }

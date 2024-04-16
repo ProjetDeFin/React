@@ -9,15 +9,15 @@ export default function Button({
                                 attributes = []
 }) {
     return (
-        <button
+      <button
             onClick={onClick}
             {...attributes}
             className={`${null !== classes ? classes : 'link'} btn`}
             type={type}
         >
-            {null !== iconLeft ? iconLeft : ''}
-            {children}
-            {null !== iconRight ? iconRight : ''}
-        </button>
+        {null !== iconLeft ? iconLeft : ''}
+        {children}
+        {null !== iconRight ? iconRight : ''}
+      </button>
     );
 }

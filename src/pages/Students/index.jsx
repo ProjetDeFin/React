@@ -1,8 +1,8 @@
 export default function Students() {
     return (
-        <div>
+      <div>
         <h1>Students</h1>
         <p>Here is a list of students</p>
-        </div>
+      </div>
     );
 }

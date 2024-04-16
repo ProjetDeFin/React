@@ -1,31 +1,42 @@
-import reactPlugin from 'eslint-plugin-react';
-import jsxPlugin from 'eslint-plugin-jsx-a11y';
-import babelEslintParser from '@babel/eslint-parser';
+// Import necessary plugins
+import react from 'eslint-plugin-react';
+import jsxAccessibility from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
 
-export default {
-  // Specify the parser from Babel to handle modern JS and JSX
-  languageOptions: {
-    ecmaVersion: 'latest', // you can specify a specific version like 2021, 2022, etc.
-    sourceType: 'module',
-  },
-
-  // Extended configurations from plugins
-  // Here you merge the recommended rules from imported plugins directly
-  ...reactPlugin.configs.recommended,
-  ...{{plugins: jsxPlugin.configs.recommended[0].join(' ')}, ...jsxPlugin.configs.recommended},
-
-  // Custom rules configuration
-  rules: {
-    'react/jsx-uses-react': 'off', // not needed for React 17+ with the new JSX transform
-    'react/jsx-uses-vars': 'error',
-    'react/react-in-jsx-scope': 'off', // not needed for React 17+ with the new JSX transform
-    // Add or modify additional rules here
-  },
-
-  // Settings for react plugin to auto-detect React version
-  settings: {
-    react: {
-      version: 'detect', // Auto-detect the react version
+export default [
+  {
+    files: ["**/*.js", "**/*.jsx"],
+    plugins: {
+      react: react,
+      jsxAccessibility: jsxAccessibility,
+      import: importPlugin,
+    },
+    rules: {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/jsx-indent": ["error", 2],
+      "react/react-in-jsx-scope": "off", // For React 17+ JSX transform
+      // Additional rules from the Airbnb config would go here, manually added
+    },
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        React: "readonly",
+      },
     },
   },
-};
+  // React Router specific rules if there are any customization needed
+  {
+    files: ["**/routes/**/*.js", "**/routes/**/*.jsx"],
+    rules: {
+      // Rules specific to your routing components if needed
+    },
+  },
+  // Ensure other file types or specific configurations are covered
+  // For example, testing frameworks or specific libraries
+];

@@ -1,11 +1,11 @@
 export default function Applications() {
     return (
-        <div className="Applications">
+      <div className="Applications">
         <header className="Applications-header">
-            <p>
+          <p>
             Applications
-            </p>
+          </p>
         </header>
-        </div>
+      </div>
     );
 }

@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.24.1",
     "@iconify/react": "^4.1.1",
+    "@stylistic/eslint-plugin": "^1.7.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -20,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint . --debug"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [

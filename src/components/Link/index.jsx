@@ -9,14 +9,14 @@ export default function Link({
     attributes = []
 }) {
     return (
-        <a
+      <a
             className={`link ${null !== classes ? classes : ''}`}
             href={href}
             {...attributes}
         >
-            {null !== iconLeft ? iconLeft : ''}
-            {children}
-            {null !== iconRight ? iconRight : ''}
-        </a>
+        {null !== iconLeft ? iconLeft : ''}
+        {children}
+        {null !== iconRight ? iconRight : ''}
+      </a>
     );
 }

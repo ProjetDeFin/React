@@ -44,8 +44,8 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-      <div className="App">
-        <Layout children={<RouterProvider router={router} />} />
-      </div>
+    <div className="App">
+      <Layout children={<RouterProvider router={router} />} />
+    </div>
   );
 }
