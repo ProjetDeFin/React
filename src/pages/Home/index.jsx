@@ -1,3 +1,6 @@
+import CompaniesForward from '../../components/CompaniesForward';
+import './index.scss';
+
 export default function Home() {
     const forwardCompany = [
         {
@@ -305,10 +308,11 @@ export default function Home() {
         },
     ];
 
-    return (
-        <div>
-            <h1>Welcome to the homepage</h1>
-            <p>This is the homepage of the app.</p>
-        </div>
-    );
+  return (
+    <div className="homepage">
+      <h1>Welcome to the homepage</h1>
+      <p>This is the homepage of the app.</p>
+      <CompaniesForward />
+    </div>
+  );
 }
