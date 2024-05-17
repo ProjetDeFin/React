@@ -132,6 +132,11 @@ table {
 * {
   box-sizing: border-box;
 }
+body {
+  font-family: "Epilogue", sans-serif;
+  font-style: normal;
+  color: #25324B;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -176,4 +181,10 @@ a {
 .container {
   width: 1820px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1840px) {
+  .container {
+    width: 100%;
+  }
 }

@@ -263,11 +263,21 @@ export default function Home() {
     },
   ];
 
-  return (
-    <div className="homepage">
-      <h1>Welcome to the homepage</h1>
-      <p>This is the homepage of the app.</p>
-      <CompaniesForward companies={forwardCompany} />
-    </div>
-  );
+    return (
+      <div className="homepage">
+        <div className="landing-page">
+          <div className="container">
+            <div className="d-flex justify-center">
+              <div className="description">
+                <h2>Trouver un stage n'aura jamais été <span>aussi facile !</span></h2>
+                <p>Trouvez les offres de stage ou d'alternance près de chez vous qui correspondent à votre profil et à vos attentes.</p>
+                <p><span>1254</span> offres de <strong>stages</strong> | <span>987</span> offres <strong>d'alternance</strong> n'attendent que vous !</p>
+              </div>
+              <img src="/img/home-man.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <CompaniesForward companies={forwardCompany} />
+      </div>
+    );
 }
