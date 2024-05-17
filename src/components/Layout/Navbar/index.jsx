@@ -18,5 +18,4 @@ export default function Navbar() {
             </div>
         </nav>
     );
->>>>>>> cf8312d (MIN: resolve conflict)
 }
