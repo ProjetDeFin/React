@@ -1,5 +1,4 @@
 nav {
-<<<<<<< HEAD
   .menu {
     gap: 2.2em;
 
@@ -16,25 +15,5 @@ nav {
   }
   .account {
     gap: 1em;
-=======
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  .navbar-list,
-  .account {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .separator {
-    height: 2.5rem;
-    width: 0.75px;
-    background-color: #ccc;
->>>>>>> ba460a5 (prettier)
   }
 }
