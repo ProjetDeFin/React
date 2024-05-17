@@ -4,57 +4,55 @@ import './index.scss';
 export default function Home() {
     const forwardCompany = [
         {
-            'name': 'Company 1',
-            'logo': 'assets/company.png'
+            'name': 'AMD',
+            'logo': '/img/logo/amd.svg',
         },
         {
-            'name': 'Company 2',
-            'logo': 'assets/company.png'
+            'name': 'Intel',
+            'logo': '/img/logo/intel.svg',
         },
         {
-            'name': 'Company 3',
-            'logo': 'assets/company.png'
+            'name': 'Talkit',
+            'logo': '/img/logo/talkit.svg',
         },
         {
-            'name': 'Company 4',
-            'logo': 'assets/company.png'
+            'name': 'Tesla',
+            'logo': '/img/logo/tesla.svg',
         },
         {
-            'name': 'Company 5',
-            'logo': 'assets/company.png'
+            'name': 'Vodafone',
+            'logo': '/img/logo/vodafone.svg',
         },
         {
             'name': 'Company 6',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg',
         },
         {
             'name': 'Company 7',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg',
         },
-
         {
             'name': 'Company 8',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg',
         },
-
         {
             'name': 'Company 9',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg'
         },
 
         {
             'name': 'Company 10',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg'
         },
 
         {
             'name': 'Company 11',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg'
         },
 
         {
             'name': 'Company 12',
-            'logo': 'assets/company.png'
+            'logo': '/img/logo/company.jpg'
         },
     ];
 
@@ -182,8 +180,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Marketing',
-                'Design',
+                marketing,
+                design,
             ]
         },
         {
@@ -197,8 +195,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Design',
-                'Finance',
+                design,
+                finance,
             ]
         },
         {
@@ -212,8 +210,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Marketing',
-                'Informatique',
+                marketing,
+                finance,
             ]
         },
         {
@@ -227,8 +225,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Design',
-                'Finance',
+                design,
+                finance,
             ]
         },
         {
@@ -242,8 +240,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Marketing',
-                'Informatique',
+                marketing,
+                it,
             ]
         },
         {
@@ -257,8 +255,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Design',
-                'Finance',
+                it,
+                finance,
             ]
         },
         {
@@ -272,8 +270,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Marketing',
-                'Informatique',
+                marketing,
+                it,
             ]
         },
         {
@@ -287,8 +285,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Design',
-                'Finance',
+                it,
+                finance,
             ]
         },
         {
@@ -302,8 +300,8 @@ export default function Home() {
             },
             type: 'internship',
             tags: [
-                'Marketing',
-                'Informatique',
+                marketing,
+                it,
             ]
         },
     ];
@@ -312,7 +310,7 @@ export default function Home() {
     <div className="homepage">
       <h1>Welcome to the homepage</h1>
       <p>This is the homepage of the app.</p>
-      <CompaniesForward />
+      <CompaniesForward companies={forwardCompany} />
     </div>
   );
 }
