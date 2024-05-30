@@ -160,6 +160,9 @@ a {
 .direction-column {
   flex-direction: column;
 }
+.wrap {
+  flex-wrap: wrap;
+}
 .btn {
   background-color: var(--color-primary);
   color: white;

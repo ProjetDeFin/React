@@ -1,4 +1,5 @@
 import CompaniesForward from '../../components/CompaniesForward';
+import CompanyCard from '../../components/OfferCard/Company';
 import './index.scss';
 
 export default function Home() {
@@ -63,91 +64,147 @@ export default function Home() {
 
   const lastOffers = [
     {
-      name: 'Offer 1',
-      type: 'internship',
-      company: {
-        name: 'Company 1',
-        logo: 'assets/company1.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, design],
+        name: 'Offer 1',
+        type: 'Alternance',
+        company: {
+            name: 'Company 1',
+            logo: 'company1.png',
+            location: 'Paris',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [marketing, design],
     },
     {
-      name: 'Offer 2',
-      type: 'internship',
-      company: {
-        name: 'Company 2',
-        logo: 'assets/company2.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
+        name: 'Offer 2',
+        type: 'Stage',
+        company: {
+            name: 'Company 2',
+            logo: 'company1.png',
+            location: 'Lyon',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [design, finance],
     },
     {
-      name: 'Offer 3',
-      type: 'internship',
-      company: {
-        name: 'Company 3',
-        logo: 'assets/company3.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
+        name: 'Offer 3',
+        type: 'Alternance',
+        company: {
+            name: 'Company 3',
+            logo: 'company1.png',
+            location: 'Marseille',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [marketing, it],
     },
     {
-      name: 'Offer 4',
-      type: 'internship',
-      company: {
-        name: 'Company 4',
-        logo: 'assets/company4.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
+        name: 'Offer 4',
+        type: 'Stage',
+        company: {
+            name: 'Company 4',
+            logo: 'company1.png',
+            location: 'Toulouse',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [design, finance],
     },
     {
-      name: 'Offer 5',
-      type: 'internship',
-      company: {
-        name: 'Company 5',
-        logo: 'assets/company5.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
+        name: 'Offer 5',
+        type: 'Stage',
+        company: {
+            name: 'Company 5',
+            logo: 'company1.png',
+            location: 'Nice',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [marketing, it],
     },
     {
-      name: 'Offer 6',
-      type: 'internship',
-      company: {
-        name: 'Company 6',
-        logo: 'assets/company6.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
+        name: 'Offer 6',
+        type: 'Alternance',
+        company: {
+            name: 'Company 6',
+            logo: 'company1.png',
+            location: 'Nantes',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [design, finance],
     },
     {
-      name: 'Offer 7',
-      type: 'internship',
-      company: {
-        name: 'Company 7',
-        logo: 'assets/company7.png',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
+        name: 'Offer 7',
+        type: 'Stage',
+        company: {
+            name: 'Company 7',
+            logo: 'company1.png',
+            location: 'Strasbourg',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [marketing, it],
+    },
+    {
+        name: 'Offer 8',
+        type: 'Alternance',
+        company: {
+            name: 'Company 8',
+            logo: 'company1.png',
+            location: 'Bordeaux',
+        },
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        tags: [design, finance],
     },
     {
       name: 'Offer 8',
-      type: 'internship',
+      type: 'Alternance',
       company: {
-        name: 'Company 8',
-        logo: 'assets/company8.png',
+          name: 'Company 8',
+          logo: 'company1.png',
+          location: 'Bordeaux',
       },
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
+    },
+    {
+      name: 'Offer 8',
+      type: 'Alternance',
+      company: {
+          name: 'Company 8',
+          logo: 'company1.png',
+          location: 'Bordeaux',
+      },
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
+    },
+    {
+      name: 'Offer 8',
+      type: 'Alternance',
+      company: {
+          name: 'Company 8',
+          logo: 'company1.png',
+          location: 'Bordeaux',
+      },
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
+    },
+    {
+      name: 'Offer 8',
+      type: 'Alternance',
+      company: {
+          name: 'Company 8',
+          logo: 'company1.png',
+          location: 'Bordeaux',
+      },
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
       tags: [design, finance],
     },
   ];
@@ -265,7 +322,7 @@ export default function Home() {
 
     return (
       <div className="homepage">
-        <div className="landing-page">
+        <section className="landing-page">
           <div className="container">
             <div className="d-flex justify-center">
               <div className="description">
@@ -276,8 +333,33 @@ export default function Home() {
               <img src="/img/home-man.png" alt="" />
             </div>
           </div>
-        </div>
+        </section>
+        <div className="container">
         <CompaniesForward companies={forwardCompany} />
+          <section className='companyOffer'>
+            <div className="d-flex">
+              <h3>Dernières offres</h3>
+              <a href="">
+                toutes les offres
+              </a>
+            </div>
+            <div className="d-flex wrap">
+            {lastOffers.map((offer, index) => (
+                <CompanyCard
+                    key={index}
+                    logo={offer.company.logo}
+                    typeOffer={offer.type}
+                    nameOffer={offer.name}
+                    nameCompany={offer.company.name}
+                    locationCompany={offer.company.location || ""} 
+                    descriptionCompany={offer.description}
+                    firstTag={offer.tags[0].name || ""}
+                    secondTag={offer.tags[1].name || ""}
+                />
+            ))}
+            </div>
+          </section>
+        </div>
       </div>
     );
 }
