@@ -34,7 +34,7 @@ export default function Navbar() {
             Se connecter
           </NavLink>
           <NavLink to="/register" activeClassName="is-active" className="btn">
-            Creer un compte
+            Créer un compte
           </NavLink>
         </div>
       </nav>
