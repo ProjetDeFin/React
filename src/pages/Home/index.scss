@@ -1,4 +1,11 @@
 .homepage {
+  h2 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 110%;
+    margin-bottom: 48px;
+  }
+
   .landing-page{ 
     background-color: #F8F8FD;
     background-image: url('../../../public/img/background-landing-page.png');
@@ -27,19 +34,21 @@
     p {
       font-size: 20px;
       line-height: 160%;
+      
+      .className {
+        font-size: 72px;
+        font-weight: bold;
+        line-height: 110%;
+      }
     }
 
     p:nth-child(2) {
       margin: 23px 0;
     }
-
-    h2 {
-      font-size: 72px;
-      font-weight: bold;
-      line-height: 110%;
-    }
   }
   .companyOffer {
+    padding-bottom: 72px;
+
     & > .d-flex {
       gap: 32px;
     }

@@ -326,7 +326,7 @@ export default function Home() {
           <div className="container">
             <div className="d-flex justify-center">
               <div className="description">
-                <h2>Trouver un stage n'aura jamais été <span>aussi facile !</span></h2>
+                <p className="landing-scape">Trouver un stage n'aura jamais été <span>aussi facile !</span></p>
                 <p>Trouvez les offres de stage ou d'alternance près de chez vous qui correspondent à votre profil et à vos attentes.</p>
                 <p><span>1254</span> offres de <strong>stages</strong> | <span>987</span> offres <strong>d'alternance</strong> n'attendent que vous !</p>
               </div>
@@ -338,7 +338,7 @@ export default function Home() {
         <CompaniesForward companies={forwardCompany} />
           <section className='companyOffer'>
             <div className="d-flex">
-              <h3>Dernières offres</h3>
+              <h2>Dernières offres</h2>
               <a href="">
                 toutes les offres
               </a>
