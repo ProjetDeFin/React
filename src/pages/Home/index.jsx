@@ -1,5 +1,6 @@
 import CompaniesForward from '../../components/CompaniesForward';
-import CompanyCard from '../../components/OfferCard/Company';
+import CompanyCard from '../../components/Card/OfferCompany';
+import ApplyStudent from '../../components/Card/ApplyStudent';
 import { Icon } from '@iconify/react';
 import './index.scss';
 
@@ -210,7 +211,7 @@ export default function Home() {
     },
   ];
 
-  const lastApplication = [
+  const lastApply = [
     {
       name: 'Application 1',
       student: {
@@ -218,9 +219,10 @@ export default function Home() {
         age: 20,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student1.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 10/04/2024 au 12/06/2024',
       tags: [marketing, design],
     },
     {
@@ -230,9 +232,10 @@ export default function Home() {
         age: 21,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student2.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 15/05/2024 au 17/07/2024',
       tags: [design, finance],
     },
     {
@@ -242,9 +245,10 @@ export default function Home() {
         age: 22,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student3.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 20/06/2024 au 22/08/2024',
       tags: [marketing, finance],
     },
     {
@@ -254,9 +258,10 @@ export default function Home() {
         age: 23,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student4.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 25/07/2024 au 27/09/2024',
       tags: [design, finance],
     },
     {
@@ -266,9 +271,10 @@ export default function Home() {
         age: 24,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student5.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 30/08/2024 au 01/11/2024',
       tags: [marketing, it],
     },
     {
@@ -278,9 +284,10 @@ export default function Home() {
         age: 25,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student6.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 05/09/2024 au 07/11/2024',
       tags: [it, finance],
     },
     {
@@ -290,9 +297,10 @@ export default function Home() {
         age: 26,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student7.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 10/10/2024 au 12/12/2024',
       tags: [marketing, it],
     },
     {
@@ -302,23 +310,12 @@ export default function Home() {
         age: 27,
         city: 'Paris',
         country: 'France',
-        picture: 'assets/student8.png',
+        picture: 'student1.png',
       },
       type: 'internship',
+      period: 'Du 15/11/2024 au 17/01/2025',
       tags: [it, finance],
-    },
-    {
-      name: 'Application 9',
-      student: {
-        name: 'Student 9',
-        age: 28,
-        city: 'Paris',
-        country: 'France',
-        picture: 'assets/student9.png',
-      },
-      type: 'internship',
-      tags: [marketing, it],
-    },
+    }
   ];
 
     return (
@@ -336,7 +333,7 @@ export default function Home() {
           </div>
         </section>
         <div className="container">
-        <CompaniesForward companies={forwardCompany} />
+          <CompaniesForward companies={forwardCompany} />
           <section className='companyOffer'>
             <div className="d-flex">
               <h2>Dernières <span>offres</span></h2>
@@ -344,25 +341,47 @@ export default function Home() {
                 toutes les offres
                 <Icon icon="tabler:arrow-right" />
               </a>
-              
             </div>
             <div className="d-flex wrap">
-            {lastOffers.map((offer, index) => (
-                <CompanyCard
-                    key={index}
-                    logo={offer.company.logo}
-                    typeOffer={offer.type}
-                    nameOffer={offer.name}
-                    nameCompany={offer.company.name}
-                    locationCompany={offer.company.location || ""} 
-                    descriptionCompany={offer.description}
-                    firstTag={offer.tags[0].name || ""}
-                    secondTag={offer.tags[1].name || ""}
-                />
-            ))}
+              {lastOffers.map((offer, index) => (
+                  <CompanyCard
+                      key={index}
+                      logo={offer.company.logo}
+                      typeOffer={offer.type}
+                      nameOffer={offer.name}
+                      nameCompany={offer.company.name}
+                      locationCompany={offer.company.location || ""} 
+                      descriptionCompany={offer.description}
+                      firstTag={offer.tags[0].name || ""}
+                      secondTag={offer.tags[1].name || ""}
+                  />
+              ))}
             </div>
           </section>
         </div>
+        <section className="bg-grey apply-student">
+          <div className="d-flex">
+            <h2>Dernières <span>offres</span></h2>
+            <a href="" className='turquoise all-offer d-flex'>
+              toutes les offres
+              <Icon icon="tabler:arrow-right" />
+            </a>
+          </div>
+          <div className="d-flex wrap">
+            {lastApply.map((apply, index) => (
+                <ApplyStudent
+                    key={index}
+                    profilPicture={apply.student.picture}
+                    titleApply={apply.name}
+                    agePerson={apply.student.age}
+                    locationPerson={apply.student.city}
+                    namePerson={apply.student.name}
+                    tag={apply.tags[0].name || ""}
+                    periodApply={apply.period || ""} 
+                />
+            ))}
+          </div>
+        </section>
       </div>
     );
 }

@@ -93,6 +93,7 @@ video {
   font-size: 100%;
   vertical-align: baseline;
 }
+
 article,
 aside,
 details,
@@ -106,17 +107,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -124,48 +129,61 @@ q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   font-family: "Epilogue", sans-serif;
   font-style: normal;
   color: #25324B;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 .d-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .align-center {
   align-items: center;
 }
+
 .align-start {
   align-items: flex-start;
 }
+
 .justify-center {
   justify-content: center;
 }
+
 .justify-start {
   justify-content: flex-start;
 }
+
 .direction-column {
   flex-direction: column;
 }
+
 .wrap {
   flex-wrap: wrap;
 }
+
 .turquoise {
   color: #26a4ff;
 }
+
 .btn {
   background-color: var(--color-primary);
   color: white;
@@ -177,14 +195,17 @@ a {
   font-family: "Epilogue", sans-serif;
   font-size: 16px;
 }
+
 .btn:hover {
   color: white;
   background-color: var(--color-primary-dark);
 }
+
 .btn-empty {
   background-color: transparent;
   color: var(--color-primary);
 }
+
 .container {
   width: 1820px;
   margin: 0 auto;
@@ -198,8 +219,15 @@ a {
   font-family: "Red Hat Display", sans-serif;
   font-size: 32px;
 }
+
 .logo {
   gap: 12px;
+}
+
+.type-offer {
+  padding: 4px 12px;
+  color: #4640DE;
+  background-color: #F8F8FD;
 }
 
 @media screen and (max-width: 1840px) {
