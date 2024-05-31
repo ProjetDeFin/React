@@ -163,6 +163,9 @@ a {
 .wrap {
   flex-wrap: wrap;
 }
+.turquoise {
+  color: #26a4ff;
+}
 .btn {
   background-color: var(--color-primary);
   color: white;

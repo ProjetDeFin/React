@@ -1,5 +1,6 @@
 import CompaniesForward from '../../components/CompaniesForward';
 import CompanyCard from '../../components/OfferCard/Company';
+import { Icon } from '@iconify/react';
 import './index.scss';
 
 export default function Home() {
@@ -338,10 +339,12 @@ export default function Home() {
         <CompaniesForward companies={forwardCompany} />
           <section className='companyOffer'>
             <div className="d-flex">
-              <h2>Dernières offres</h2>
-              <a href="">
+              <h2>Dernières <span>offres</span></h2>
+              <a href="" className='turquoise all-offer d-flex'>
                 toutes les offres
+                <Icon icon="tabler:arrow-right" />
               </a>
+              
             </div>
             <div className="d-flex wrap">
             {lastOffers.map((offer, index) => (
