@@ -361,9 +361,9 @@ export default function Home() {
         </div>
         <section className="bg-grey apply-student">
           <div className="d-flex">
-            <h2>Dernières <span>offres</span></h2>
+            <h2>Dernières <span>demandes</span></h2>
             <a href="" className='turquoise all-offer d-flex'>
-              toutes les offres
+              toutes les demandes
               <Icon icon="tabler:arrow-right" />
             </a>
           </div>
