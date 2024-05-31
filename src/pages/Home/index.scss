@@ -66,5 +66,13 @@
       }
     }
   }
+  .apply-student {
+    background-color: #F8F8FD;
+    padding: 72px 124px 60px 124px;
+    
+    & > .wrap {
+      gap: 32px;
+    }
+  }
 }
 
