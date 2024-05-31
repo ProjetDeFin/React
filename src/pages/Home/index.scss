@@ -38,7 +38,7 @@
       font-size: 20px;
       line-height: 160%;
       
-      .className {
+      &.landing-scape {
         font-size: 72px;
         font-weight: bold;
         line-height: 110%;
@@ -69,7 +69,7 @@
   .apply-student {
     background-color: #F8F8FD;
     padding: 72px 124px 60px 124px;
-    
+
     & > .wrap {
       gap: 32px;
     }
