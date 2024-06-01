@@ -6,7 +6,7 @@ export default function ApplyJob() {
         <div className="apply-job">
             <section className="apply-job-form">
                 <div className="container">
-                    <form action="" method="post">
+                    <form action={process.env.REACT_APP_API_URL} method="post">
                         <div className="d-flex align-start">
                             <div className="description">
                                 <h2>Postulez a cette offre de stage</h2>
@@ -18,6 +18,7 @@ export default function ApplyJob() {
                                         <select name="gender" id="gender">
                                             <option value="man" selected>Homme</option>
                                             <option value="woman">Femme</option>
+                                            <option value="other">Autre</option>
                                         </select>
                                     </div>
                                     <div className="d-flex direction-column align-start">
@@ -32,7 +33,7 @@ export default function ApplyJob() {
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="birthday">Date de naissance<span>*</span></label>
-                                        <input type="date" name="birthday" id="birthday" value="2024-04-10"/>
+                                        <input type="date" name="birthday" id="birthday"/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="">Telephone mobile<span>*</span></label>
@@ -83,10 +84,10 @@ export default function ApplyJob() {
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="study-level">Niveau d'études*<span>*</span></label>
                                         <select name="study-level" id="study-level">
-                                            <option value="" selected>Bac +3</option>
-                                            <option value="" >Bac +2</option>
-                                            <option value="" >Bac +1</option>
-                                            <option value="" >Bac +4</option>
+                                            <option value="1" selected>Bac +1</option>
+                                            <option value="2">Bac +2</option>
+                                            <option value="3">Bac +3</option>
+                                            <option value="4">Bac +4</option>
                                         </select>
                                     </div>
                                     <div className="d-flex direction-column align-start">
