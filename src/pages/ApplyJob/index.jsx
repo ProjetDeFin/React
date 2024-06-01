@@ -52,7 +52,7 @@ export default function ApplyJob() {
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="birthday">Code postal</label>
-                                        <input type="text" name="birthday" id="birthday" />
+                                        <input type="text" name="birthday" id="birthday" placeholder="60200"/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="city">Ville</label>
@@ -79,12 +79,14 @@ export default function ApplyJob() {
                                 </div>
                                 <span className="line"></span>
                                 <h3>Votre situation actuelle</h3>
-                                <div className="d-flex">
+                                <div className="d-flex situation">
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="gender">Niveau d'études*<span>*</span></label>
-                                        <select name="genrder" id="gender">
-                                            <option value="man" selected>Homme</option>
-                                            <option value="woman">Femme</option>
+                                        <label htmlFor="study-level">Niveau d'études*<span>*</span></label>
+                                        <select name="study-level" id="study-level">
+                                            <option value="" selected>Bac +3</option>
+                                            <option value="" >Bac +2</option>
+                                            <option value="" >Bac +1</option>
+                                            <option value="" >Bac +4</option>
                                         </select>
                                     </div>
                                     <div className="d-flex direction-column align-start">
@@ -117,35 +119,35 @@ export default function ApplyJob() {
                                     </div>
                                     <span className="line"></span>
                                 </section>
-                                <section className="skill">
+                                <section className="skill-tag">
                                     <h3>Vos compétences</h3>
                                     <p>Ajoutez jusqu'à 10 compétences :</p>
-                                    <span></span>
+                                    <span className="line"></span>
                                 </section>
                                 <section className="language">
                                     <h3>Votre pratique des langues</h3>
                                     <p>Ajoutez les langues que vous pratiquez :</p>
-                                    <span></span>
+                                    <span className="line"></span>
                                 </section>
                                 <section className="experience">
                                     <h3>Vos expérience pro</h3>
-                                    <p>Stages, emplois d’été, projets personnels :</p>
-                                    <span></span>
+                                    <p>Stages, emplois d'été, projets personnels :</p>
+                                    <span className="line"></span>
                                 </section>
                                 <section className="document">
                                     <h3>CV et autres documents</h3>
                                     <p>Importez votre CV et votre lettre de motivation ou ajoutez tout document utile à votre candidature (présentation détaillée de vos projets, portfolio, etc.)</p>
-                                    <div className="d-flex direction-column">
+                                    <div className="d-flex direction-column align-start">
                                         <p>Votre CV (format PDF, 20Mo max)</p>
                                         <label className="d-flex" htmlFor="cv"><Icon icon="ph:paperclip"/>Importez votre CV</label>
                                         <input type="file" name="cv" id="cv" />
                                     </div>
-                                    <div className="d-flex direction-column">
+                                    <div className="d-flex direction-column align-start">
                                         <p>Lettre de motivation (format PDF, 20Mo max)</p>
                                         <label className="d-flex" htmlFor="cv"><Icon icon="ph:paperclip"/>Importez votre lettre de motivation</label>
                                         <input type="file" name="cv" id="cv" />
                                     </div>
-                                    <div className="d-flex direction-column">
+                                    <div className="d-flex direction-column align-start">
                                         <p>Autre document (format PDF ou ZIP, 50Mo max)</p>
                                         <label className="d-flex" htmlFor="cv"><Icon icon="ph:paperclip"/>Importez un autre document</label>
                                         <input type="file" name="cv" id="cv" />
