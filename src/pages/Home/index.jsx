@@ -315,6 +315,19 @@ export default function Home() {
       type: 'internship',
       period: 'Du 15/11/2024 au 17/01/2025',
       tags: [it, finance],
+    },
+    {
+      name: 'Application 9',
+      student: {
+        name: 'Student 4',
+        age: 23,
+        city: 'Paris',
+        country: 'France',
+        picture: 'student1.png',
+      },
+      type: 'internship',
+      period: 'Du 25/07/2024 au 27/09/2024',
+      tags: [design, finance],
     }
   ];
 

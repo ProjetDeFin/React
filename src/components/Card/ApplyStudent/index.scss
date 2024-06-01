@@ -15,7 +15,11 @@
 
         .detail-apply {
             margin: 8px 0;
-            color: #515B6F;
+
+            &,
+            .period-apply {
+                color: #515B6F;
+            }
         }
 
         span {
