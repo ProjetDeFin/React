@@ -20,35 +20,64 @@
         color: #7C8493;
         padding: 16px 0;
     }
+}
 
-    .tag-offer {
+.company-card-offer {
+    border: 1px solid #D6DDEB;
+    padding: 24px;
+    width: 919px;
+    line-height: 160%;
+
+    h3 {
+        font-size: 20px !important;
+        font-weight: 600;
+    }
+    p.description {
+        margin: 8px 0;
+        font-weight: 600;
+        
+        span {
+            font-weight: normal
+        }
+    }
+
+    .rest-day {
+        font-size: 12px;
+    }
+
+    .justify-start {
         gap: 8px;
+    }
 
-        p {
-            padding: 4px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 80px;
+    span.line {
+        height: 34px;
+        width: 1px;
+        background-color: #D6DDEB;
+    }
 
-            &.Marketing {
-                background-color: rgba(235, 133, 51, 0.1);
-                color: #FFB836 ;
-            }
+    .progress-bar-container {
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 30px 0 8px 0;
+    }
+    
+    .progress-bar {
+        height: 10px;
+        width: 0;
+        transition: width 0.3s ease-in-out;
 
-            &.Design {
-                background-color: rgba(86, 205, 173, 0.1);
-                color: #56CDAD ;
-            }
+        &.high {
+            background-color: #56CDAD;
+        }
 
-            &.Finance {
-                background-color: rgba(70, 64, 222, 0.1);
-                color: #4640DE;
-            }
+        &.medium {
+            background-color: #FF9900;
+        }
 
-            &.Informatique {
-                background-color: rgba(255, 101, 80, 0.1);
-                color: #FF6550 ;
-            }
+        &.low {
+            background-color: #FF007A;
         }
     }
 }
