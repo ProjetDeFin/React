@@ -5,11 +5,11 @@ export default function Navbar() {
   return (
     <div className="container">
       <nav className="d-flex align-center">
-        <NavLink exact to="/" className="logo-link" activeClassName="is-active">
+        <NavLink to="/" className="logo-link" activeClassName="is-active">
           Logo
         </NavLink>
         <div className="d-flex menu">
-          <NavLink exact to="/" activeClassName="is-active">
+          <NavLink to="/" activeClassName="is-active">
             Accueil
           </NavLink>
           <NavLink to="/offers" activeClassName="is-active">

@@ -1,12 +1,63 @@
 import { Icon } from '@iconify/react';
 import './index.scss';
+import InputCustom from "../../components/Form/Input";
+import Quill from "../../components/Form/Quill";
+import { useState } from "react";
 
-export default function ApplyJob() {
+export default function ApplyJob({ id }) {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        confirmEmail: '',
+        gender: '',
+        birthDate: '',
+        phone: '',
+        address: '',
+        additionalAddress: '',
+        city: '',
+        websiteUrl: '',
+        linkedinUrl: '',
+        studyLevel: '',
+        motivation: '',
+        applicationId: id,
+        cv: null
+    });
+
+    const handleChange = (e) => {
+        console.log(e);
+        const { name, value, files } = e.target;
+        setFormData({
+            ...formData,
+            [name]: files ? files[0] : value
+        });
+        console.log(formData);
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const data = new FormData();
+        for (const key in formData) {
+            data.append(key, formData[key]);
+        }
+
+        fetch(`${process.env.REACT_APP_API_URL}/api/applications/apply`, {
+            method: 'POST',
+            body: data,
+        })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
     return (
         <div className="apply-job">
             <section className="apply-job-form">
                 <div className="container">
-                    <form action={`${process.env.REACT_APP_API_URL}/api/application`} method="post">
+                    <form method="post" onSubmit={handleSubmit}>
                         <div className="d-flex align-start">
                             <div className="description">
                                 <h2>Postulez a cette offre de stage</h2>
@@ -15,6 +66,7 @@ export default function ApplyJob() {
                                 <div className="d-flex identity">
                                     <div className="d-flex direction-column align-start gender">
                                         <label htmlFor="gender">Genre<span>*</span></label>
+                                        {/* TODO get options from api enum */}
                                         <select name="gender" id="gender">
                                             <option value="man" selected>Homme</option>
                                             <option value="woman">Femme</option>
@@ -23,58 +75,70 @@ export default function ApplyJob() {
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="firstName">Prenom<span>*</span></label>
-                                        <input type="text" name="firstName" id="firstName" placeholder="Jean"/>
+                                        <InputCustom type="text" name="firstName" id="firstName" placeholder="Jean" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="name">Nom<span>*</span></label>
-                                        <input type="text" name="name" id="name" placeholder="Dupont"/>
+                                        <label htmlFor="lastName">Nom<span>*</span></label>
+                                        <InputCustom type="text" name="lastName" id="lastName" placeholder="Dupont" onChange={handleChange}/>
                                     </div>
                                 </div>
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="birthday">Date de naissance<span>*</span></label>
-                                        <input type="date" name="birthday" id="birthday"/>
+                                        <label htmlFor="email">Email<span>*</span></label>
+                                        <InputCustom type="email" name="email" id="email"
+                                               placeholder='jean.dupont@gmail.com'/>
+                                    </div>
+                                    <div className="d-flex direction-column align-start">
+                                        <label htmlFor="confirmEmail">Confirmez votre email<span>*</span></label>
+                                        <InputCustom type="email" name="confirmEmail" id="confirmEmail" placeholder='jean.dupont@gmail.com' onChange={handleChange}/>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="d-flex direction-column align-start">
+                                        <label htmlFor="birthDate">Date de naissance<span>*</span></label>
+                                        <input type="date" name="birthDate" id="birthDate" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="">Telephone mobile<span>*</span></label>
-                                        <input type="number" name="" id="" placeholder="0670619599"/>
+                                        <InputCustom type="number" name="phone" id="phone" placeholder="0670619599" min={10} max={10} onChange={handleChange}/>
                                     </div>
                                 </div>
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="adress">Adresse</label>
-                                        <input type="text" name="adress" id="adress" placeholder="12 Avenue des vignes" />
+                                        <label htmlFor="address">Adresse</label>
+                                        <input type="text" name="address" id="address" placeholder="12 Avenue des vignes" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="additionalAdress">Complément d'adresse</label>
-                                        <input type="text" name="additionalAdress" id="additionalAdress" placeholder="Bat A, apt 7"/>
+                                        <label htmlFor="additionalAddress">Complément d'adresse</label>
+                                        <input type="text" name="additionalAddress" id="additionalAddress" placeholder="Bat A, apt 7" onChange={handleChange}/>
                                     </div>
                                 </div>
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="birthday">Code postal</label>
-                                        <input type="text" name="birthday" id="birthday" placeholder="60200"/>
+                                        <input type="text" name="birthday" id="birthday" placeholder="60200" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="city">Ville</label>
-                                        <input type="text" name="city" id="city" placeholder="Paris"/>
+                                        <input type="text" name="city" id="city" placeholder="Paris" onChange={handleChange}/>
                                     </div>
                                 </div>
                                 <div className="d-flex direction-column align-start website">
-                                    <label htmlFor="website-url">Adresse de votre site web personnel</label>
-                                    <input type="text" name="website-url" id="website-url" placeholder="https://www.jeandupont.fr"/>
+                                    <label htmlFor="websiteUrl">Adresse de votre site web personnel</label>
+                                    <input type="text" name="websiteUrl" id="websiteUrl" placeholder="https://www.jeandupont.fr" onChange={handleChange}/>
                                 </div>
                                 <div className="d-flex direction-column align-start linkedin">
-                                    <label htmlFor="linkedin-url">Lien vers votre page Linkedin</label>
-                                    <input type="text" name="linkedin-url" id="linkedin-url" placeholder="https://www.linkedin.com/in/jean-dupont"/>
+                                    <label htmlFor="linkedinUrl">Lien vers votre page Linkedin</label>
+                                    <input type="text" name="linkedinUrl" id="linkedinUrl"
+                                           placeholder="https://www.linkedin.com/in/jean-dupont"/>
                                 </div>
                                 <div className="d-flex justify-start">
                                     <div className="d-flex">
-                                        <input type="checkbox" name="driving-license" id="driving-license" />
+                                        <input type="checkbox" name="driving-license" id="driving-license" onChange={handleChange}/>
                                         <label htmlFor="driving-license">J'ai le permis de conduire</label>
                                     </div>
                                     <div className="d-flex">
-                                        <input type="checkbox" name="handicap" id="handicap" />
+                                        <input type="checkbox" name="handicap" id="handicap" onChange={handleChange}/>
                                         <label htmlFor="handicap">J'ai une forme de handicap</label>
                                     </div>
                                 </div>
@@ -82,8 +146,8 @@ export default function ApplyJob() {
                                 <h3>Votre situation actuelle</h3>
                                 <div className="d-flex situation">
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="study-level">Niveau d'études*<span>*</span></label>
-                                        <select name="study-level" id="study-level">
+                                        <label htmlFor="studyLevel">Niveau d'études<span>*</span></label>
+                                        <select name="studyLevel" id="studyLevel" onChange={handleChange}>
                                             <option value="1" selected>Bac +1</option>
                                             <option value="2">Bac +2</option>
                                             <option value="3">Bac +3</option>
@@ -91,32 +155,46 @@ export default function ApplyJob() {
                                         </select>
                                     </div>
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="firstName">Diplôme préparé</label>
-                                        <input type="text" name="firstName" id="firstName" placeholder="Jean"/>
+                                        {/* TODO: badge, input name & id */}
+                                        <label htmlFor="">Diplôme préparé</label>
+                                        <input type="text" name="" id="" placeholder="Jean" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
-                                        <label htmlFor="name">Nom de l'établissement</label>
-                                        <input type="text" name="name" id="name" placeholder="Dupont"/>
+                                        {/* TODO: badge, input name & id */}
+                                        <label htmlFor="">Nom de l'établissement</label>
+                                        <input type="text" name="" id="" placeholder="Dupont" onChange={handleChange}/>
                                     </div>
                                 </div>
                                 <div className="d-flex direction-column align-start name-degree">
-                                    <label htmlFor="name">Nom de la formation préparée</label>
-                                    <input type="text" name="name" id="name" placeholder="Licence générale informatique, mention développement web "/>
+                                    {/* TODO: badge, input name & id */}
+                                    <label htmlFor="">Nom de la formation préparée</label>
+                                    <input type="text" name="" id="" placeholder="Licence générale informatique, mention développement web" onChange={handleChange}/>
                                 </div>
                                 <div className="d-flex direction-column align-start motivation">
-                                    <label htmlFor="motivation">Vos atouts & motivations pour postuler à cette offre de stage</label>
-                                    <textarea name="motivation" id="motivation" placeholder="Présentez vous et mettez en avant votre parcours, vos atouts, votre personnalité, 
-    vos centres d'intérêt, attentes, etc."></textarea>
+                                    <Quill id='motivation' name='motivation'
+                                           value='Vos atouts & motivations pour postuler à cette offre de stage'/>
+                                    <textarea
+                                        name="motivation"
+                                        id="motivation"
+                                        placeholder="Présentez-vous et mettez en avant votre parcours, vos atouts, votre personnalité, vos centres d’intérêt, attentes, etc."
+                                        onChange={handleChange}>
+                                    </textarea>
                                 </div>
+                                <input type="checkbox" name="createAccount" id="createAccount" onChange={handleChange}/>
+                                <label htmlFor="createAccount">
+                                    Créer mon compte membre pour éviter de ressaisir ces informations la fois prochaine
+                                </label>
                             </div>
                             <div className="skill">
                                 <section className="profil">
                                     <h3>Votre photo</h3>
-                                    <p>Ajouter votre photo à votre profil est apprécié par les entreprises et augmente vos chances</p>
+                                    <p>Ajouter votre photo à votre profil est apprécié par les entreprises et augmente
+                                        vos chances</p>
                                     <div className="d-flex">
-                                        <img src="/img/profil-picture/student1.png" alt="" />
-                                        <label htmlFor="" className="text-center">Importer(500x500 pixels max) <br/><span>JPG ou PNG(5Mo max)</span></label>
-                                        <input type="file" name="" id="" />
+                                        <img src="/img/profil-picture/student1.png" alt=""/>
+                                        <label htmlFor="" className="text-center">Importer(500x500 pixels
+                                            max) <br/><span>JPG ou PNG(5Mo max)</span></label>
+                                        <input type="file" name="" id="" onChange={handleChange}/>
                                     </div>
                                     <span className="line"></span>
                                 </section>
@@ -141,24 +219,24 @@ export default function ApplyJob() {
                                     <div className="d-flex direction-column align-start">
                                         <p>Votre CV (format PDF, 20Mo max)</p>
                                         <label className="d-flex" htmlFor="cv"><Icon icon="ph:paperclip"/>Importez votre CV</label>
-                                        <input type="file" name="cv" id="cv" />
+                                        <input type="file" name="cv" id="cv" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <p>Lettre de motivation (format PDF, 20Mo max)</p>
                                         <label className="d-flex" htmlFor="cv"><Icon icon="ph:paperclip"/>Importez votre lettre de motivation</label>
-                                        <input type="file" name="cv" id="cv" />
+                                        <input type="file" name="cv" id="cv" onChange={handleChange}/>
                                     </div>
                                     <div className="d-flex direction-column align-start">
                                         <p>Autre document (format PDF ou ZIP, 50Mo max)</p>
                                         <label className="d-flex" htmlFor="cv"><Icon icon="ph:paperclip"/>Importez un autre document</label>
-                                        <input type="file" name="cv" id="cv" />
+                                        <input type="file" name="cv" id="cv" onChange={handleChange}/>
                                     </div>
                                 </section>
                             </div>
                         </div>
                         <div className="submit">
                             <span className="line"></span>
-                            <input type="submit" value="Postuler à cette offre de stage" />
+                            <input type="submit" value="Postuler à cette offre de stage"/>
                             <p className="cgv">En validant ce formulaire, vous confirmez que vous acceptez nos <a href="">Conditions Générales d'Utilisation</a> et notre <a href="">politique de confidentialité.</a></p>
                             <a href="" className="d-flex btn"><Icon icon="ph:arrow-left-bold"/> Retour</a>
                         </div>
