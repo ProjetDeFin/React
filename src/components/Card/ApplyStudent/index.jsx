@@ -21,7 +21,7 @@ export default function ApplyStudent({
                     <div className="d-flex">
                         <p className="type-offer">{tag}</p>
                         <span></span>
-                        <p className={periodApply}>{periodApply}</p>
+                        <p className="period-apply">{periodApply}</p>
                     </div>
                 </div>
             </div>
