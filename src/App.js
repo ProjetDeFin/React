@@ -7,9 +7,9 @@ import Offers from './pages/Offers';
 import SignIn from './pages/SignIn';
 import Students from './pages/Students';
 import Register from './pages/Register';
-import ApplyJob from './pages/ApplyJob';
 import Layout from './components/Layout';
 import OfferDetail from './pages/OfferDetail';
+import ApplyJobWrapper from "./pages/ApplyJobWrapper";
 
 export default function App() {
   return (
@@ -24,8 +24,8 @@ export default function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/students" element={<Students />} />
-            <Route path="/apply-job" element={<ApplyJob />} />
             <Route path="/offer-detail/:id" element={<OfferDetail />} />
+            <Route path="/apply-job/:id" element={<ApplyJobWrapper />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>

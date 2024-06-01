@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import './index.scss';
-import InputCustom from "../../components/Form/Input";
-import Quill from "../../components/Form/Quill";
+import InputCustom from "../Form/Input";
+import Quill from "../Form/Quill";
 import { useState } from "react";
 
 export default function ApplyJob({ id }) {
@@ -20,18 +20,16 @@ export default function ApplyJob({ id }) {
         linkedinUrl: '',
         studyLevel: '',
         motivation: '',
-        applicationId: id,
+        offerId: id,
         cv: null
     });
 
     const handleChange = (e) => {
-        console.log(e);
         const { name, value, files } = e.target;
         setFormData({
             ...formData,
             [name]: files ? files[0] : value
         });
-        console.log(formData);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,13 +39,18 @@ export default function ApplyJob({ id }) {
             data.append(key, formData[key]);
         }
 
+        console.log(formData);
+
         fetch(`${process.env.REACT_APP_API_URL}/api/applications/apply`, {
             method: 'POST',
             body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
         })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                alert(data);
+                alert(data.message || 'Application submitted successfully!');
             })
             .catch(error => {
                 console.error('Error:', error);
