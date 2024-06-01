@@ -41,7 +41,7 @@ export default function CompanyCard({
         <div className="company-card-offer">
             <div className="d-flex">
                 <img src={`/img/logo/${logo}`} alt="" />
-                <div>
+                <div className="content">
                     <h3>{nameOffer}</h3>
                     <p className="description">{nameCompany} . <span>{locationCompany} . {period}</span></p>
                     <div className="d-flex justify-start">
