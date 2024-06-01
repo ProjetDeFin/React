@@ -6,7 +6,7 @@ export default function ApplyJob() {
         <div className="apply-job">
             <section className="apply-job-form">
                 <div className="container">
-                    <form action={process.env.REACT_APP_API_URL} method="post">
+                    <form action={`${process.env.REACT_APP_API_URL}/api/application`} method="post">
                         <div className="d-flex align-start">
                             <div className="description">
                                 <h2>Postulez a cette offre de stage</h2>
