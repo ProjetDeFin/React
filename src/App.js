@@ -7,6 +7,7 @@ import Offers from './pages/Offers';
 import SignIn from './pages/SignIn';
 import Students from './pages/Students';
 import Register from './pages/Register';
+import ApplyJob from './pages/ApplyJob';
 import Layout from './components/Layout';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/students" element={<Students />} />
+            <Route path="/apply-job" element={<ApplyJob />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>
