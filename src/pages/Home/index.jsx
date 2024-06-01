@@ -335,7 +335,7 @@ export default function Home() {
       <div className="homepage">
         <section className="landing-page">
           <div className="container">
-            <div className="d-flex justify-center">
+            <div className="d-flex">
               <div className="description">
                 <p className="landing-scape">Trouver un stage n'aura jamais été <span>aussi facile !</span></p>
                 <p>Trouvez les offres de stage ou d'alternance près de chez vous qui correspondent à votre profil et à vos attentes.</p>
@@ -347,6 +347,16 @@ export default function Home() {
         </section>
         <div className="container">
           <CompaniesForward companies={forwardCompany} />
+          <section className="account-creation">
+            <div className="d-flex align-start">
+              <div>
+                <p>Entreprises,déposez vos offres gratuitement</p>
+                <p>Vous pourrez gérer votre planning d’accueil et bénéficier de nombreux services intégrés.</p>
+                <a className="btn" href="">Créez votre compte</a>
+              </div>
+              <img src="/img/dashboard-thumbnail.jpg" alt="" />
+            </div>
+          </section>
           <section className='companyOffer'>
             <div className="d-flex">
               <h2>Dernières <span>offres</span></h2>
@@ -373,26 +383,28 @@ export default function Home() {
           </section>
         </div>
         <section className="bg-grey apply-student">
-          <div className="d-flex">
-            <h2>Dernières <span>demandes</span></h2>
-            <a href="" className='turquoise all-offer d-flex'>
-              toutes les demandes
-              <Icon icon="tabler:arrow-right" />
-            </a>
-          </div>
-          <div className="d-flex wrap">
-            {lastApply.map((apply, index) => (
-                <ApplyStudent
-                    key={index}
-                    profilPicture={apply.student.picture}
-                    titleApply={apply.name}
-                    agePerson={apply.student.age}
-                    locationPerson={apply.student.city}
-                    namePerson={apply.student.name}
-                    tag={apply.tags[0].name || ""}
-                    periodApply={apply.period || ""} 
-                />
-            ))}
+          <div className="container">
+            <div className="d-flex">
+              <h2>Dernières <span>demandes</span></h2>
+              <a href="" className='turquoise all-offer d-flex'>
+                toutes les demandes
+                <Icon icon="tabler:arrow-right" />
+              </a>
+            </div>
+            <div className="d-flex wrap">
+              {lastApply.map((apply, index) => (
+                  <ApplyStudent
+                      key={index}
+                      profilPicture={apply.student.picture}
+                      titleApply={apply.name}
+                      agePerson={apply.student.age}
+                      locationPerson={apply.student.city}
+                      namePerson={apply.student.name}
+                      tag={apply.tags[0].name || ""}
+                      periodApply={apply.period || ""} 
+                  />
+              ))}
+            </div>
           </div>
         </section>
       </div>

@@ -66,12 +66,41 @@
       }
     }
   }
+
   .apply-student {
     background-color: #F8F8FD;
-    padding: 72px 124px 60px 124px;
+    padding: 72px 0 60px 0;
 
-    & > .wrap {
+    & .wrap {
       gap: 32px;
+    }
+  }
+
+  .account-creation {
+    background-color: #4640DE;
+    color: white;
+    margin: 72px 0;
+     
+    & > .d-flex {
+      padding: 70px 72px 0 72px;
+
+      & > div:first-child {
+        margin-top: 24px;
+      }
+
+      p:first-child {
+        font-size: 36px;
+        font-weight: 600;
+      }
+
+      p:nth-child(2) {
+        margin: 24px 0 36px 0;
+      }
+
+      a { 
+        background-color: #fff;
+        color: #4640DE;
+      }
     }
   }
 }
