@@ -24,6 +24,8 @@ export default function Offers() {
       restDay: 30,
       firstTag: 'Marketing',
       secondTag: 'Design',
+      level: 'Master, DEA, DESS',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -35,6 +37,8 @@ export default function Offers() {
       restDay: 45,
       firstTag: 'Informatique',
       secondTag: 'Finance',
+      level: 'License',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -46,6 +50,8 @@ export default function Offers() {
       restDay: 60,
       firstTag: 'Finance',
       secondTag: 'Marketing',
+      level: 'BTS, DUT, BUT',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -57,6 +63,8 @@ export default function Offers() {
       restDay: 50,
       firstTag: 'Design',
       secondTag: 'Informatique',
+      level: 'Master, DEA, DESS',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -68,6 +76,8 @@ export default function Offers() {
       restDay: 25,
       firstTag: 'Finance',
       secondTag: 'Marketing',
+      level: 'License',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -79,6 +89,8 @@ export default function Offers() {
       restDay: 15,
       firstTag: 'Marketing',
       secondTag: 'Design',
+      level: 'Master, DEA, DESS',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -90,6 +102,8 @@ export default function Offers() {
       restDay: 10,
       firstTag: 'Design',
       secondTag: 'Finance',
+      level: 'BTS, DUT, BUT',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -101,6 +115,8 @@ export default function Offers() {
       restDay: 75,
       firstTag: 'Informatique',
       secondTag: 'Marketing',
+      level: 'License',
+      duration: 'Entre 2 et 6 mois'
     },
   ];
 
@@ -142,14 +158,11 @@ export default function Offers() {
     setSort(e.target.value);
   };
 
-  const filteredOffers = offerData.filter((offer) => {
-    const profileMatch =
-      filter.profiles.length === 0 ||
-      filter.profiles.includes(offer.firstTag) ||
-      filter.profiles.includes(offer.secondTag);
-    const levelMatch = filter.levels.length === 0; // Ajoute la logique pour le niveau d'étude ici
-    const durationMatch = filter.duration.length === 0; // Ajoute la logique pour la durée ici
-    const distanceMatch = true; // Ajoute la logique pour la distance ici
+  const filteredOffers = offerData.filter(offer => {
+    const profileMatch = filter.profiles.length === 0 || filter.profiles.includes(offer.firstTag) || filter.profiles.includes(offer.secondTag);
+    const levelMatch = filter.levels.length === 0 || filter.levels.includes(offer.level);
+    const durationMatch = filter.duration.length === 0 || filter.duration.includes(offer.duration);
+    const distanceMatch = true;
 
     return profileMatch && levelMatch && durationMatch && distanceMatch;
   });
@@ -174,8 +187,13 @@ export default function Offers() {
   });
 
   return (
-    <div className="offers">
-      <div className="grey text-center">
+      <div className="offers">
+        <div className="grey text-center">
+          <div className="container">
+            <h2>Offres de <span className="turquoise">stage</span></h2>
+            <p>Découvrez les offres de stages actuellement proposées par les entreprises</p>
+          </div>
+        </div>
         <div className="container">
           <h2>
             Offres de <span className="turquoise">stage</span>
@@ -185,7 +203,6 @@ export default function Offers() {
             entreprises
           </p>
         </div>
-      </div>
       <div className="container">
         <div className="d-flex align-start">
           <section className="filter">
@@ -214,12 +231,49 @@ export default function Offers() {
                     <label>{profile}</label>
                   </div>
                 ))}
+          <div className="d-flex align-start">
+            <section className="filter">
+              <div className="profiles">
+                <div className="d-flex title">
+                  <p>Profils métiers</p>
+                  <Icon icon="iconamoon:arrow-up-2-duotone" />
+                </div>
+                <div className="d-flex direction-column align-start">
+                  {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
+                      <div className="d-flex" key={profile}>
+                        <input type="checkbox" value={profile} onChange={handleProfileChange} />
+                        <label>{profile}</label>
+                      </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="level-of-study">
-              <div className="d-flex title">
-                <p>Niveau recherché</p>
-                <Icon icon="iconamoon:arrow-up-2-duotone" />
+              <div className="level-of-study">
+                <div className="d-flex title">
+                  <p>Niveau recherché</p>
+                  <Icon icon="iconamoon:arrow-up-2-duotone" />
+                </div>
+                <div className="d-flex direction-column align-start">
+                  {['Master, DEA, DESS', 'License', 'BTS, DUT, BUT', 'BAC', 'CAP, BEP'].map(level => (
+                      <div className="d-flex" key={level}>
+                        <input type="checkbox" value={level} onChange={handleLevelChange} />
+                        <label>{level}</label>
+                      </div>
+                  ))}
+                </div>
+              </div>
+              <div className="duration">
+                <div className="d-flex title">
+                  <p>Durée</p>
+                  <Icon icon="iconamoon:arrow-up-2-duotone" />
+                </div>
+                <div className="d-flex direction-column align-start">
+                  {['Moins de 2 mois', 'Entre 2 et 6 mois', 'Entre 6 et 12 mois', 'Plus de 12 mois'].map(duration => (
+                      <div className="d-flex" key={duration}>
+                        <input type="checkbox" value={duration} onChange={handleDurationChange} />
+                        <label>{duration}</label>
+                      </div>
+                  ))}
+                </div>
               </div>
               <div className="d-flex direction-column align-start">
                 {[
@@ -239,6 +293,7 @@ export default function Offers() {
                   </div>
                 ))}
               </div>
+            </section>
             </div>
             <div className="duration">
               <div className="d-flex title">
@@ -280,13 +335,23 @@ export default function Offers() {
               />
               <button>A moins de {filter.distance} km</button>
             </div>
+              </div></div>
           </section>
           <section className="result">
             <div className="d-flex">
               <div>
                 <h3>Résultats</h3>
                 <p>{sortedOffers.length} offres trouvées</p>
-              </div>
+              <div className="range">
+                <div className="d-flex title">
+                  <p>Distance<span> - 0 à 100KM</span></p>
+                  <Icon icon="iconamoon:arrow-up-2-duotone" />
+                </div>
+                <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} />
+                <button>A moins de {filter.distance} km</button>
+              </div></div></div>
+            </section>
+            <section className="result">
               <div className="d-flex">
                 <p>Trier par :</p>
                 <select value={sort} onChange={handleSortChange}>
@@ -300,30 +365,43 @@ export default function Offers() {
                   <option value="alphaZA">Alphabétique (Z-A)</option>
                   <option value="deadline">Date limite pour postuler</option>
                 </select>
+                <div>
+                  <h3>Résultats</h3>
+                  <p>{sortedOffers.length} offres trouvées</p>
+                </div>
+                <div className="d-flex">
+                  <p>Trier par :</p>
+                  <select value={sort} onChange={handleSortChange}>
+                    <option value="dateRecent">Date de publication (plus récent)</option>
+                    <option value="dateOld">Date de publication (plus vieux)</option>
+                    <option value="alphaAZ">Alphabétique (A-Z)</option>
+                    <option value="alphaZA">Alphabétique (Z-A)</option>
+                    <option value="deadline">Date limite pour postuler</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div className="d-flex direction-column">
-              {sortedOffers.map((offer, index) => (
-                <CompanyCard
-                  key={index}
-                  logo={offer.logo}
-                  typeOffer={offer.typeOffer}
-                  nameOffer={offer.nameOffer}
-                  nameCompany={offer.nameCompany}
-                  locationCompany={offer.locationCompany}
-                  descriptionCompany={offer.descriptionCompany}
-                  firstTag={offer.firstTag}
-                  secondTag={offer.secondTag}
-                  inOfferPage={true}
-                  period={offer.period}
-                  restDay={offer.restDay}
-                  offerId="1"
-                />
-              ))}
-            </div>
-          </section>
+              <div className="d-flex direction-column">
+                {sortedOffers.map((offer, index) => (
+                    <CompanyCard
+                        key={index}
+                        logo={offer.logo}
+                        typeOffer={offer.typeOffer}
+                        nameOffer={offer.nameOffer}
+                        nameCompany={offer.nameCompany}
+                        locationCompany={offer.locationCompany}
+                        descriptionCompany={offer.descriptionCompany}
+                        firstTag={offer.firstTag}
+                        secondTag={offer.secondTag}
+                        inOfferPage={true}
+                        period={offer.period}
+                        restDay={offer.restDay}
+                        offerId="1"
+                    />
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
