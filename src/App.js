@@ -9,6 +9,7 @@ import Students from './pages/Students';
 import Register from './pages/Register';
 import ApplyJob from './pages/ApplyJob';
 import Layout from './components/Layout';
+import OfferDetail from './pages/OfferDetail';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/students" element={<Students />} />
             <Route path="/apply-job" element={<ApplyJob />} />
+            <Route path="/offer-detail/:id" element={<OfferDetail />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>

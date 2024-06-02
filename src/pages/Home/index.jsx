@@ -338,7 +338,7 @@ export default function Home() {
             <div className="d-flex align-start">
               <div>
                 <p>Entreprises,déposez vos offres gratuitement</p>
-                <p>Vous pourrez gérer votre planning d’accueil et bénéficier de nombreux services intégrés.</p>
+                <p>Vous pourrez gérer votre planning d'accueil et bénéficier de nombreux services intégrés.</p>
                 <a className="btn" href="">Créez votre compte</a>
               </div>
               <img src="/img/dashboard-thumbnail.jpg" alt="" />

@@ -270,6 +270,32 @@ p.Informatique {
   color: #FF6550;
 }
 
+.progress-bar-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 30px 0 8px 0;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.progress-bar.high {
+  background-color: #56CDAD;
+}
+
+.progress-bar.medium {
+  background-color: #FF9900;
+}
+
+.progress-bar.low {
+  background-color: #FF007A;
+}
+
 @media screen and (max-width: 1840px) {
   .container {
     width: 100%;

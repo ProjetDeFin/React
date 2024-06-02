@@ -105,7 +105,7 @@ export default function ApplyJob() {
                                 <div className="d-flex direction-column align-start motivation">
                                     <label htmlFor="motivation">Vos atouts & motivations pour postuler à cette offre de stage</label>
                                     <textarea name="motivation" id="motivation" placeholder="Présentez vous et mettez en avant votre parcours, vos atouts, votre personnalité, 
-    vos centres d’intérêt, attentes, etc."></textarea>
+    vos centres d'intérêt, attentes, etc."></textarea>
                                 </div>
                             </div>
                             <div className="skill">
