@@ -1,7 +1,7 @@
 import './index.scss';
 import { Link } from 'react-router-dom';
 
-export default function CompanyCard({
+export default function OfferCompany({
   logo,
   typeOffer,
   nameOffer,
@@ -23,21 +23,23 @@ export default function CompanyCard({
   const progress = calculateProgress(restDay);
 
   const defaultTemplate = (
-    <div className="company-card">
-      <div className="d-flex">
-        <img src={`/img/logo/${logo}`} alt="" />
-        <p className="type-offer">{typeOffer}</p>
+    <Link to={`/offer-detail/${offerId}`}>
+      <div className="company-card">
+        <div className="d-flex">
+          <img src={`/img/logo/${logo}`} alt="" />
+          <p className="type-offer">{typeOffer}</p>
+        </div>
+        <h5 className="name-offer">{nameOffer}</h5>
+        <p className="detail-company">
+          {nameCompany} . {locationCompany}
+        </p>
+        <p className="description-company">{descriptionCompany}</p>
+        <div className="d-flex tag-offer justify-start">
+          <p className={`tag ${firstTag}`}>{firstTag}</p>
+          <p className={`tag ${secondTag}`}>{secondTag}</p>
+        </div>
       </div>
-      <h5 className="name-offer">{nameOffer}</h5>
-      <p className="detail-company">
-        {nameCompany} . {locationCompany}
-      </p>
-      <p className="description-company">{descriptionCompany}</p>
-      <div className="d-flex tag-offer justify-start">
-        <p className={`tag ${firstTag}`}>{firstTag}</p>
-        <p className={`tag ${secondTag}`}>{secondTag}</p>
-      </div>
-    </div>
+    </Link>
   );
 
   const offerPageTemplate = (

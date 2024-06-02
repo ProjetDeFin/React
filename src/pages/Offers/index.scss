@@ -15,6 +15,8 @@
   }
 
   section.result {
+    width: 919px;
+    
     & > .direction-column {
       gap: 16px;
     }
@@ -42,6 +44,8 @@
   }
 
   .filter {
+    width: 233px;
+
     .title {
       margin-bottom: 20px;
 
