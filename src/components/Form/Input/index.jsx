@@ -1,7 +1,15 @@
 import './index.scss';
 import { Fragment, useState } from 'react';
 
-export default function InputCustom({ type, placeholder, classes = '', min = null, max = null, onChange, ...props }) {
+export default function InputCustom({
+  type,
+  placeholder,
+  classes = '',
+  min = null,
+  max = null,
+  onChange,
+  ...props
+}) {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState(false);
 
@@ -44,18 +52,22 @@ export default function InputCustom({ type, placeholder, classes = '', min = nul
   };
 
   return (
-      <Fragment>
-        <input
-            className={`${classes} ${error ? 'input-error' : ''}`}
-            type={type === 'number' ? 'text' : type}
-            placeholder={placeholder}
-            value={inputValue}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            onBlur={handleBlur}
-            {...props}
-        />
-        {error && <span className="error-message">Input must be at least {min} characters long</span>}
-      </Fragment>
+    <Fragment>
+      <input
+        className={`${classes} ${error ? 'input-error' : ''}`}
+        type={type === 'number' ? 'text' : type}
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        {...props}
+      />
+      {error && (
+        <span className="error-message">
+          Input must be at least {min} characters long
+        </span>
+      )}
+    </Fragment>
   );
 }

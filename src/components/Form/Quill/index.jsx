@@ -2,9 +2,15 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 
-export default function Quill({ width = 500, height = 300, value, onChange, name = null }) {
-    const { quill, quillRef } = useQuill();
-    const debounceTimeout = useRef(null);
+export default function Quill({
+  width = 500,
+  height = 300,
+  value,
+  onChange,
+  name = null,
+}) {
+  const { quill, quillRef } = useQuill();
+  const debounceTimeout = useRef(null);
 
   const handleTextChange = useCallback(() => {
     if (debounceTimeout.current) {
@@ -32,9 +38,9 @@ export default function Quill({ width = 500, height = 300, value, onChange, name
     };
   }, [quill, handleTextChange]);
 
-    return (
-        <div style={{ width, height }}>
-            <div ref={quillRef} id />
-        </div>
-    );
+  return (
+    <div style={{ width, height }}>
+      <div ref={quillRef} id />
+    </div>
+  );
 }

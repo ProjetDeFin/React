@@ -8,7 +8,7 @@ export default function Offers() {
     profiles: [],
     levels: [],
     duration: [],
-    distance: 100
+    distance: 100,
   });
 
   const [sort, setSort] = useState('dateRecent');
@@ -23,7 +23,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 30,
       firstTag: 'Marketing',
-      secondTag: 'Design'
+      secondTag: 'Design',
     },
     {
       logo: 'intel.svg',
@@ -34,7 +34,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 45,
       firstTag: 'Informatique',
-      secondTag: 'Finance'
+      secondTag: 'Finance',
     },
     {
       logo: 'intel.svg',
@@ -45,7 +45,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 60,
       firstTag: 'Finance',
-      secondTag: 'Marketing'
+      secondTag: 'Marketing',
     },
     {
       logo: 'intel.svg',
@@ -56,7 +56,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 50,
       firstTag: 'Design',
-      secondTag: 'Informatique'
+      secondTag: 'Informatique',
     },
     {
       logo: 'intel.svg',
@@ -67,7 +67,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 25,
       firstTag: 'Finance',
-      secondTag: 'Marketing'
+      secondTag: 'Marketing',
     },
     {
       logo: 'intel.svg',
@@ -78,7 +78,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 15,
       firstTag: 'Marketing',
-      secondTag: 'Design'
+      secondTag: 'Design',
     },
     {
       logo: 'intel.svg',
@@ -89,7 +89,7 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 10,
       firstTag: 'Design',
-      secondTag: 'Finance'
+      secondTag: 'Finance',
     },
     {
       logo: 'intel.svg',
@@ -100,50 +100,53 @@ export default function Offers() {
       typeOffer: 'Stage',
       restDay: 75,
       firstTag: 'Informatique',
-      secondTag: 'Marketing'
-    }
+      secondTag: 'Marketing',
+    },
   ];
 
   const handleProfileChange = (e) => {
     const { value, checked } = e.target;
-    setFilter(prevState => {
+    setFilter((prevState) => {
       const profiles = checked
         ? [...prevState.profiles, value]
-        : prevState.profiles.filter(profile => profile !== value);
+        : prevState.profiles.filter((profile) => profile !== value);
       return { ...prevState, profiles };
     });
   };
 
   const handleLevelChange = (e) => {
     const { value, checked } = e.target;
-    setFilter(prevState => {
+    setFilter((prevState) => {
       const levels = checked
         ? [...prevState.levels, value]
-        : prevState.levels.filter(level => level !== value);
+        : prevState.levels.filter((level) => level !== value);
       return { ...prevState, levels };
     });
   };
 
   const handleDurationChange = (e) => {
     const { value, checked } = e.target;
-    setFilter(prevState => {
+    setFilter((prevState) => {
       const duration = checked
         ? [...prevState.duration, value]
-        : prevState.duration.filter(d => d !== value);
+        : prevState.duration.filter((d) => d !== value);
       return { ...prevState, duration };
     });
   };
 
   const handleDistanceChange = (e) => {
-    setFilter(prevState => ({ ...prevState, distance: e.target.value }));
+    setFilter((prevState) => ({ ...prevState, distance: e.target.value }));
   };
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
   };
 
-  const filteredOffers = offerData.filter(offer => {
-    const profileMatch = filter.profiles.length === 0 || filter.profiles.includes(offer.firstTag) || filter.profiles.includes(offer.secondTag);
+  const filteredOffers = offerData.filter((offer) => {
+    const profileMatch =
+      filter.profiles.length === 0 ||
+      filter.profiles.includes(offer.firstTag) ||
+      filter.profiles.includes(offer.secondTag);
     const levelMatch = filter.levels.length === 0; // Ajoute la logique pour le niveau d'étude ici
     const durationMatch = filter.duration.length === 0; // Ajoute la logique pour la durée ici
     const distanceMatch = true; // Ajoute la logique pour la distance ici
@@ -153,9 +156,13 @@ export default function Offers() {
 
   const sortedOffers = [...filteredOffers].sort((a, b) => {
     if (sort === 'dateRecent') {
-      return new Date(b.period.split(' ')[2]) - new Date(a.period.split(' ')[2]);
+      return (
+        new Date(b.period.split(' ')[2]) - new Date(a.period.split(' ')[2])
+      );
     } else if (sort === 'dateOld') {
-      return new Date(a.period.split(' ')[2]) - new Date(b.period.split(' ')[2]);
+      return (
+        new Date(a.period.split(' ')[2]) - new Date(b.period.split(' ')[2])
+      );
     } else if (sort === 'alphaAZ') {
       return a.nameOffer.localeCompare(b.nameOffer);
     } else if (sort === 'alphaZA') {
@@ -188,9 +195,22 @@ export default function Offers() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
+                {[
+                  'Design',
+                  'Commercial',
+                  'Marketing',
+                  'Business',
+                  'Management',
+                  'Finance',
+                  'Industrie',
+                  'Informatique',
+                ].map((profile) => (
                   <div className="d-flex" key={profile}>
-                    <input type="checkbox" value={profile} onChange={handleProfileChange} />
+                    <input
+                      type="checkbox"
+                      value={profile}
+                      onChange={handleProfileChange}
+                    />
                     <label>{profile}</label>
                   </div>
                 ))}
@@ -202,9 +222,19 @@ export default function Offers() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Master, DEA, DESS', 'License', 'BTS, DUT, BUT', 'BAC', 'CAP, BEP'].map(level => (
+                {[
+                  'Master, DEA, DESS',
+                  'License',
+                  'BTS, DUT, BUT',
+                  'BAC',
+                  'CAP, BEP',
+                ].map((level) => (
                   <div className="d-flex" key={level}>
-                    <input type="checkbox" value={level} onChange={handleLevelChange} />
+                    <input
+                      type="checkbox"
+                      value={level}
+                      onChange={handleLevelChange}
+                    />
                     <label>{level}</label>
                   </div>
                 ))}
@@ -216,9 +246,18 @@ export default function Offers() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Moins de 2 mois', 'Entre 2 et 6 mois', 'Entre 6 et 12 mois', 'Plus de 12 mois'].map(duration => (
+                {[
+                  'Moins de 2 mois',
+                  'Entre 2 et 6 mois',
+                  'Entre 6 et 12 mois',
+                  'Plus de 12 mois',
+                ].map((duration) => (
                   <div className="d-flex" key={duration}>
-                    <input type="checkbox" value={duration} onChange={handleDurationChange} />
+                    <input
+                      type="checkbox"
+                      value={duration}
+                      onChange={handleDurationChange}
+                    />
                     <label>{duration}</label>
                   </div>
                 ))}
@@ -226,21 +265,20 @@ export default function Offers() {
             </div>
             <div className="range">
               <div className="d-flex title">
-<<<<<<< HEAD
-                <p>Distance<span> - 0 à 100KM</span></p>
-                <Icon icon="iconamoon:arrow-up-2-duotone" />
-              </div>
-              <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} disabled={true} />
-              <button>A moins de {filter.distance} km</button>
-=======
                 <p>
-                  Distance<span> - 0 a 100KM</span>
+                  Distance<span> - 0 à 100KM</span>
                 </p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
-              <input type="range" name="" id="" min="0" max="100" />
-              <button>A moins de 50 km</button>
->>>>>>> 8d5d8b4 (MIN: lint all file)
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={filter.distance}
+                onChange={handleDistanceChange}
+                disabled={true}
+              />
+              <button>A moins de {filter.distance} km</button>
             </div>
           </section>
           <section className="result">
@@ -252,8 +290,12 @@ export default function Offers() {
               <div className="d-flex">
                 <p>Trier par :</p>
                 <select value={sort} onChange={handleSortChange}>
-                  <option value="dateRecent">Date de publication (plus récent)</option>
-                  <option value="dateOld">Date de publication (plus vieux)</option>
+                  <option value="dateRecent">
+                    Date de publication (plus récent)
+                  </option>
+                  <option value="dateOld">
+                    Date de publication (plus vieux)
+                  </option>
                   <option value="alphaAZ">Alphabétique (A-Z)</option>
                   <option value="alphaZA">Alphabétique (Z-A)</option>
                   <option value="deadline">Date limite pour postuler</option>
@@ -261,11 +303,7 @@ export default function Offers() {
               </div>
             </div>
             <div className="d-flex direction-column">
-<<<<<<< HEAD
               {sortedOffers.map((offer, index) => (
-=======
-              {offerData.map((offer, index) => (
->>>>>>> 8d5d8b4 (MIN: lint all file)
                 <CompanyCard
                   key={index}
                   logo={offer.logo}

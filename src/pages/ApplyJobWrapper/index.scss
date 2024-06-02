@@ -1,169 +1,168 @@
 .apply-job {
-    line-height: 160%;
-    padding: 72px 0 106px 0;
+  line-height: 160%;
+  padding: 72px 0 106px 0;
 
-    h2 {
-        font-size: 32px;
-        font-weight: 600;
-        margin-bottom: 20px;
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  span.line {
+    height: 1px;
+    width: 100%;
+    background-color: #d6ddeb;
+    display: block;
+  }
+
+  input {
+    padding: 12px 0 12px 16px;
+    border: 1px solid #d6ddeb;
+
+    &[type='submit'] {
+      background-color: #4640de;
+      width: 100%;
+      color: #fff;
+      font-weight: bold;
+      margin: 32px 0;
+      cursor: pointer;
     }
+  }
+
+  textarea {
+    width: 100%;
+    height: 230px;
+    padding: 16px 87px 16px 16px;
+    border: 1px solid #d6ddeb;
+  }
+  .submit {
+    width: 64%;
+
+    .btn {
+      width: 150px;
+      margin-top: 32px;
+      background-color: #fff;
+      color: #25324b;
+      border: 1px solid #25324b;
+    }
+  }
+  .cgv a {
+    color: #4640de;
+    text-decoration: underline;
+  }
+
+  select {
+    background-color: #fff;
+    border: 1px solid #d6ddeb;
+  }
+
+  .direction-column {
+    width: 48%;
+
+    &.website,
+    &.linkedin,
+    &.motivation,
+    &.name-degree {
+      width: 100%;
+    }
+
+    label {
+      margin-bottom: 4px;
+      font-weight: 600;
+      color: #515b6f;
+
+      span {
+        color: #ff007a;
+      }
+    }
+  }
+
+  .skill {
+    width: 31.6%;
 
     h3 {
-        font-size: 24px;
+      color: #4640de;
+      margin-bottom: 16px;
     }
 
-    span.line {
-        height: 1px;
-        width: 100%;
-        background-color: #D6DDEB;
-        display: block
+    p {
+      margin-bottom: 20px;
     }
 
-    input {
-        padding: 12px 0 12px 16px;
-        border: 1px solid #D6DDEB;
-
-        &[type="submit"]{
-            background-color: #4640DE;
-            width: 100%;
-            color: #fff;
-            font-weight: bold;
-            margin: 32px 0;
-            cursor: pointer;
-        }
-    }
-
-    textarea {
-        width: 100%;
-        height: 230px;
-        padding: 16px 87px 16px 16px;
-        border: 1px solid #D6DDEB;
-    }
-    .submit {
-        width: 64%;
-
-        .btn {
-            width: 150px;
-            margin-top: 32px;
-            background-color: #fff;
-            color: #25324B;
-            border: 1px solid #25324B;
-        }
-    }
-    .cgv a {
-        color: #4640DE;
-        text-decoration: underline;
-    }
-    
-    select {
-        background-color: #fff;
-        border: 1px solid #D6DDEB;
+    section {
+      margin-bottom: 30px;
     }
 
     .direction-column {
-        width: 48%;
-
-        &.website,
-        &.linkedin,
-        &.motivation,
-        &.name-degree {
-            width: 100%;
-        }
-
-
-        label {
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: #515B6F;
-
-            span {
-                color: #FF007A;
-            }
-        }
+      width: inherit;
     }
 
-    .skill {
-        width: 31.6%;
+    label {
+      padding: 16px 20px;
+      border: 1px dashed #4640de;
+      background-color: #f8f8fd;
+      gap: 16px;
 
-        h3 {
-            color: #4640DE;
-            margin-bottom: 16px;
-        }
-        
-        p {
-            margin-bottom: 20px;
-        }
+      svg {
+        color: #4640de;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 
-        section {
-            margin-bottom: 30px;
-        }
+  .description {
+    width: 64%;
 
-        .direction-column {
-            width: inherit;
-        }
-
-        label {
-            padding: 16px 20px;
-            border: 1px dashed #4640DE;
-            background-color: #F8F8FD;
-            gap: 16px;
-
-            svg {
-                color: #4640DE;
-                width: 24px;
-                height: 24px;
-            }
-        }
+    & > .d-flex {
+      margin-bottom: 32px;
     }
 
-    .description {
-        width: 64%;
-
-        & > .d-flex {
-            margin-bottom: 32px;
-        }
-
-        & > .justify-start {
-            gap: 52px;
-        }
-
-        h3 {
-            margin-bottom: 32px;
-        }
-
-        .identity {
-            gap: 25px;
-        }
-
-        input {
-            width: 100%;
-
-            &[type="checkbox"] {
-                padding: 0px;
-                width: 24px ;
-                cursor: pointer;
-            }
-        }
-
-        span {
-            margin-bottom: 32px;
-        }
-
-        .situation {
-            gap: 24px;
-
-            select {
-                padding: 12px 16px;
-                width: 173px;
-            }
-        }
-
-        .gender {
-            width: 16%;
-
-            & select {
-                padding: 12px 16px;
-            }
-        }
+    & > .justify-start {
+      gap: 52px;
     }
+
+    h3 {
+      margin-bottom: 32px;
+    }
+
+    .identity {
+      gap: 25px;
+    }
+
+    input {
+      width: 100%;
+
+      &[type='checkbox'] {
+        padding: 0px;
+        width: 24px;
+        cursor: pointer;
+      }
+    }
+
+    span {
+      margin-bottom: 32px;
+    }
+
+    .situation {
+      gap: 24px;
+
+      select {
+        padding: 12px 16px;
+        width: 173px;
+      }
+    }
+
+    .gender {
+      width: 16%;
+
+      & select {
+        padding: 12px 16px;
+      }
+    }
+  }
 }
