@@ -312,9 +312,9 @@ export default function OfferDetail() {
           </div>
           <div className="d-flex wrap">
             {lastOffers.map((offer, index) => (
-                <CompanyCard
-                    key={index}
-                    logo={offer.company.logo}
+              <CompanyCard
+                key={index}
+                logo={offer.company.logo}
                 typeOffer={offer.type}
                 nameOffer={offer.name}
                 nameCompany={offer.company.name}
