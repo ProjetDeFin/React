@@ -12,10 +12,10 @@ nav {
       border-bottom: 2px solid transparent;
 
       &.active {
-        border-bottom: 2px solid red;
+        border-bottom: 2px solid var(--color-primary);
       }
       &:hover {
-        border-bottom: 2px solid red;
+        border-bottom: 2px solid var(--color-primary);
       }
     }
   }
