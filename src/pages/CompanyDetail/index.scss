@@ -1,0 +1,215 @@
+.company-detail {
+    line-height: 160%;
+
+    .link {
+        a {
+            width: 179px;
+            font-weight: 600;
+            color: #4640DE;
+            line-height: 100%;
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .grey {
+        padding: 20px 0 40px 0;
+
+        h2 {
+            font-size: 48px;
+            margin: 34px 0 18px 0;
+        }
+
+        .link {
+            width: 183px;
+            background-color: #fff;
+            color: #4640DE;
+            padding: 6px 11px;
+            font-weight: 600;
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .summary {
+            gap: 40px;
+            margin-top: 32px;
+
+            & > .d-flex {
+                gap: 16px;
+
+                p:last-child {
+                    font-weight: 600;
+                }
+            }
+
+            .circle {
+                background-color: #fff;
+                padding: 10px;
+                border-radius: 50%;
+            }
+            svg {
+                color: #26A4FF;
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .offer {
+            margin: 52px auto 76px auto;
+
+            h3 {
+                font-size: 32px;
+                margin-bottom: 32px;
+            }
+
+            .offer-alternated-training {
+                margin-top: 52px;
+
+            }
+
+            .d-flex {
+                gap: 32px;
+            }
+        }
+    }
+    .content {
+        margin: 52px 68px;
+
+        .logo {
+            height: 62px;
+            margin-bottom: 40px;
+        }
+
+        .container > .d-flex {
+            gap: 64px;
+        }
+
+        h3 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .presentation {
+            p {
+                margin-bottom: 24px;
+            }
+
+            p:nth-child(2) {
+                font-weight: 600;
+            }
+        }
+
+        section {
+            span {
+                width: 100%;
+                height: 1px;
+                display: block;
+                background-color: #D6DDEB;
+            }
+            .contact {
+                span {
+                    margin-top: 24px;
+                }
+
+                a.link {
+                    width: 245px;
+                    margin-top: 24px;
+                    color: #4640DE;
+                    font-weight: 600;
+                }
+            }
+
+            .additional-contact {
+                margin: 40px 0 24px 0;
+
+                & > div {
+                    p:first-child {
+                        font-weight: 600;
+                        margin-top: 24px;
+                    }
+                }
+
+                span {
+                    margin-top: 16px;
+                }
+
+                svg {
+                    color: #4640DE;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .justify-start {
+                    margin-top: 16px;
+                }
+            }
+
+            .situation {
+                p {
+                    margin-bottom: 4px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    &:nth-child(2) {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .map {
+                margin: 16px 0 40px 0;
+                a {
+                    width: 179px;
+                    font-weight: 600;
+                    color: #4640DE;
+                    line-height: 100%;
+
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+
+                iframe {
+                    margin: 8px 0 16px 0;
+                }
+            }
+            .justify-start {
+                gap: 16px;
+
+                .rs {
+                    color: #4640DE;
+                    padding: 8px;
+                    gap: 12px;
+                    border: 1px solid #4640DE;
+        
+                    p {
+                        line-height: 100%;
+                    }
+        
+                    svg{
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+
+            .gallery {
+                gap: 12px;
+                margin-top: 40px;
+
+                .d-flex {
+                    gap: 12px;
+                }
+            }
+        }
+    }
+}
