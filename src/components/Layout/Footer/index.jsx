@@ -24,10 +24,10 @@ export default function Footer() {
           </div>
           <div className="d-flex footer-menu direction-column align-start">
             <Link href="/">Accueil</Link>
-            <Link href="/">Offres</Link>
-            <Link href="/">Demandes</Link>
-            <Link href="/">Entreprises</Link>
-            <Link href="/">Etudiants</Link>
+            <Link href="/offers">Offres</Link>
+            <Link href="/applications">Demandes</Link>
+            <Link href="/companies">Entreprises</Link>
+            <Link href="/students">Etudiants</Link>
           </div>
           <div className="d-flex footer-menu direction-column align-start">
             <Link href="/">Blog</Link>

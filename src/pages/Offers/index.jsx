@@ -24,6 +24,8 @@ export default function Offers() {
       restDay: 30,
       firstTag: 'Marketing',
       secondTag: 'Design',
+      level: 'Master, DEA, DESS',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -35,6 +37,8 @@ export default function Offers() {
       restDay: 45,
       firstTag: 'Informatique',
       secondTag: 'Finance',
+      level: 'Licence',
+      duration: 'Moins de 2 mois'
     },
     {
       logo: 'intel.svg',
@@ -46,6 +50,8 @@ export default function Offers() {
       restDay: 60,
       firstTag: 'Finance',
       secondTag: 'Marketing',
+      level: 'BTS, DUT, BUT',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -57,6 +63,8 @@ export default function Offers() {
       restDay: 50,
       firstTag: 'Design',
       secondTag: 'Informatique',
+      level: 'Master, DEA, DESS',
+      duration: 'Plus de 12 mois'
     },
     {
       logo: 'intel.svg',
@@ -68,6 +76,8 @@ export default function Offers() {
       restDay: 25,
       firstTag: 'Finance',
       secondTag: 'Marketing',
+      level: 'Licence',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -79,6 +89,8 @@ export default function Offers() {
       restDay: 15,
       firstTag: 'Marketing',
       secondTag: 'Design',
+      level: 'Master, DEA, DESS',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -90,6 +102,8 @@ export default function Offers() {
       restDay: 10,
       firstTag: 'Design',
       secondTag: 'Finance',
+      level: 'BTS, DUT, BUT',
+      duration: 'Entre 2 et 6 mois'
     },
     {
       logo: 'intel.svg',
@@ -101,6 +115,8 @@ export default function Offers() {
       restDay: 75,
       firstTag: 'Informatique',
       secondTag: 'Marketing',
+      level: 'Licence',
+      duration: 'Entre 2 et 6 mois'
     },
   ];
 
@@ -142,14 +158,11 @@ export default function Offers() {
     setSort(e.target.value);
   };
 
-  const filteredOffers = offerData.filter((offer) => {
-    const profileMatch =
-      filter.profiles.length === 0 ||
-      filter.profiles.includes(offer.firstTag) ||
-      filter.profiles.includes(offer.secondTag);
-    const levelMatch = filter.levels.length === 0; // Ajoute la logique pour le niveau d'étude ici
-    const durationMatch = filter.duration.length === 0; // Ajoute la logique pour la durée ici
-    const distanceMatch = true; // Ajoute la logique pour la distance ici
+  const filteredOffers = offerData.filter(offer => {
+    const profileMatch = filter.profiles.length === 0 || filter.profiles.includes(offer.firstTag) || filter.profiles.includes(offer.secondTag);
+    const levelMatch = filter.levels.length === 0 || filter.levels.includes(offer.level);
+    const durationMatch = filter.duration.length === 0 || filter.duration.includes(offer.duration);
+    const distanceMatch = true;
 
     return profileMatch && levelMatch && durationMatch && distanceMatch;
   });
@@ -177,13 +190,8 @@ export default function Offers() {
     <div className="offers">
       <div className="grey text-center">
         <div className="container">
-          <h2>
-            Offres de <span className="turquoise">stage</span>
-          </h2>
-          <p>
-            Découvrez les offres de stages actuellement proposées par les
-            entreprises
-          </p>
+          <h2>Offres de <span className="turquoise">stage</span></h2>
+          <p>Découvrez les offres de stages actuellement proposées par les entreprises</p>
         </div>
       </div>
       <div className="container">
@@ -222,19 +230,9 @@ export default function Offers() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {[
-                  'Master, DEA, DESS',
-                  'License',
-                  'BTS, DUT, BUT',
-                  'BAC',
-                  'CAP, BEP',
-                ].map((level) => (
+                {['Master, DEA, DESS', 'Licence', 'BTS, DUT, BUT', 'BAC', 'CAP, BEP'].map(level => (
                   <div className="d-flex" key={level}>
-                    <input
-                      type="checkbox"
-                      value={level}
-                      onChange={handleLevelChange}
-                    />
+                    <input type="checkbox" value={level} onChange={handleLevelChange} />
                     <label>{level}</label>
                   </div>
                 ))}
@@ -246,18 +244,9 @@ export default function Offers() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {[
-                  'Moins de 2 mois',
-                  'Entre 2 et 6 mois',
-                  'Entre 6 et 12 mois',
-                  'Plus de 12 mois',
-                ].map((duration) => (
+                {['Moins de 2 mois', 'Entre 2 et 6 mois', 'Entre 6 et 12 mois', 'Plus de 12 mois'].map(duration => (
                   <div className="d-flex" key={duration}>
-                    <input
-                      type="checkbox"
-                      value={duration}
-                      onChange={handleDurationChange}
-                    />
+                    <input type="checkbox" value={duration} onChange={handleDurationChange} />
                     <label>{duration}</label>
                   </div>
                 ))}
@@ -265,9 +254,7 @@ export default function Offers() {
             </div>
             <div className="range">
               <div className="d-flex title">
-                <p>
-                  Distance<span> - 0 à 100KM</span>
-                </p>
+                <p>Distance<span> - 0 à 100KM</span></p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <input
@@ -290,12 +277,8 @@ export default function Offers() {
               <div className="d-flex">
                 <p>Trier par :</p>
                 <select value={sort} onChange={handleSortChange}>
-                  <option value="dateRecent">
-                    Date de publication (plus récent)
-                  </option>
-                  <option value="dateOld">
-                    Date de publication (plus vieux)
-                  </option>
+                  <option value="dateRecent">Date de publication (plus récent)</option>
+                  <option value="dateOld">Date de publication (plus vieux)</option>
                   <option value="alphaAZ">Alphabétique (A-Z)</option>
                   <option value="alphaZA">Alphabétique (Z-A)</option>
                   <option value="deadline">Date limite pour postuler</option>
