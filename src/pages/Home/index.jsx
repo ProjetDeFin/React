@@ -3,6 +3,7 @@ import CompanyCard from '../../components/Card/OfferCompany';
 import ApplyStudent from '../../components/Card/ApplyStudent';
 import { Icon } from '@iconify/react';
 import './index.scss';
+import {Link} from "react-router-dom";
 
 export default function Home() {
   const forwardCompany = [
@@ -351,9 +352,10 @@ export default function Home() {
                 Vous pourrez gérer votre planning d'accueil et bénéficier de
                 nombreux services intégrés.
               </p>
-              <a className="btn" href="">
+              <Link to="" className="btn">
                 Créez votre compte
-              </a>
+                <Icon icon="tabler:arrow-right"/>
+              </Link>
             </div>
             <img src="/img/dashboard-thumbnail.jpg" alt="" />
           </div>
@@ -363,10 +365,10 @@ export default function Home() {
             <h2>
               Dernières <span>offres</span>
             </h2>
-            <a href="/offers/internships" className="turquoise all-offer d-flex">
+            <Link to="/offers/internships" className="turquoise all-offer d-flex">
               toutes les offres
-              <Icon icon="tabler:arrow-right" />
-            </a>
+              <Icon icon="tabler:arrow-right"/>
+            </Link>
           </div>
           <div className="d-flex wrap">
             {lastOffers.map((offer, index) => (
@@ -392,10 +394,10 @@ export default function Home() {
             <h2>
               Dernières <span>demandes</span>
             </h2>
-            <a href="" className="turquoise all-offer d-flex">
+            <Link to="" className="turquoise all-offer d-flex">
               toutes les demandes
-              <Icon icon="tabler:arrow-right" />
-            </a>
+              <Icon icon="tabler:arrow-right"/>
+            </Link>
           </div>
           <div className="d-flex wrap">
             {lastApply.map((apply, index) => (
