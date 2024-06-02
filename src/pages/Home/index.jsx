@@ -66,147 +66,147 @@ export default function Home() {
 
   const lastOffers = [
     {
-        name: 'Offer 1',
-        type: 'Alternance',
-        company: {
-            name: 'Company 1',
-            logo: 'company1.png',
-            location: 'Paris',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [marketing, design],
+      name: 'Offer 1',
+      type: 'Alternance',
+      company: {
+        name: 'Company 1',
+        logo: 'company1.png',
+        location: 'Paris',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [marketing, design],
     },
     {
-        name: 'Offer 2',
-        type: 'Stage',
-        company: {
-            name: 'Company 2',
-            logo: 'company1.png',
-            location: 'Lyon',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [design, finance],
+      name: 'Offer 2',
+      type: 'Stage',
+      company: {
+        name: 'Company 2',
+        logo: 'company1.png',
+        location: 'Lyon',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
     },
     {
-        name: 'Offer 3',
-        type: 'Alternance',
-        company: {
-            name: 'Company 3',
-            logo: 'company1.png',
-            location: 'Marseille',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [marketing, it],
+      name: 'Offer 3',
+      type: 'Alternance',
+      company: {
+        name: 'Company 3',
+        logo: 'company1.png',
+        location: 'Marseille',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [marketing, it],
     },
     {
-        name: 'Offer 4',
-        type: 'Stage',
-        company: {
-            name: 'Company 4',
-            logo: 'company1.png',
-            location: 'Toulouse',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [design, finance],
+      name: 'Offer 4',
+      type: 'Stage',
+      company: {
+        name: 'Company 4',
+        logo: 'company1.png',
+        location: 'Toulouse',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
     },
     {
-        name: 'Offer 5',
-        type: 'Stage',
-        company: {
-            name: 'Company 5',
-            logo: 'company1.png',
-            location: 'Nice',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [marketing, it],
+      name: 'Offer 5',
+      type: 'Stage',
+      company: {
+        name: 'Company 5',
+        logo: 'company1.png',
+        location: 'Nice',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [marketing, it],
     },
     {
-        name: 'Offer 6',
-        type: 'Alternance',
-        company: {
-            name: 'Company 6',
-            logo: 'company1.png',
-            location: 'Nantes',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [design, finance],
+      name: 'Offer 6',
+      type: 'Alternance',
+      company: {
+        name: 'Company 6',
+        logo: 'company1.png',
+        location: 'Nantes',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
     },
     {
-        name: 'Offer 7',
-        type: 'Stage',
-        company: {
-            name: 'Company 7',
-            logo: 'company1.png',
-            location: 'Strasbourg',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [marketing, it],
-    },
-    {
-        name: 'Offer 8',
-        type: 'Alternance',
-        company: {
-            name: 'Company 8',
-            logo: 'company1.png',
-            location: 'Bordeaux',
-        },
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-        tags: [design, finance],
+      name: 'Offer 7',
+      type: 'Stage',
+      company: {
+        name: 'Company 7',
+        logo: 'company1.png',
+        location: 'Strasbourg',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [marketing, it],
     },
     {
       name: 'Offer 8',
       type: 'Alternance',
       company: {
-          name: 'Company 8',
-          logo: 'company1.png',
-          location: 'Bordeaux',
+        name: 'Company 8',
+        logo: 'company1.png',
+        location: 'Bordeaux',
       },
       description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
       tags: [design, finance],
     },
     {
       name: 'Offer 8',
       type: 'Alternance',
       company: {
-          name: 'Company 8',
-          logo: 'company1.png',
-          location: 'Bordeaux',
+        name: 'Company 8',
+        logo: 'company1.png',
+        location: 'Bordeaux',
       },
       description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
       tags: [design, finance],
     },
     {
       name: 'Offer 8',
       type: 'Alternance',
       company: {
-          name: 'Company 8',
-          logo: 'company1.png',
-          location: 'Bordeaux',
+        name: 'Company 8',
+        logo: 'company1.png',
+        location: 'Bordeaux',
       },
       description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
       tags: [design, finance],
     },
     {
       name: 'Offer 8',
       type: 'Alternance',
       company: {
-          name: 'Company 8',
-          logo: 'company1.png',
-          location: 'Bordeaux',
+        name: 'Company 8',
+        logo: 'company1.png',
+        location: 'Bordeaux',
       },
       description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
+      tags: [design, finance],
+    },
+    {
+      name: 'Offer 8',
+      type: 'Alternance',
+      company: {
+        name: 'Company 8',
+        logo: 'company1.png',
+        location: 'Bordeaux',
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
       tags: [design, finance],
     },
   ];
@@ -315,85 +315,103 @@ export default function Home() {
       type: 'internship',
       period: 'Du 15/11/2024 au 17/01/2025',
       tags: [it, finance],
-    }
+    },
   ];
 
-    return (
-      <div className="homepage">
-        <section className="landing-page">
-          <div className="container">
-            <div className="d-flex">
-              <div className="description">
-                <p className="landing-scape">Trouver un stage n'aura jamais été <span>aussi facile !</span></p>
-                <p>Trouvez les offres de stage ou d'alternance près de chez vous qui correspondent à votre profil et à vos attentes.</p>
-                <p><span>1254</span> offres de <strong>stages</strong> | <span>987</span> offres <strong>d'alternance</strong> n'attendent que vous !</p>
-              </div>
-              <img src="/img/home-man.png" alt="" />
+  return (
+    <div className="homepage">
+      <section className="landing-page">
+        <div className="container">
+          <div className="d-flex">
+            <div className="description">
+              <p className="landing-scape">
+                Trouver un stage n'aura jamais été <span>aussi facile !</span>
+              </p>
+              <p>
+                Trouvez les offres de stage ou d'alternance près de chez vous
+                qui correspondent à votre profil et à vos attentes.
+              </p>
+              <p>
+                <span>1254</span> offres de <strong>stages</strong> |{' '}
+                <span>987</span> offres <strong>d'alternance</strong>{' '}
+                n'attendent que vous !
+              </p>
             </div>
+            <img src="/img/home-man.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <div className="container">
+        <CompaniesForward companies={forwardCompany} />
+        <section className="account-creation">
+          <div className="d-flex align-start">
+            <div>
+              <p>Entreprises,déposez vos offres gratuitement</p>
+              <p>
+                Vous pourrez gérer votre planning d'accueil et bénéficier de
+                nombreux services intégrés.
+              </p>
+              <a className="btn" href="">
+                Créez votre compte
+              </a>
+            </div>
+            <img src="/img/dashboard-thumbnail.jpg" alt="" />
           </div>
         </section>
-        <div className="container">
-          <CompaniesForward companies={forwardCompany} />
-          <section className="account-creation">
-            <div className="d-flex align-start">
-              <div>
-                <p>Entreprises,déposez vos offres gratuitement</p>
-                <p>Vous pourrez gérer votre planning d'accueil et bénéficier de nombreux services intégrés.</p>
-                <a className="btn" href="">Créez votre compte</a>
-              </div>
-              <img src="/img/dashboard-thumbnail.jpg" alt="" />
-            </div>
-          </section>
-          <section className='companyOffer'>
-            <div className="d-flex">
-              <h2>Dernières <span>offres</span></h2>
-              <a href="" className='turquoise all-offer d-flex'>
-                toutes les offres
-                <Icon icon="tabler:arrow-right" />
-              </a>
-            </div>
-            <div className="d-flex wrap">
-              {lastOffers.map((offer, index) => (
-                  <CompanyCard
-                      key={index}
-                      logo={offer.company.logo}
-                      typeOffer={offer.type}
-                      nameOffer={offer.name}
-                      nameCompany={offer.company.name}
-                      locationCompany={offer.company.location || ""} 
-                      descriptionCompany={offer.description}
-                      firstTag={offer.tags[0].name || ""}
-                      secondTag={offer.tags[1].name || ""}
-                  />
-              ))}
-            </div>
-          </section>
-        </div>
-        <section className="bg-grey apply-student">
-          <div className="container">
-            <div className="d-flex">
-              <h2>Dernières <span>demandes</span></h2>
-              <a href="" className='turquoise all-offer d-flex'>
-                toutes les demandes
-                <Icon icon="tabler:arrow-right" />
-              </a>
-            </div>
-            <div className="d-flex wrap">
-              {lastApply.map((apply, index) => (
-                  <ApplyStudent
-                      key={index}
-                      profilPicture={apply.student.picture}
-                      titleApply={apply.name}
-                      agePerson={apply.student.age}
-                      locationPerson={apply.student.city}
-                      namePerson={apply.student.name}
-                      tag={apply.tags[0].name || ""}
-                      periodApply={apply.period || ""} 
-                  />
-              ))}
-            </div>
+        <section className="companyOffer">
+          <div className="d-flex">
+            <h2>
+              Dernières <span>offres</span>
+            </h2>
+            <a href="" className="turquoise all-offer d-flex">
+              toutes les offres
+              <Icon icon="tabler:arrow-right" />
+            </a>
+          </div>
+          <div className="d-flex wrap">
+            {lastOffers.map((offer, index) => (
+              <CompanyCard
+                key={index}
+                logo={offer.company.logo}
+                typeOffer={offer.type}
+                nameOffer={offer.name}
+                nameCompany={offer.company.name}
+                locationCompany={offer.company.location || ''}
+                descriptionCompany={offer.description}
+                firstTag={offer.tags[0].name || ''}
+                secondTag={offer.tags[1].name || ''}
+              />
+            ))}
           </div>
         </section>
       </div>
-    );
+      <section className="bg-grey apply-student">
+        <div className="container">
+          <div className="d-flex">
+            <h2>
+              Dernières <span>demandes</span>
+            </h2>
+            <a href="" className="turquoise all-offer d-flex">
+              toutes les demandes
+              <Icon icon="tabler:arrow-right" />
+            </a>
+          </div>
+          <div className="d-flex wrap">
+            {lastApply.map((apply, index) => (
+              <ApplyStudent
+                key={index}
+                profilPicture={apply.student.picture}
+                titleApply={apply.name}
+                agePerson={apply.student.age}
+                locationPerson={apply.student.city}
+                namePerson={apply.student.name}
+                tag={apply.tags[0].name || ''}
+                periodApply={apply.period || ''}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

@@ -1,33 +1,38 @@
 import React from 'react';
-import { GoogleMap, LoadScript, Marker, useJsApiLoader } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  useJsApiLoader,
+} from '@react-google-maps/api';
 
 const containerStyle = {
   width: '600px',
-  height: '450px'
+  height: '450px',
 };
 
-const Map = ({item}) => {
+const Map = ({ item }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-  })
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  });
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState(null);
   const center = {
     lat: item.lat,
-    lng: item.lng
+    lng: item.lng,
   };
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 
-    setMap(map)
-  }, [])
+    setMap(map);
+  }, []);
 
   const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+    setMap(null);
+  }, []);
 
   return isLoaded ? (
     <GoogleMap
@@ -37,9 +42,11 @@ const Map = ({item}) => {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      <Marker position={ center } />
+      <Marker position={center} />
     </GoogleMap>
-  ) : <></>
+  ) : (
+    <></>
+  );
 };
 
 export default React.memo(Map);

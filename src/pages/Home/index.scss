@@ -5,25 +5,25 @@
     line-height: 110%;
     margin-bottom: 48px;
     & span {
-      color: #26A4FF;
+      color: #26a4ff;
     }
   }
 
-  .landing-page{ 
-    background-color: #F8F8FD;
+  .landing-page {
+    background-color: #f8f8fd;
     background-image: url('../../../public/img/background-landing-page.png');
     background-position: 99% 92%;
     background-repeat: no-repeat;
     padding-top: 52px;
 
-    & .container{
+    & .container {
       & > .d-flex {
         gap: 16px;
       }
     }
 
     span {
-      color: #26A4FF;
+      color: #26a4ff;
     }
 
     strong {
@@ -33,7 +33,7 @@
     p {
       font-size: 20px;
       line-height: 160%;
-      
+
       &.landing-scape {
         font-size: 72px;
         font-weight: bold;
@@ -64,7 +64,7 @@
   }
 
   .apply-student {
-    background-color: #F8F8FD;
+    background-color: #f8f8fd;
     padding: 72px 0 60px 0;
 
     & .wrap {
@@ -73,10 +73,10 @@
   }
 
   .account-creation {
-    background-color: #4640DE;
+    background-color: #4640de;
     color: white;
     margin: 72px 0;
-     
+
     & > .d-flex {
       padding: 70px 72px 0 72px;
 
@@ -93,11 +93,10 @@
         margin: 24px 0 36px 0;
       }
 
-      a { 
+      a {
         background-color: #fff;
-        color: #4640DE;
+        color: #4640de;
       }
     }
   }
 }
-

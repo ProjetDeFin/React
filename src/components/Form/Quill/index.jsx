@@ -6,31 +6,31 @@ export default function Quill({ width = 500, height = 300, value, onChange, name
     const { quill, quillRef } = useQuill();
     const debounceTimeout = useRef(null);
 
-    const handleTextChange = useCallback(() => {
-        if (debounceTimeout.current) {
-            clearTimeout(debounceTimeout.current);
-        }
-        debounceTimeout.current = setTimeout(() => {
-            if (quill) {
-                onChange(quill.root.innerHTML);
-            }
-        }, 500);
-    }, [onChange, quill]);
+  const handleTextChange = useCallback(() => {
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+    debounceTimeout.current = setTimeout(() => {
+      if (quill) {
+        onChange(quill.root.innerHTML);
+      }
+    }, 500);
+  }, [onChange, quill]);
 
-    useEffect(() => {
-        if (quill) {
-            quill.on('text-change', handleTextChange);
-        }
+  useEffect(() => {
+    if (quill) {
+      quill.on('text-change', handleTextChange);
+    }
 
-        return () => {
-            if (quill) {
-                quill.off('text-change', handleTextChange);
-            }
-            if (debounceTimeout.current) {
-                clearTimeout(debounceTimeout.current);
-            }
-        };
-    }, [quill, handleTextChange]);
+    return () => {
+      if (quill) {
+        quill.off('text-change', handleTextChange);
+      }
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current);
+      }
+    };
+  }, [quill, handleTextChange]);
 
     return (
         <div style={{ width, height }}>

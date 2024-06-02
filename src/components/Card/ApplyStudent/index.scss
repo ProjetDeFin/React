@@ -1,37 +1,37 @@
 .apply-student-card {
-    background-color: #fff;
-    padding: 24px 23px 24px 40px;
-    width: 534px;
-    line-height: 160%;
+  background-color: #fff;
+  padding: 24px 23px 24px 40px;
+  width: 534px;
+  line-height: 160%;
 
-    .justify-start {
-        gap: 24px;
+  .justify-start {
+    gap: 24px;
+  }
+
+  .description {
+    & > .d-flex {
+      gap: 8px;
     }
 
-    .description {
-        & > .d-flex {
-            gap: 8px;
-        }
+    .detail-apply {
+      margin: 8px 0;
 
-        .detail-apply {
-            margin: 8px 0;
-
-            &,
-            .period-apply {
-                color: #515B6F;
-            }
-        }
-
-        span {
-            width: 1px;
-            background-color: #D6DDEB;
-            height: 34px;
-        }
-
-        h3 {
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 120%;
-        }
+      &,
+      .period-apply {
+        color: #515b6f;
+      }
     }
+
+    span {
+      width: 1px;
+      background-color: #d6ddeb;
+      height: 34px;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 120%;
+    }
+  }
 }

@@ -5,76 +5,89 @@ import './index.scss';
 export default function Companies() {
   const companiesData = [
     {
-        logo: "intel.svg",
-        nameCompany: "TotalEnergies",
-        descriptionCompany: "TotalEnergies est une entreprise française de pétrole et de gaz qui vise à transformer l'énergie durablement.",
-        labelPoste: "2 stages, 1 alternance",
-        tags: ["Informatique", "Marketing"]
+      logo: 'intel.svg',
+      nameCompany: 'TotalEnergies',
+      descriptionCompany:
+        "TotalEnergies est une entreprise française de pétrole et de gaz qui vise à transformer l'énergie durablement.",
+      labelPoste: '2 stages, 1 alternance',
+      tags: ['Informatique', 'Marketing'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "BNP Paribas",
-        descriptionCompany: "BNP Paribas est une des principales banques de France offrant des services financiers à l'international.",
-        labelPoste: "1 stage, 1 alternance",
-        tags: ["Finance", "Design"]
+      logo: 'intel.svg',
+      nameCompany: 'BNP Paribas',
+      descriptionCompany:
+        "BNP Paribas est une des principales banques de France offrant des services financiers à l'international.",
+      labelPoste: '1 stage, 1 alternance',
+      tags: ['Finance', 'Design'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "Renault",
-        descriptionCompany: "Renault est un constructeur automobile français renommé pour ses véhicules innovants.",
-        labelPoste: "1 stage",
-        tags: ["Informatique", "Design"]
+      logo: 'intel.svg',
+      nameCompany: 'Renault',
+      descriptionCompany:
+        'Renault est un constructeur automobile français renommé pour ses véhicules innovants.',
+      labelPoste: '1 stage',
+      tags: ['Informatique', 'Design'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "Société Générale",
-        descriptionCompany: "Société Générale est une banque française offrant divers services bancaires et financiers.",
-        labelPoste: "1 alternance",
-        tags: ["Finance", "Marketing"]
+      logo: 'intel.svg',
+      nameCompany: 'Société Générale',
+      descriptionCompany:
+        'Société Générale est une banque française offrant divers services bancaires et financiers.',
+      labelPoste: '1 alternance',
+      tags: ['Finance', 'Marketing'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "Orange",
-        descriptionCompany: "Orange est une multinationale française de télécommunications, l'un des principaux opérateurs mondiaux.",
-        labelPoste: "2 stages",
-        tags: ["Informatique", "Marketing"]
+      logo: 'intel.svg',
+      nameCompany: 'Orange',
+      descriptionCompany:
+        "Orange est une multinationale française de télécommunications, l'un des principaux opérateurs mondiaux.",
+      labelPoste: '2 stages',
+      tags: ['Informatique', 'Marketing'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "L'Oréal",
-        descriptionCompany: "L'Oréal est un leader mondial de la beauté, spécialisé dans les produits cosmétiques et de soins.",
-        labelPoste: "1 stage, 1 alternance",
-        tags: ["Marketing", "Design"]
+      logo: 'intel.svg',
+      nameCompany: "L'Oréal",
+      descriptionCompany:
+        "L'Oréal est un leader mondial de la beauté, spécialisé dans les produits cosmétiques et de soins.",
+      labelPoste: '1 stage, 1 alternance',
+      tags: ['Marketing', 'Design'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "Airbus",
-        descriptionCompany: "Airbus est un leader mondial de l'aérospatiale, fabriquant des avions commerciaux et militaires.  constructeur d'avion français, allemand, espagnol et britannique et une coopération industrielle internationale présente dans le secteur",
-        labelPoste: "1 stage",
-        tags: ["Informatique", "Design"]
+      logo: 'intel.svg',
+      nameCompany: 'Airbus',
+      descriptionCompany:
+        "Airbus est un leader mondial de l'aérospatiale, fabriquant des avions commerciaux et militaires.  constructeur d'avion français, allemand, espagnol et britannique et une coopération industrielle internationale présente dans le secteur",
+      labelPoste: '1 stage',
+      tags: ['Informatique', 'Design'],
     },
     {
-        logo: "intel.svg",
-        nameCompany: "Carrefour",
-        descriptionCompany: "Carrefour est une entreprise française de grande distribution, leader dans le commerce de détail.",
-        labelPoste: "1 alternance",
-        tags: ["Marketing", "Finance"]
-    }
+      logo: 'intel.svg',
+      nameCompany: 'Carrefour',
+      descriptionCompany:
+        'Carrefour est une entreprise française de grande distribution, leader dans le commerce de détail.',
+      labelPoste: '1 alternance',
+      tags: ['Marketing', 'Finance'],
+    },
   ];
 
   return (
     <div className="company-list">
       <div className="grey text-center">
-        <h2>Liste des <span className="turquoise">entreprises</span></h2>
-        <p>Decouvrez les entreprises qui proposent des offres de stage ou d'alternance</p>
+        <h2>
+          Liste des <span className="turquoise">entreprises</span>
+        </h2>
+        <p>
+          Decouvrez les entreprises qui proposent des offres de stage ou
+          d'alternance
+        </p>
       </div>
       <div className="container">
-      <div className="d-flex align-start">
+        <div className="d-flex align-start">
           <section className="filter">
             <div className="profiles">
               <div className="d-flex title">
                 <p>Secteur d'activite</p>
-                <Icon icon="iconamoon:arrow-up-2-duotone"/>
+                <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
                 <div className="d-flex">
@@ -142,7 +155,7 @@ export default function Companies() {
             <div className="level-of-study">
               <div className="d-flex title">
                 <p>Catégorie</p>
-                <Icon icon="iconamoon:arrow-up-2-duotone"/>
+                <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
                 <div className="d-flex">
@@ -174,7 +187,7 @@ export default function Companies() {
             <div className="duration">
               <div className="d-flex title">
                 <p>Effectifs</p>
-                <Icon icon="iconamoon:arrow-up-2-duotone"/>
+                <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
                 <div className="d-flex">
@@ -205,10 +218,12 @@ export default function Companies() {
             </div>
             <div className="range">
               <div className="d-flex title">
-                <p>Distance<span> - 0 a 100KM</span></p>
-                <Icon icon="iconamoon:arrow-up-2-duotone"/>
+                <p>
+                  Distance<span> - 0 a 100KM</span>
+                </p>
+                <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
-              <input type="range" name="" id="" min="0" max="100"/>
+              <input type="range" name="" id="" min="0" max="100" />
               <button>A moins de 50 km</button>
             </div>
           </section>
@@ -227,19 +242,18 @@ export default function Companies() {
               </div>
             </div>
             <div className="d-flex wrap">
-            {companiesData.map((company, index) => (
+              {companiesData.map((company, index) => (
                 <ThumbnailOfferCompany
-                    key={index}
-                    logoCompany={company.logo}
-                    nameCompany={company.nameCompany}
-                    descriptionCompany={company.descriptionCompany}
-                    availablePosition={company.labelPoste}
-                    firstTag={company.tags[0]}
-                    secondTag={company.tags[1]}
-                    idCompany={1}
-
+                  key={index}
+                  logoCompany={company.logo}
+                  nameCompany={company.nameCompany}
+                  descriptionCompany={company.descriptionCompany}
+                  availablePosition={company.labelPoste}
+                  firstTag={company.tags[0]}
+                  secondTag={company.tags[1]}
+                  idCompany={1}
                 />
-            ))}
+              ))}
             </div>
           </section>
         </div>

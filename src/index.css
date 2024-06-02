@@ -140,9 +140,9 @@ table {
 }
 
 body {
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-style: normal;
-  color: #25324B;
+  color: #25324b;
 }
 
 a {
@@ -196,7 +196,7 @@ a {
   border: none;
   outline: none;
   font-weight: 600;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 16px;
 }
 
@@ -220,7 +220,7 @@ a {
 }
 
 .logo p {
-  font-family: "Red Hat Display", sans-serif;
+  font-family: 'Red Hat Display', sans-serif;
   font-size: 32px;
 }
 
@@ -231,8 +231,8 @@ a {
 .type-offer,
 .available-position {
   padding: 4px 12px;
-  color: #4640DE;
-  background-color: #F8F8FD;
+  color: #4640de;
+  background-color: #f8f8fd;
 }
 
 .tag-offer {
@@ -240,7 +240,7 @@ a {
 }
 
 .grey {
-  background-color: #F8F8FD;
+  background-color: #f8f8fd;
 }
 
 p.tag {
@@ -253,22 +253,22 @@ p.tag {
 
 p.Marketing {
   background-color: rgba(235, 133, 51, 0.1);
-  color: #FFB836;
+  color: #ffb836;
 }
 
 p.Design {
   background-color: rgba(86, 205, 173, 0.1);
-  color: #56CDAD;
+  color: #56cdad;
 }
 
 p.Finance {
   background-color: rgba(70, 64, 222, 0.1);
-  color: #4640DE;
+  color: #4640de;
 }
 
 p.Informatique {
   background-color: rgba(255, 101, 80, 0.1);
-  color: #FF6550;
+  color: #ff6550;
 }
 
 .progress-bar-container {
@@ -286,15 +286,15 @@ p.Informatique {
 }
 
 .progress-bar.high {
-  background-color: #56CDAD;
+  background-color: #56cdad;
 }
 
 .progress-bar.medium {
-  background-color: #FF9900;
+  background-color: #ff9900;
 }
 
 .progress-bar.low {
-  background-color: #FF007A;
+  background-color: #ff007a;
 }
 
 @media screen and (max-width: 1840px) {
@@ -302,4 +302,3 @@ p.Informatique {
     width: 100%;
   }
 }
-

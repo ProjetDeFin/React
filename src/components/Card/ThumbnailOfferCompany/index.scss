@@ -1,44 +1,44 @@
 .thumbnail-offer-company {
-    border: 1px solid #D6DDEB;
-    padding: 24px;
-    width: 439px;
+  border: 1px solid #d6ddeb;
+  padding: 24px;
+  width: 439px;
 
-    h3 {
-        font-size: 28px !important;
-        margin: 28px 0 12px 0;
-    }
+  h3 {
+    font-size: 28px !important;
+    margin: 28px 0 12px 0;
+  }
 
-    p.description {
-        margin-bottom: 16px;
-        max-height: 5em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; /* Nombre de lignes */
-        -webkit-box-orient: vertical;
-    }
+  p.description {
+    margin-bottom: 16px;
+    max-height: 5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Nombre de lignes */
+    -webkit-box-orient: vertical;
+  }
 
-    .justify-start {
-        gap: 16px;
-    }
+  .justify-start {
+    gap: 16px;
+  }
 
-    .Informatique {
-        background-color: transparent;
-        border: 1px solid #FF6550;
-    }
+  .Informatique {
+    background-color: transparent;
+    border: 1px solid #ff6550;
+  }
 
-    .Marketing {
-        background-color: transparent;
-        border: 1px solid #FFB836;
-    }
+  .Marketing {
+    background-color: transparent;
+    border: 1px solid #ffb836;
+  }
 
-    .Design {
-        background-color: transparent;
-        border: 1px solid #56CDAD;
-    }
+  .Design {
+    background-color: transparent;
+    border: 1px solid #56cdad;
+  }
 
-    .Finance {
-        background-color: transparent;
-        border: 1px solid #4640DE;
-    }
+  .Finance {
+    background-color: transparent;
+    border: 1px solid #4640de;
+  }
 }

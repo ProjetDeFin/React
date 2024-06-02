@@ -60,10 +60,10 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en finance d\'entreprise',
+      nameOffer: "Stage en finance d'entreprise",
       nameCompany: 'TotalEnergies',
       locationCompany: 'Toulouse',
-      period: 'Du 25/05/2024 au 25/07/2024 (62 jours)',
+      period: 'Du 25/05/2024 au 25/06/2024 (62 jours)',
       typeOffer: 'Stage',
       restDay: 25,
       firstTag: 'Finance',
@@ -72,7 +72,7 @@ export default function Offers() {
     {
       logo: 'intel.svg',
       nameOffer: 'Stage en marketing digital',
-      nameCompany: 'L\'Oréal',
+      nameCompany: "L'Oréal",
       locationCompany: 'Bordeaux',
       period: 'Du 01/02/2024 au 30/06/2024 (62 jours)',
       typeOffer: 'Stage',
@@ -170,8 +170,13 @@ export default function Offers() {
     <div className="offers">
       <div className="grey text-center">
         <div className="container">
-          <h2>Offres de <span className="turquoise">stage</span></h2>
-          <p>Découvrez les offres de stages actuellement proposées par les entreprises</p>
+          <h2>
+            Offres de <span className="turquoise">stage</span>
+          </h2>
+          <p>
+            Découvrez les offres de stages actuellement proposées par les
+            entreprises
+          </p>
         </div>
       </div>
       <div className="container">
@@ -221,11 +226,21 @@ export default function Offers() {
             </div>
             <div className="range">
               <div className="d-flex title">
+<<<<<<< HEAD
                 <p>Distance<span> - 0 à 100KM</span></p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} disabled={true} />
               <button>A moins de {filter.distance} km</button>
+=======
+                <p>
+                  Distance<span> - 0 a 100KM</span>
+                </p>
+                <Icon icon="iconamoon:arrow-up-2-duotone" />
+              </div>
+              <input type="range" name="" id="" min="0" max="100" />
+              <button>A moins de 50 km</button>
+>>>>>>> 8d5d8b4 (MIN: lint all file)
             </div>
           </section>
           <section className="result">
@@ -246,7 +261,11 @@ export default function Offers() {
               </div>
             </div>
             <div className="d-flex direction-column">
+<<<<<<< HEAD
               {sortedOffers.map((offer, index) => (
+=======
+              {offerData.map((offer, index) => (
+>>>>>>> 8d5d8b4 (MIN: lint all file)
                 <CompanyCard
                   key={index}
                   logo={offer.logo}
