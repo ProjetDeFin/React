@@ -16,14 +16,14 @@ export default function Navbar() {
             Accueil
           </NavLink>
           <div className="dropdown">
-            <NavLink to="/offers" activeClassName="is-active">
+            <NavLink to="#" activeClassName="is-active">
               Offres
             </NavLink>
             <div className="dropdown-content d-flex direction-column">
-              <NavLink to="/offers" activeClassName="is-active">
+              <NavLink to="/offers/internships" activeClassName="is-active">
                 Stage
               </NavLink>
-              <NavLink to="/offers" activeClassName="is-active">
+              <NavLink to="/offers/apprenticeships" activeClassName="is-active">
                 Alternance
               </NavLink>
             </div>

@@ -363,7 +363,7 @@ export default function Home() {
             <h2>
               Dernières <span>offres</span>
             </h2>
-            <a href="/offers" className="turquoise all-offer d-flex">
+            <a href="/offers/internships" className="turquoise all-offer d-flex">
               toutes les offres
               <Icon icon="tabler:arrow-right" />
             </a>
@@ -408,7 +408,6 @@ export default function Home() {
                 namePerson={apply.student.name}
                 tag={apply.tags[0].name || ''}
                 periodApply={apply.period || ''}
-                // idApply={1}
               />
             ))}
           </div>

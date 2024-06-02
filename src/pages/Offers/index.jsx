@@ -3,7 +3,7 @@ import CompanyCard from '../../components/Card/OfferCompany';
 import './index.scss';
 import { useState } from 'react';
 
-export default function Offers() {
+export default function Offers({ type }) {
   const [filter, setFilter] = useState({
     profiles: [],
     levels: [],
@@ -13,14 +13,26 @@ export default function Offers() {
 
   const [sort, setSort] = useState('dateRecent');
 
+  // TODO: remove this when API call
+  const getTypeTranslation = () => {
+    switch (type) {
+      case 'internships':
+        return 'Stage';
+      case 'apprenticeships':
+        return 'Alternance';
+      default:
+        return 'Stage';
+    }
+  }
+
   const offerData = [
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en analyse de données',
+      nameOffer: getTypeTranslation()+' en analyse de données',
       nameCompany: 'Orange',
       locationCompany: 'Paris',
       period: 'Du 10/04/2024 au 10/06/2024 (61 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 30,
       firstTag: 'Marketing',
       secondTag: 'Design',
@@ -29,11 +41,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en développement web',
+      nameOffer: getTypeTranslation()+' en développement web',
       nameCompany: 'BNP Paribas',
       locationCompany: 'Lyon',
       period: 'Du 01/05/2024 au 01/07/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 45,
       firstTag: 'Informatique',
       secondTag: 'Finance',
@@ -42,11 +54,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en gestion de projet',
+      nameOffer: getTypeTranslation()+' en gestion de projet',
       nameCompany: 'Air France',
       locationCompany: 'Marseille',
       period: 'Du 15/04/2024 au 15/06/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 60,
       firstTag: 'Finance',
       secondTag: 'Marketing',
@@ -55,11 +67,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en design UX/UI',
+      nameOffer: getTypeTranslation()+' en design UX/UI',
       nameCompany: 'Renault',
       locationCompany: 'Nice',
       period: 'Du 20/04/2024 au 20/06/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 50,
       firstTag: 'Design',
       secondTag: 'Informatique',
@@ -68,11 +80,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: "Stage en finance d'entreprise",
+      nameOffer: getTypeTranslation()+" en finance d'entreprise",
       nameCompany: 'TotalEnergies',
       locationCompany: 'Toulouse',
       period: 'Du 25/05/2024 au 25/06/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 25,
       firstTag: 'Finance',
       secondTag: 'Marketing',
@@ -81,11 +93,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en marketing digital',
+      nameOffer: getTypeTranslation()+' en marketing digital',
       nameCompany: "L'Oréal",
       locationCompany: 'Bordeaux',
       period: 'Du 01/02/2024 au 30/06/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 15,
       firstTag: 'Marketing',
       secondTag: 'Design',
@@ -94,11 +106,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en ressources humaines',
+      nameOffer: getTypeTranslation()+' en ressources humaines',
       nameCompany: 'SNCF',
       locationCompany: 'Strasbourg',
       period: 'Du 01/05/2024 au 05/07/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 10,
       firstTag: 'Design',
       secondTag: 'Finance',
@@ -107,11 +119,11 @@ export default function Offers() {
     },
     {
       logo: 'intel.svg',
-      nameOffer: 'Stage en data science',
+      nameOffer: getTypeTranslation()+' en data science',
       nameCompany: 'Capgemini',
       locationCompany: 'Nantes',
       period: 'Du 10/05/2024 au 10/07/2024 (62 jours)',
-      typeOffer: 'Stage',
+      typeOffer: getTypeTranslation(),
       restDay: 75,
       firstTag: 'Informatique',
       secondTag: 'Marketing',
@@ -190,8 +202,8 @@ export default function Offers() {
     <div className="offers">
       <div className="grey text-center">
         <div className="container">
-          <h2>Offres de <span className="turquoise">stage</span></h2>
-          <p>Découvrez les offres de stages actuellement proposées par les entreprises</p>
+          <h2>Offres de <span className="turquoise">{getTypeTranslation().toLowerCase()}</span></h2>
+          <p>Découvrez les offres de {getTypeTranslation().toLowerCase()} actuellement proposées par les entreprises</p>
         </div>
       </div>
       <div className="container">

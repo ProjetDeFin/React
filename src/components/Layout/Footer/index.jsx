@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
           <div className="d-flex footer-menu direction-column align-start">
             <Link href="/">Accueil</Link>
-            <Link href="/offers">Offres</Link>
+            <Link href="/offers/internships">Offres</Link>
             <Link href="/applications">Demandes</Link>
             <Link href="/companies">Entreprises</Link>
             <Link href="/students">Etudiants</Link>
