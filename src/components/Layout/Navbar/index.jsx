@@ -6,7 +6,10 @@ export default function Navbar() {
     <div className="container">
       <nav className="d-flex align-center">
         <NavLink to="/" className="logo-link" activeClassName="is-active">
-          Logo
+          <div className="logo d-flex justify-start">
+            <img src="/img/logo/bourse-stage.svg" alt="" />
+            <p>Bourse au Stages</p>
+          </div>
         </NavLink>
         <div className="d-flex menu">
           <NavLink to="/" activeClassName="is-active">

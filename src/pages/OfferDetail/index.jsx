@@ -255,7 +255,7 @@ export default function OfferDetail() {
             </div>
           </section>
         </div>
-        <Link to={'/apply-job'} className="btn">
+        <Link to={'/apply-job/1'} className="btn">
           Postuler
         </Link>
         <span className="line break-content"></span>

@@ -380,6 +380,7 @@ export default function Home() {
                 descriptionCompany={offer.description}
                 firstTag={offer.tags[0].name || ''}
                 secondTag={offer.tags[1].name || ''}
+                offerId={1}
               />
             ))}
           </div>
@@ -407,6 +408,7 @@ export default function Home() {
                 namePerson={apply.student.name}
                 tag={apply.tags[0].name || ''}
                 periodApply={apply.period || ''}
+                // idApply={1}
               />
             ))}
           </div>
