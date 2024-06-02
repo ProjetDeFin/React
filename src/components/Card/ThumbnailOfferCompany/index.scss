@@ -1,0 +1,44 @@
+.thumbnail-offer-company {
+    border: 1px solid #D6DDEB;
+    padding: 24px;
+    width: 439px;
+
+    h3 {
+        font-size: 28px !important;
+        margin: 28px 0 12px 0;
+    }
+
+    p.description {
+        margin-bottom: 16px;
+        max-height: 5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Nombre de lignes */
+        -webkit-box-orient: vertical;
+    }
+
+    .justify-start {
+        gap: 16px;
+    }
+
+    .Informatique {
+        background-color: transparent;
+        border: 1px solid #FF6550;
+    }
+
+    .Marketing {
+        background-color: transparent;
+        border: 1px solid #FFB836;
+    }
+
+    .Design {
+        background-color: transparent;
+        border: 1px solid #56CDAD;
+    }
+
+    .Finance {
+        background-color: transparent;
+        border: 1px solid #4640DE;
+    }
+}
