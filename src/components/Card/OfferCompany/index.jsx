@@ -1,4 +1,5 @@
 import './index.scss';
+import { Link } from 'react-router-dom';
 
 export default function CompanyCard({
     logo,
@@ -11,7 +12,8 @@ export default function CompanyCard({
     secondTag,
     inOfferPage = false,
     restDay,
-    period
+    period,
+    offerId
 }) {
 
     const calculateProgress = (restDay) => {
@@ -52,7 +54,7 @@ export default function CompanyCard({
                     </div>
                 </div>
                 <div>
-                    <a href="" className="btn">En savoir plus</a>
+                    <Link to={`/offer-detail/${offerId}`} className="btn">En savoir plus</Link>
                     <div className="progress-bar-container">
                     <div className={`progress-bar ${progress > 30 ? 'high' : (progress > 20 ? 'medium' : 'low')}`} style={{ width: `${progress}%` }}></div>
                     </div>

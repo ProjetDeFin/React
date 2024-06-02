@@ -236,6 +236,7 @@ export default function Offers() {
                     inOfferPage={true}
                     period={offer.period}
                     restDay={offer.restDay}
+                    offerId="1"
                 />
             ))}
             </div>
