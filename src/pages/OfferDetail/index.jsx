@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 import CompanyCard from '../../components/Card/OfferCompany';
 import './index.scss';
 
@@ -219,7 +220,7 @@ export default function OfferDetail() {
                         </div>
                     </section>
                 </div>
-                <a href="" className="btn">Postuler</a>
+                <Link to={"/apply-job"} className="btn">Postuler</Link>
                 <span className="line break-content"></span>
                 <section className="company-detail">
                     <div className="d-flex">
