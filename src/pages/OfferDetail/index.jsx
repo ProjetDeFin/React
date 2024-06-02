@@ -305,15 +305,16 @@ export default function OfferDetail() {
         <div className="container">
           <div className="d-flex">
             <h2>Offres de stage similaires</h2>
-            <a className="link d-flex" href="">
-              Toutes les offres <Icon icon="tabler:arrow-right" />
+            <a href="/offers/internships" className="turquoise all-offer d-flex">
+              toutes les offres
+              <Icon icon="tabler:arrow-right"/>
             </a>
           </div>
           <div className="d-flex wrap">
             {lastOffers.map((offer, index) => (
-              <CompanyCard
-                key={index}
-                logo={offer.company.logo}
+                <CompanyCard
+                    key={index}
+                    logo={offer.company.logo}
                 typeOffer={offer.type}
                 nameOffer={offer.name}
                 nameCompany={offer.company.name}
