@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import ThumbnailOfferCompany from '../../components/Card/ThumbnailOfferCompany';
 import './index.scss';
+
 export default function Companies() {
   const companiesData = [
     {
@@ -235,6 +236,8 @@ export default function Companies() {
                     availablePosition={company.labelPoste}
                     firstTag={company.tags[0]}
                     secondTag={company.tags[1]}
+                    idCompany={1}
+
                 />
             ))}
             </div>

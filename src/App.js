@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import ApplyJob from './pages/ApplyJob';
 import Layout from './components/Layout';
 import OfferDetail from './pages/OfferDetail';
+import CompanyDetail from './pages/CompanyDetail';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/students" element={<Students />} />
             <Route path="/apply-job" element={<ApplyJob />} />
             <Route path="/offer-detail/:id" element={<OfferDetail />} />
+            <Route path="/company-detail/:id" element={<CompanyDetail/>} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>
