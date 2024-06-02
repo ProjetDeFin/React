@@ -48,6 +48,7 @@ export default function ApplyJob({ id }) {
       body: data,
       headers: {
         'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       }
     })
       .then(response => {
@@ -60,11 +61,10 @@ export default function ApplyJob({ id }) {
         return response.json();
       })
       .then(data => {
-        alert(data.message || 'Application submitted successfully!');
+        console.log(data);
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('Error: ' + error.message);
       });
   };
 
