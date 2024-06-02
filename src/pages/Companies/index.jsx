@@ -197,7 +197,7 @@ export default function Companies() {
                                 <p>Distance<span> - 0 a 100KM</span></p>
                                 <Icon icon="iconamoon:arrow-up-2-duotone"/>
                             </div>
-                            <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange}/>
+                            <input disabled type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange}/>
                             <button>A moins de {filter.distance} km</button>
                         </div>
                     </section>
