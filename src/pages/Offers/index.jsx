@@ -38,7 +38,7 @@ export default function Offers() {
       firstTag: 'Informatique',
       secondTag: 'Finance',
       level: 'License',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Moins de 2 mois'
     },
     {
       logo: 'intel.svg',
@@ -64,7 +64,7 @@ export default function Offers() {
       firstTag: 'Design',
       secondTag: 'Informatique',
       level: 'Master, DEA, DESS',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Plus de 12 mois'
     },
     {
       logo: 'intel.svg',
@@ -337,20 +337,6 @@ export default function Offers() {
             </div>
               </div></div>
           </section>
-          <section className="result">
-            <div className="d-flex">
-              <div>
-                <h3>Résultats</h3>
-                <p>{sortedOffers.length} offres trouvées</p>
-              <div className="range">
-                <div className="d-flex title">
-                  <p>Distance<span> - 0 à 100KM</span></p>
-                  <Icon icon="iconamoon:arrow-up-2-duotone" />
-                </div>
-                <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} />
-                <button>A moins de {filter.distance} km</button>
-              </div></div></div>
-            </section>
             <section className="result">
               <div className="d-flex">
                 <p>Trier par :</p>
