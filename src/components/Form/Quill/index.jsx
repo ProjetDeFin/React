@@ -4,13 +4,13 @@ import 'quill/dist/quill.snow.css';
 import './index.scss';
 
 export default function Quill({
-                                width = 500,
-                                height = 300,
-                                value,
-                                onChange,
-                                name = null,
-                                placeholder = 'Write something...',
-                              }) {
+  width = 500,
+  height = 300,
+  value,
+  onChange,
+  name = null,
+  placeholder = 'Write something...',
+}) {
   const { quill, quillRef } = useQuill({
     modules: {
       toolbar: {
