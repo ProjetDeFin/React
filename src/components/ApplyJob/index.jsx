@@ -32,6 +32,13 @@ export default function ApplyJob({ id }) {
     });
   };
 
+  const handleQuill = (innerHTLM) => {
+    setFormData({
+      ...formData,
+      motivation: innerHTLM,
+    });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -311,16 +318,14 @@ export default function ApplyJob({ id }) {
                 </div>
                 <div className="d-flex direction-column align-start motivation">
                   <Quill
+                    width='100%'
+                    height='100px'
                     id="motivation"
                     name="motivation"
                     value="Vos atouts & motivations pour postuler à cette offre de stage"
-                  />
-                  <textarea
-                    name="motivation"
-                    id="motivation"
+                    onChange={handleQuill}
                     placeholder="Présentez-vous et mettez en avant votre parcours, vos atouts, votre personnalité, vos centres d’intérêt, attentes, etc."
-                    onChange={handleChange}
-                  ></textarea>
+                  />
                 </div>
                 <input
                   type="checkbox"
