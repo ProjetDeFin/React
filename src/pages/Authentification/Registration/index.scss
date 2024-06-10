@@ -1,54 +1,54 @@
 .registration {
-    .grey {
-        padding: 112px 0;
+  .grey {
+    padding: 112px 0;
 
-        .login {
-            background-color: #fff;
-            padding: 42px 122px;
-            width: 743px;
-            margin: 0 auto;
+    .login {
+      background-color: #fff;
+      padding: 42px 122px;
+      width: 743px;
+      margin: 0 auto;
 
-            .text-center p:nth-child(2) {
-                padding: 24px 16px;
-                font-size: 20px;
-            }
+      .text-center p:nth-child(2) {
+        padding: 24px 16px;
+        font-size: 20px;
+      }
 
-            h2 {
-                font-size: 40px;
-            }
+      h2 {
+        font-size: 40px;
+      }
 
-            p a {
-                text-decoration: underline;
-            }
+      p a {
+        text-decoration: underline;
+      }
 
-            form {
-                .direction-column {
-                    margin-top: 24px;
-                    label {
-                        margin-bottom: 20px;
-                    }
-                    
-                    &:first-child {
-                        margin-top: 28px;
-                    }
-                }
+      form {
+        .direction-column {
+          margin-top: 24px;
+          label {
+            margin-bottom: 20px;
+          }
 
-                input {
-                    width: 100%;
-                    background-color: #F8F8FD;
-                    border: none;
-                    border-radius: 4px;
-
-                    &[type=submit] {
-                        background-color: #4640DE;
-                        color: #fff;
-                        margin: 40px 0 16px 0;
-                        border-radius: 16px;
-                        cursor: pointer;
-                        font-weight: 700;
-                    }
-                }
-            }
+          &:first-child {
+            margin-top: 28px;
+          }
         }
+
+        input {
+          width: 100%;
+          background-color: #f8f8fd;
+          border: none;
+          border-radius: 4px;
+
+          &[type='submit'] {
+            background-color: #4640de;
+            color: #fff;
+            margin: 40px 0 16px 0;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 700;
+          }
+        }
+      }
     }
+  }
 }

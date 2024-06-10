@@ -23,12 +23,12 @@ export default function Offers({ type }) {
       default:
         return 'Stage';
     }
-  }
+  };
 
   const offerData = [
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en analyse de données',
+      nameOffer: getTypeTranslation() + ' en analyse de données',
       nameCompany: 'Orange',
       locationCompany: 'Paris',
       period: 'Du 10/04/2024 au 10/06/2024 (61 jours)',
@@ -37,11 +37,11 @@ export default function Offers({ type }) {
       firstTag: 'Marketing',
       secondTag: 'Design',
       level: 'Master, DEA, DESS',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Entre 2 et 6 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en développement web',
+      nameOffer: getTypeTranslation() + ' en développement web',
       nameCompany: 'BNP Paribas',
       locationCompany: 'Lyon',
       period: 'Du 01/05/2024 au 01/07/2024 (62 jours)',
@@ -50,11 +50,11 @@ export default function Offers({ type }) {
       firstTag: 'Informatique',
       secondTag: 'Finance',
       level: 'Licence',
-      duration: 'Moins de 2 mois'
+      duration: 'Moins de 2 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en gestion de projet',
+      nameOffer: getTypeTranslation() + ' en gestion de projet',
       nameCompany: 'Air France',
       locationCompany: 'Marseille',
       period: 'Du 15/04/2024 au 15/06/2024 (62 jours)',
@@ -63,11 +63,11 @@ export default function Offers({ type }) {
       firstTag: 'Finance',
       secondTag: 'Marketing',
       level: 'BTS, DUT, BUT',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Entre 2 et 6 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en design UX/UI',
+      nameOffer: getTypeTranslation() + ' en design UX/UI',
       nameCompany: 'Renault',
       locationCompany: 'Nice',
       period: 'Du 20/04/2024 au 20/06/2024 (62 jours)',
@@ -76,11 +76,11 @@ export default function Offers({ type }) {
       firstTag: 'Design',
       secondTag: 'Informatique',
       level: 'Master, DEA, DESS',
-      duration: 'Plus de 12 mois'
+      duration: 'Plus de 12 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+" en finance d'entreprise",
+      nameOffer: getTypeTranslation() + " en finance d'entreprise",
       nameCompany: 'TotalEnergies',
       locationCompany: 'Toulouse',
       period: 'Du 25/05/2024 au 25/06/2024 (62 jours)',
@@ -89,11 +89,11 @@ export default function Offers({ type }) {
       firstTag: 'Finance',
       secondTag: 'Marketing',
       level: 'Licence',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Entre 2 et 6 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en marketing digital',
+      nameOffer: getTypeTranslation() + ' en marketing digital',
       nameCompany: "L'Oréal",
       locationCompany: 'Bordeaux',
       period: 'Du 01/02/2024 au 30/06/2024 (62 jours)',
@@ -102,11 +102,11 @@ export default function Offers({ type }) {
       firstTag: 'Marketing',
       secondTag: 'Design',
       level: 'Master, DEA, DESS',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Entre 2 et 6 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en ressources humaines',
+      nameOffer: getTypeTranslation() + ' en ressources humaines',
       nameCompany: 'SNCF',
       locationCompany: 'Strasbourg',
       period: 'Du 01/05/2024 au 05/07/2024 (62 jours)',
@@ -115,11 +115,11 @@ export default function Offers({ type }) {
       firstTag: 'Design',
       secondTag: 'Finance',
       level: 'BTS, DUT, BUT',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Entre 2 et 6 mois',
     },
     {
       logo: 'intel.svg',
-      nameOffer: getTypeTranslation()+' en data science',
+      nameOffer: getTypeTranslation() + ' en data science',
       nameCompany: 'Capgemini',
       locationCompany: 'Nantes',
       period: 'Du 10/05/2024 au 10/07/2024 (62 jours)',
@@ -128,7 +128,7 @@ export default function Offers({ type }) {
       firstTag: 'Informatique',
       secondTag: 'Marketing',
       level: 'Licence',
-      duration: 'Entre 2 et 6 mois'
+      duration: 'Entre 2 et 6 mois',
     },
   ];
 
@@ -170,10 +170,15 @@ export default function Offers({ type }) {
     setSort(e.target.value);
   };
 
-  const filteredOffers = offerData.filter(offer => {
-    const profileMatch = filter.profiles.length === 0 || filter.profiles.includes(offer.firstTag) || filter.profiles.includes(offer.secondTag);
-    const levelMatch = filter.levels.length === 0 || filter.levels.includes(offer.level);
-    const durationMatch = filter.duration.length === 0 || filter.duration.includes(offer.duration);
+  const filteredOffers = offerData.filter((offer) => {
+    const profileMatch =
+      filter.profiles.length === 0 ||
+      filter.profiles.includes(offer.firstTag) ||
+      filter.profiles.includes(offer.secondTag);
+    const levelMatch =
+      filter.levels.length === 0 || filter.levels.includes(offer.level);
+    const durationMatch =
+      filter.duration.length === 0 || filter.duration.includes(offer.duration);
     const distanceMatch = true;
 
     return profileMatch && levelMatch && durationMatch && distanceMatch;
@@ -202,8 +207,16 @@ export default function Offers({ type }) {
     <div className="offers">
       <div className="grey text-center">
         <div className="container">
-          <h2>Offres de <span className="turquoise">{getTypeTranslation().toLowerCase()}</span></h2>
-          <p>Découvrez les offres de {getTypeTranslation().toLowerCase()} actuellement proposées par les entreprises</p>
+          <h2>
+            Offres de{' '}
+            <span className="turquoise">
+              {getTypeTranslation().toLowerCase()}
+            </span>
+          </h2>
+          <p>
+            Découvrez les offres de {getTypeTranslation().toLowerCase()}{' '}
+            actuellement proposées par les entreprises
+          </p>
         </div>
       </div>
       <div className="container">
@@ -242,9 +255,19 @@ export default function Offers({ type }) {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Master, DEA, DESS', 'Licence', 'BTS, DUT, BUT', 'BAC', 'CAP, BEP'].map(level => (
+                {[
+                  'Master, DEA, DESS',
+                  'Licence',
+                  'BTS, DUT, BUT',
+                  'BAC',
+                  'CAP, BEP',
+                ].map((level) => (
                   <div className="d-flex" key={level}>
-                    <input type="checkbox" value={level} onChange={handleLevelChange} />
+                    <input
+                      type="checkbox"
+                      value={level}
+                      onChange={handleLevelChange}
+                    />
                     <label>{level}</label>
                   </div>
                 ))}
@@ -256,9 +279,18 @@ export default function Offers({ type }) {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Moins de 2 mois', 'Entre 2 et 6 mois', 'Entre 6 et 12 mois', 'Plus de 12 mois'].map(duration => (
+                {[
+                  'Moins de 2 mois',
+                  'Entre 2 et 6 mois',
+                  'Entre 6 et 12 mois',
+                  'Plus de 12 mois',
+                ].map((duration) => (
                   <div className="d-flex" key={duration}>
-                    <input type="checkbox" value={duration} onChange={handleDurationChange} />
+                    <input
+                      type="checkbox"
+                      value={duration}
+                      onChange={handleDurationChange}
+                    />
                     <label>{duration}</label>
                   </div>
                 ))}
@@ -266,7 +298,9 @@ export default function Offers({ type }) {
             </div>
             <div className="range">
               <div className="d-flex title">
-                <p>Distance<span> - 0 à 100KM</span></p>
+                <p>
+                  Distance<span> - 0 à 100KM</span>
+                </p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <input
@@ -289,8 +323,12 @@ export default function Offers({ type }) {
               <div className="d-flex">
                 <p>Trier par :</p>
                 <select value={sort} onChange={handleSortChange}>
-                  <option value="dateRecent">Date de publication (plus récent)</option>
-                  <option value="dateOld">Date de publication (plus vieux)</option>
+                  <option value="dateRecent">
+                    Date de publication (plus récent)
+                  </option>
+                  <option value="dateOld">
+                    Date de publication (plus vieux)
+                  </option>
                   <option value="alphaAZ">Alphabétique (A-Z)</option>
                   <option value="alphaZA">Alphabétique (Z-A)</option>
                   <option value="deadline">Date limite pour postuler</option>

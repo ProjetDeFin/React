@@ -37,7 +37,7 @@ export default function ApplyJob({ id }) {
       ...formData,
       motivation: innerHTLM,
     });
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -318,8 +318,8 @@ export default function ApplyJob({ id }) {
                 </div>
                 <div className="d-flex direction-column align-start motivation">
                   <Quill
-                    width='100%'
-                    height='100px'
+                    width="100%"
+                    height="100px"
                     id="motivation"
                     name="motivation"
                     value="Vos atouts & motivations pour postuler à cette offre de stage"

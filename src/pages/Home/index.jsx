@@ -3,7 +3,7 @@ import CompanyCard from '../../components/Card/OfferCompany';
 import ApplyStudent from '../../components/Card/ApplyStudent';
 import { Icon } from '@iconify/react';
 import './index.scss';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const forwardCompany = [
@@ -354,7 +354,7 @@ export default function Home() {
               </p>
               <Link to="" className="btn">
                 Créez votre compte
-                <Icon icon="tabler:arrow-right"/>
+                <Icon icon="tabler:arrow-right" />
               </Link>
             </div>
             <img src="/img/dashboard-thumbnail.jpg" alt="" />
@@ -365,9 +365,12 @@ export default function Home() {
             <h2>
               Dernières <span>offres</span>
             </h2>
-            <Link to="/offers/internships" className="turquoise all-offer d-flex">
+            <Link
+              to="/offers/internships"
+              className="turquoise all-offer d-flex"
+            >
               toutes les offres
-              <Icon icon="tabler:arrow-right"/>
+              <Icon icon="tabler:arrow-right" />
             </Link>
           </div>
           <div className="d-flex wrap">
@@ -396,7 +399,7 @@ export default function Home() {
             </h2>
             <Link to="" className="turquoise all-offer d-flex">
               toutes les demandes
-              <Icon icon="tabler:arrow-right"/>
+              <Icon icon="tabler:arrow-right" />
             </Link>
           </div>
           <div className="d-flex wrap">
