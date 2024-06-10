@@ -307,7 +307,7 @@ export default function OfferDetail() {
             <h2>Offres de stage similaires</h2>
             <Link to="/offers/internships" className="link d-flex">
               toutes les offres
-              <Icon icon="tabler:arrow-right"/>
+              <Icon icon="tabler:arrow-right" />
             </Link>
           </div>
           <div className="d-flex wrap">

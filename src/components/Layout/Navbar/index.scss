@@ -1,5 +1,4 @@
 nav {
-
   .logo p {
     font-size: 24px;
   }
@@ -16,14 +15,16 @@ nav {
     position: absolute;
     z-index: 1;
     top: 284%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
     a {
       background-color: #fff;
       padding: 12px 10px !important;
       width: 120px;
       &:hover {
-        background-color: #F8F8FD;
+        background-color: #f8f8fd;
       }
     }
   }
