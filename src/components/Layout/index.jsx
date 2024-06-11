@@ -13,7 +13,7 @@ export default function Layout({ children }) {
     <div className="layout">
       <Navbar />
       {isAdminRoute ? (
-        <div className="d-flex">
+        <div className="d-flex admin justify-start align-start">
           <NavbarAdmin />
           <div className="admin-content">
             {children}
