@@ -28,9 +28,6 @@ export default function Navbar() {
               </NavLink>
             </div>
           </div>
-          <NavLink to="/applications" activeClassName="is-active">
-            Demandes
-          </NavLink>
           <NavLink to="/companies" activeClassName="is-active">
             Entreprise
           </NavLink>
