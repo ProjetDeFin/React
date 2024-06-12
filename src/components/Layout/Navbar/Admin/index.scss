@@ -1,8 +1,10 @@
 .nav-bar-admin {
     border-right: 1px solid #CCCCF5;
+    height: 114dvh;
     .grey {
         line-height: 160%;
         background-color: #F8F8FD;
+        height: 114dvh;
 
         .nav-container  {
             padding: 28px 16px 0 16px;
@@ -41,6 +43,19 @@
                 padding: 12px 16px;
                 color: #7C8493;
                 font-weight: 500;
+                border: 2px solid transparent;
+
+                &:hover {
+                    border-left: 2px solid #4640DE;
+                }
+
+                &.active {
+                    color: #4640DE;
+                    background-color: #E9EBFD;
+                    position: relative;
+
+
+                }
             }
         }
 
