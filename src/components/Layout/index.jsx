@@ -15,14 +15,10 @@ export default function Layout({ children }) {
       {isAdminRoute ? (
         <div className="d-flex admin justify-start align-start">
           <NavbarAdmin />
-          <div className="admin-content">
-            {children}
-          </div>
+          <div className="admin-content">{children}</div>
         </div>
       ) : (
-        <div className="main-content">
-          {children}
-        </div>
+        <div className="main-content">{children}</div>
       )}
       <Footer />
     </div>
