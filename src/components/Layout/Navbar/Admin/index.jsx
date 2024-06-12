@@ -10,18 +10,14 @@ export default function NavbarAdmin() {
                     <h3>Mon compte</h3>
                     <div className="d-flex direction-column align-start menu-admin">
                         <NavLink to="" className="d-flex justify-start" activeClassName="is-active">
-                            <Icon icon="ic:outline-message"/>
-                            Messages
-                        </NavLink>
-                        <NavLink to="" className="d-flex justify-start" activeClassName="is-active">
                             <Icon icon="mingcute:building-2-line"/>
                             Fiche entreprise
                         </NavLink>
-                        <NavLink to="" className="d-flex justify-start" activeClassName="is-active">
+                        <NavLink to="/admin/apply" className="d-flex justify-start" activeClassName="is-active">
                             <Icon icon="bi:people"/>
                             Candidatures
                         </NavLink>
-                        <NavLink to="" className="d-flex justify-start" activeClassName="is-active">
+                        <NavLink to="/admin/offres" className="d-flex justify-start" activeClassName="is-active">
                             <Icon icon="system-uicons:clipboard-notes"/>
                             Offres
                         </NavLink>
