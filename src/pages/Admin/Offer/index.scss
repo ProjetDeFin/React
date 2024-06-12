@@ -1,101 +1,101 @@
 .admin-content {
-    flex-grow: 1;
-    margin-right: 32px;
-    margin-bottom: 104px;
+  flex-grow: 1;
+  margin-right: 32px;
+  margin-bottom: 104px;
 
-    .content {
-        img {
-            width: 70px;
-        }
-        & > span {
-            width: 100%;
-            height: 1px;
-            background-color: #CCCCF5;
-            display: block;
-            margin: 26px 0 32px 0;
-        }
-
-        & > .d-flex > div.d-flex {
-            gap: 16px;
-        }
+  .content {
+    img {
+      width: 70px;
+    }
+    & > span {
+      width: 100%;
+      height: 1px;
+      background-color: #ccccf5;
+      display: block;
+      margin: 26px 0 32px 0;
     }
 
-    .offer-admin {
-        span {
-            width: 100%;
-            height: 1px;
-            display: block;
-            background-color: #CCCCF5;
-        }
-
-        section {
-            border: 1px solid #D6DDEB;
-
-            & > .d-flex {
-                padding: 21px 24px;
-                border-bottom: 1px solid #D6DDEB;
-
-                h3 {
-                    font-size: 20px;
-                    font-weight: 600;
-                }
-            }
-
-            .row,
-            .head-table > .d-flex {
-                border-bottom: 1px solid #D6DDEB;
-                padding: 30px 24px;
-
-                .tag {
-                    padding: 4px 16px;
-                    width: fit-content;
-                    border: 1px solid #56CDAD;
-                    color: #56CDAD;
-
-                    &.cloture {
-                        color: #FF6550;
-                        border-color: #FF6550;
-                    }
-
-                    &.stage {
-                        color: #4640DE;
-                        border-color: #4640DE;
-                    }
-
-                    &.alternance {
-                        color: #FFB836;
-                        border-color: #FFB836;
-                    }
-                }
-            }
-
-            .row:nth-child(2n){
-                background-color: #F8F8FD;
-            }
-
-            .name {
-                width: 20%;
-            }
-
-            .status {
-                width: 15%;
-            }
-
-            .date-publication {
-                width: 17%;
-            }
-
-            .date-limite {
-                width: 17%;
-            }
-
-            .type {
-                width: 17%;
-            }
-
-            .candidate {
-                width: 10%;
-            }
-        }
+    & > .d-flex > div.d-flex {
+      gap: 16px;
     }
+  }
+
+  .offer-admin {
+    span {
+      width: 100%;
+      height: 1px;
+      display: block;
+      background-color: #ccccf5;
+    }
+
+    section {
+      border: 1px solid #d6ddeb;
+
+      & > .d-flex {
+        padding: 21px 24px;
+        border-bottom: 1px solid #d6ddeb;
+
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+
+      .row,
+      .head-table > .d-flex {
+        border-bottom: 1px solid #d6ddeb;
+        padding: 30px 24px;
+
+        .tag {
+          padding: 4px 16px;
+          width: fit-content;
+          border: 1px solid #56cdad;
+          color: #56cdad;
+
+          &.cloture {
+            color: #ff6550;
+            border-color: #ff6550;
+          }
+
+          &.stage {
+            color: #4640de;
+            border-color: #4640de;
+          }
+
+          &.alternance {
+            color: #ffb836;
+            border-color: #ffb836;
+          }
+        }
+      }
+
+      .row:nth-child(2n) {
+        background-color: #f8f8fd;
+      }
+
+      .name {
+        width: 20%;
+      }
+
+      .status {
+        width: 15%;
+      }
+
+      .date-publication {
+        width: 17%;
+      }
+
+      .date-limite {
+        width: 17%;
+      }
+
+      .type {
+        width: 17%;
+      }
+
+      .candidate {
+        width: 10%;
+      }
+    }
+  }
 }
