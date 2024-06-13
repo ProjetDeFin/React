@@ -1,0 +1,48 @@
+.AddAdminOffer {
+    line-height: 160%;
+    .content {
+        & > .d-flex {
+            gap: 16px;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 34px;
+        }
+
+        .status-progress-offer {
+            & >.d-flex {
+                gap: 16px;
+            }
+            p:last-child {
+                font-size: 18px;
+                font-weight: 600;
+                margin-top: 2px;
+            }
+            .active {
+                .round {
+                    background-color: #4640DE;
+                    
+                }
+
+                p:first-child {
+                    color: #4640DE;
+                }
+                svg {
+                    color: #7C8493;
+                }
+            }
+            .round {
+                padding: 16px;
+                border-radius: 50%;
+                background-color: #E9EBFD;
+
+                svg {
+                    font-size: 24px;
+                    color: white;
+                }
+            }
+        }
+    }
+}

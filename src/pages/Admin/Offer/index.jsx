@@ -71,7 +71,7 @@ export default function OfferAdmin() {
             <img src="/img/logo/company.jpg" alt="" />
             <h2>MentalWorks</h2>
           </div>
-          <Link className="d-flex btn">
+          <Link to="/admin/offres/nouveau" className="d-flex btn">
             <Icon icon="material-symbols:add" />
             Nouvelle offre
           </Link>
