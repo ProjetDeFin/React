@@ -12,6 +12,7 @@ import Login from './pages/Authentification/Login';
 import Registration from './pages/Authentification/Registration';
 import AdminApplyJob from './pages/Admin/ApplyJob';
 import AdminOffer from './pages/Admin/Offer';
+import AdminAddOffer from './pages/Admin/AddOffer';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/creation-compte" element={<Registration />} />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
+            <Route path="/admin/offres/nouveau" element={ <AdminAddOffer />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>

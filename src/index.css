@@ -187,6 +187,9 @@ a {
 .wrap {
   flex-wrap: wrap;
 }
+.d-none {
+  display: none;
+}
 
 .turquoise {
   color: #26a4ff;
