@@ -62,6 +62,11 @@
       padding: 24px 0;
       border-top: 1px solid #d6ddeb;
 
+      &.last {
+        border-bottom: 1px solid #d6ddeb;
+        margin-bottom: 24px;
+      }
+
       &.offer-type {
         .align-start {
           gap: 20px;
