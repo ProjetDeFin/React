@@ -364,10 +364,7 @@ export default function Home() {
             <h2>
               Dernières <span>offres</span>
             </h2>
-            <Link
-              to="/offre/stage"
-              className="turquoise all-offer d-flex"
-            >
+            <Link to="/offre/stage" className="turquoise all-offer d-flex">
               toutes les offres
               <Icon icon="tabler:arrow-right" />
             </Link>

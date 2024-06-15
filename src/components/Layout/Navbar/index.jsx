@@ -3,7 +3,9 @@ import './index.scss';
 
 export default function Navbar() {
   const location = useLocation();
-  const isOffersActive = location.pathname === '/offre/stage' || location.pathname === '/offre/alternance';
+  const isOffersActive =
+    location.pathname === '/offre/stage' ||
+    location.pathname === '/offre/alternance';
 
   return (
     <div className="container">
@@ -44,7 +46,11 @@ export default function Navbar() {
           >
             Se connecter
           </NavLink>
-          <NavLink to="/inscription" activeClassName="is-active" className="btn">
+          <NavLink
+            to="/inscription"
+            activeClassName="is-active"
+            className="btn"
+          >
             Créer un compte
           </NavLink>
         </div>

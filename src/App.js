@@ -40,7 +40,7 @@ export default function App() {
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
             <Route path="/inscription" element={<Registration />} />
-            <Route path="/connexion" element={< Login/>} />
+            <Route path="/connexion" element={<Login />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>
