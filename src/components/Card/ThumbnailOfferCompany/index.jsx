@@ -11,7 +11,7 @@ export default function ThumbnailOfferCompany({
   idCompany,
 }) {
   return (
-    <Link to={`/company-detail/${idCompany}`}>
+    <Link to={`/detail-entreprise/${idCompany}`}>
       <div className="thumbnail-offer-company">
         <div className="d-flex">
           <img src={`/img/logo/${logoCompany}`} alt="" />

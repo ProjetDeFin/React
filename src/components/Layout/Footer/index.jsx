@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="d-flex direction-column align-start">
             <div className="logo d-flex justify-start">
               <img src="/img/logo/bourse-stage.svg" alt="" />
-              <p>Bourse au Stages</p>
+              <p>Bourse aux Stages</p>
             </div>
             <p>
               Première plateforme dédiée à la recherche de stages et
@@ -26,8 +26,8 @@ export default function Footer() {
             <Link href="/">Accueil</Link>
             <Link href="/offers/internships">Offres</Link>
             <Link href="/applications">Demandes</Link>
-            <Link href="/companies">Entreprises</Link>
-            <Link href="/students">Etudiants</Link>
+            <Link href="/entreprises">Entreprises</Link>
+            <Link href="/etudiants">Etudiants</Link>
           </div>
           <div className="d-flex footer-menu direction-column align-start">
             <Link href="/">Blog</Link>

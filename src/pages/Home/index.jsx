@@ -352,9 +352,8 @@ export default function Home() {
                 Vous pourrez gérer votre planning d'accueil et bénéficier de
                 nombreux services intégrés.
               </p>
-              <Link to="" className="btn">
+              <Link to="/inscription" className="btn">
                 Créez votre compte
-                <Icon icon="tabler:arrow-right" />
               </Link>
             </div>
             <img src="/img/dashboard-thumbnail.jpg" alt="" />
@@ -366,7 +365,7 @@ export default function Home() {
               Dernières <span>offres</span>
             </h2>
             <Link
-              to="/offers/internships"
+              to="/offre/stage"
               className="turquoise all-offer d-flex"
             >
               toutes les offres
