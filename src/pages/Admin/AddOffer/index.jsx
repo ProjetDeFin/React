@@ -143,7 +143,7 @@ export default function AddAdminOffer() {
                     <div></div>
                   </div>
                 </div>
-                <div className="block">
+                <div className="block last">
                   <div className="d-flex justify-start">
                     <div>
                       <h4>Compétences</h4>
@@ -188,7 +188,7 @@ export default function AddAdminOffer() {
                     ></textarea>
                   </div>
                 </div>
-                <div className="block">
+                <div className="block last">
                   <div className="d-flex justify-start align-start">
                     <div>
                       <h4>Profil recherché</h4>
@@ -214,7 +214,7 @@ export default function AddAdminOffer() {
                 </div>
               </div>
               <div className={`${currentStep === 3 ? 'active' : 'd-none'}`}>
-                <div className="block">
+                <div className="block last">
                   <div className="d-flex justify-start ">
                     <div>
                       <h4>Êtes-vous sûr ?</h4>
