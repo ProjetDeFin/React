@@ -180,6 +180,10 @@ a {
   justify-content: flex-start;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .direction-column {
   flex-direction: column;
 }

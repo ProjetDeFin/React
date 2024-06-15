@@ -12,8 +12,21 @@
         }
 
         .status-progress-offer {
+            gap: 103px;
+            padding: 12px 24px;
+            border: 1px solid #D6DDEB;
+            width: 64%;
+            border-radius: 4px;
+            margin-bottom: 32px;
+
             & >.d-flex {
                 gap: 16px;
+            }
+            span {
+                height: 40px;
+                width: 1px;
+                background-color: #D6DDEB;
+                display: block;
             }
             p:last-child {
                 font-size: 18px;
@@ -43,6 +56,57 @@
                     color: white;
                 }
             }
+        }
+    }
+    section {
+        .block {
+            padding: 24px 0;
+            border-top: 1px solid #D6DDEB;
+
+            &.offer-type {
+                .align-start {
+                    gap: 20px;
+                    & > .d-flex {
+                        gap: 16px;
+                    }
+                }
+            }
+
+            & > .d-flex {
+                gap: 110px;
+
+                & > div:first-child {
+                    width: 25%;
+
+                    p {
+                        margin-top: 8px;
+                    }
+                }
+
+                & > div:last-child {
+                    color: #7C8493;
+                    border: #D6DDEB;
+                }
+                input {
+                    border: 1px solid #D6DDEB;
+                }
+                input[type=text] {
+                    width: 430px;
+                    margin-bottom: 4px;
+                }
+
+                input[type=checkbox] {
+                    width: 24px;
+                    height: 24px;
+                }
+
+                textarea {
+                    width: 728px;
+                    height: 152px;
+                    padding: 16px;
+                }
+            }
+
         }
     }
 }
