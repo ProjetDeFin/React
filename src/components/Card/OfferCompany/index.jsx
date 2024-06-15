@@ -23,7 +23,7 @@ export default function OfferCompany({
   const progress = calculateProgress(restDay);
 
   const defaultTemplate = (
-    <Link to={`/offer-detail/${offerId}`}>
+    <Link to={`/detail-offre/${offerId}`}>
       <div className="company-card">
         <div className="d-flex">
           <img src={`/img/logo/${logo}`} alt="" />
@@ -62,7 +62,7 @@ export default function OfferCompany({
           </div>
         </div>
         <div>
-          <Link to={`/offer-detail/${offerId}`} className="btn">
+          <Link to={`/detail-offre/${offerId}`} className="btn">
             En savoir plus
           </Link>
           <div className="progress-bar-container">

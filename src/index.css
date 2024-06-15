@@ -312,3 +312,31 @@ p.Informatique {
 .progress-bar.low {
   background-color: #ff007a;
 }
+
+.login .content,
+.registration .content {
+  background-color: #fff;
+  padding: 32px 126px;
+  margin: 120px 0 160px 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.login .content h2,
+.registration .content h2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.login .content input,
+.registration .content input {
+  width: 100%;
+  background-color: #f8f8fd;
+  border-color: transparent;
+}
+
+.login .content input[type='submit'],
+.registration .content input[type='submit'] {
+  background-color: #4640de;
+  margin-bottom: 16px;
+  border-radius: 16px;
+}
