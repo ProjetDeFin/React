@@ -1,112 +1,110 @@
 .AddAdminOffer {
-    line-height: 160%;
-    .content {
-        & > .d-flex {
+  line-height: 160%;
+  .content {
+    & > .d-flex {
+      gap: 16px;
+    }
+
+    h3 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 34px;
+    }
+
+    .status-progress-offer {
+      gap: 103px;
+      padding: 12px 24px;
+      border: 1px solid #d6ddeb;
+      width: 64%;
+      border-radius: 4px;
+      margin-bottom: 32px;
+
+      & > .d-flex {
+        gap: 16px;
+      }
+      span {
+        height: 40px;
+        width: 1px;
+        background-color: #d6ddeb;
+        display: block;
+      }
+      p:last-child {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+      .active {
+        .round {
+          background-color: #4640de;
+        }
+
+        p:first-child {
+          color: #4640de;
+        }
+        svg {
+          color: #7c8493;
+        }
+      }
+      .round {
+        padding: 16px;
+        border-radius: 50%;
+        background-color: #e9ebfd;
+
+        svg {
+          font-size: 24px;
+          color: white;
+        }
+      }
+    }
+  }
+  section {
+    .block {
+      padding: 24px 0;
+      border-top: 1px solid #d6ddeb;
+
+      &.offer-type {
+        .align-start {
+          gap: 20px;
+          & > .d-flex {
             gap: 16px;
+          }
+        }
+      }
+
+      & > .d-flex {
+        gap: 110px;
+
+        & > div:first-child {
+          width: 25%;
+
+          p {
+            margin-top: 8px;
+          }
         }
 
-        h3 {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 34px;
+        & > div:last-child {
+          color: #7c8493;
+          border: #d6ddeb;
+        }
+        input {
+          border: 1px solid #d6ddeb;
+        }
+        input[type='text'] {
+          width: 430px;
+          margin-bottom: 4px;
         }
 
-        .status-progress-offer {
-            gap: 103px;
-            padding: 12px 24px;
-            border: 1px solid #D6DDEB;
-            width: 64%;
-            border-radius: 4px;
-            margin-bottom: 32px;
-
-            & >.d-flex {
-                gap: 16px;
-            }
-            span {
-                height: 40px;
-                width: 1px;
-                background-color: #D6DDEB;
-                display: block;
-            }
-            p:last-child {
-                font-size: 18px;
-                font-weight: 600;
-                margin-top: 2px;
-            }
-            .active {
-                .round {
-                    background-color: #4640DE;
-                    
-                }
-
-                p:first-child {
-                    color: #4640DE;
-                }
-                svg {
-                    color: #7C8493;
-                }
-            }
-            .round {
-                padding: 16px;
-                border-radius: 50%;
-                background-color: #E9EBFD;
-
-                svg {
-                    font-size: 24px;
-                    color: white;
-                }
-            }
+        input[type='checkbox'] {
+          width: 24px;
+          height: 24px;
         }
+
+        textarea {
+          width: 728px;
+          height: 152px;
+          padding: 16px;
+        }
+      }
     }
-    section {
-        .block {
-            padding: 24px 0;
-            border-top: 1px solid #D6DDEB;
-
-            &.offer-type {
-                .align-start {
-                    gap: 20px;
-                    & > .d-flex {
-                        gap: 16px;
-                    }
-                }
-            }
-
-            & > .d-flex {
-                gap: 110px;
-
-                & > div:first-child {
-                    width: 25%;
-
-                    p {
-                        margin-top: 8px;
-                    }
-                }
-
-                & > div:last-child {
-                    color: #7C8493;
-                    border: #D6DDEB;
-                }
-                input {
-                    border: 1px solid #D6DDEB;
-                }
-                input[type=text] {
-                    width: 430px;
-                    margin-bottom: 4px;
-                }
-
-                input[type=checkbox] {
-                    width: 24px;
-                    height: 24px;
-                }
-
-                textarea {
-                    width: 728px;
-                    height: 152px;
-                    padding: 16px;
-                }
-            }
-
-        }
-    }
+  }
 }

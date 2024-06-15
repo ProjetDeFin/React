@@ -38,7 +38,7 @@ export default function App() {
             <Route path="/creation-compte" element={<Registration />} />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
-            <Route path="/admin/offres/nouveau" element={ <AdminAddOffer />} />
+            <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>
