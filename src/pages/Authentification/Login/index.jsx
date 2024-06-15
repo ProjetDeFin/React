@@ -10,7 +10,7 @@ export default function Login() {
             <h2>BIENVENUE</h2>
             <h3>Connectez vous pour continuer</h3>
             <p>
-              pas encore de compte ? <Link>Cree en un !</Link>
+              pas encore de compte ? <Link to="/inscription">Cree en un !</Link>
             </p>
             <form method="post">
               <div className="d-flex direction-column align-start">
