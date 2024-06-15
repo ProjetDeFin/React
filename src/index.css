@@ -199,6 +199,11 @@ a {
   color: #26a4ff;
 }
 
+input,
+select {
+  cursor: pointer;
+}
+
 .btn {
   background-color: var(--color-primary);
   color: white;
