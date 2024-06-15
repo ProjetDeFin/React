@@ -8,11 +8,11 @@ import Layout from './components/Layout';
 import OfferDetail from './pages/OfferDetail';
 import CompanyDetail from './pages/CompanyDetail';
 import ApplyJobWrapper from './pages/ApplyJobWrapper';
-import Login from './pages/Authentification/Login';
-import Registration from './pages/Authentification/Registration';
 import AdminApplyJob from './pages/Admin/ApplyJob';
 import AdminOffer from './pages/Admin/Offer';
 import AdminAddOffer from './pages/Admin/AddOffer';
+import Registration from './pages/Authentification/Registration';
+import Login from './pages/Authentification/Login';
 
 export default function App() {
   return (
@@ -21,14 +21,14 @@ export default function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/companies" element={<Companies />} />
-            <Route path="/students" element={<Students />} />
+            <Route path="/entreprises" element={<Companies />} />
+            <Route path="/etudiants" element={<Students />} />
             <Route
-              path="/offers/internships"
+              path="/offre/stage"
               element={<Offers type="internships" />}
             />
             <Route
-              path="/offers/apprenticeships"
+              path="/offre/alternance"
               element={<Offers type="apprenticeships" />}
             />
             <Route path="/detail-offre/:id" element={<OfferDetail />} />
@@ -39,6 +39,8 @@ export default function App() {
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
+            <Route path="/inscription" element={<Registration />} />
+            <Route path="/connexion" element={< Login/>} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>

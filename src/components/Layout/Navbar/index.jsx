@@ -1,49 +1,50 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './index.scss';
 
 export default function Navbar() {
+  const location = useLocation();
+  const isOffersActive = location.pathname === '/offre/stage' || location.pathname === '/offre/alternance';
+
   return (
     <div className="container">
       <nav className="d-flex align-center">
         <NavLink to="/" className="logo-link" activeClassName="is-active">
           <div className="logo d-flex justify-start">
             <img src="/img/logo/bourse-stage.svg" alt="" />
-            <p>Bourse au Stages</p>
+            <p>Bourse aux Stages</p>
           </div>
         </NavLink>
         <div className="d-flex menu">
           <NavLink to="/" activeClassName="is-active">
             Accueil
           </NavLink>
-          <div className="dropdown">
-            <NavLink to="#" activeClassName="is-active">
-              Offres
-            </NavLink>
+          <div className={`dropdown ${isOffersActive ? 'active' : ''}`}>
+            <span className="dropdown-link">Offres</span>
             <div className="dropdown-content d-flex direction-column">
-              <NavLink to="/offers/internships" activeClassName="is-active">
+              <NavLink to="/offre/stage" activeClassName="is-active">
                 Stage
               </NavLink>
-              <NavLink to="/offers/apprenticeships" activeClassName="is-active">
+              <NavLink to="/offre/alternance" activeClassName="is-active">
                 Alternance
               </NavLink>
             </div>
           </div>
-          <NavLink to="/companies" activeClassName="is-active">
+          <NavLink to="/entreprises" activeClassName="is-active">
             Entreprise
           </NavLink>
-          <NavLink to="/students" activeClassName="is-active">
+          <NavLink to="/etudiants" activeClassName="is-active">
             Etudiants
           </NavLink>
         </div>
         <div className="d-flex account">
           <NavLink
-            to="/sign-in"
+            to="connexion"
             activeClassName="is-active"
             className="btn btn-empty"
           >
             Se connecter
           </NavLink>
-          <NavLink to="/register" activeClassName="is-active" className="btn">
+          <NavLink to="/inscription" activeClassName="is-active" className="btn">
             Créer un compte
           </NavLink>
         </div>
