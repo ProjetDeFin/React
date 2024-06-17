@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import CompanyCard from '../../components/Card/OfferCompany';
 import './index.scss';
-import { useState } from 'react';
 
 export default function Offers({ type }) {
   const [filter, setFilter] = useState({
@@ -12,6 +12,7 @@ export default function Offers({ type }) {
   });
 
   const [sort, setSort] = useState('dateRecent');
+  const [offers, setOffers] = useState([]);
 
   // TODO: remove this when API call
   const getTypeTranslation = () => {
@@ -25,160 +26,70 @@ export default function Offers({ type }) {
     }
   };
 
-  const offerData = [
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en analyse de données',
-      nameCompany: 'Orange',
-      locationCompany: 'Paris',
-      period: 'Du 10/04/2024 au 10/06/2024 (61 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 30,
-      firstTag: 'Marketing',
-      secondTag: 'Design',
-      level: 'Master, DEA, DESS',
-      duration: 'Entre 2 et 6 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en développement web',
-      nameCompany: 'BNP Paribas',
-      locationCompany: 'Lyon',
-      period: 'Du 01/05/2024 au 01/07/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 45,
-      firstTag: 'Informatique',
-      secondTag: 'Finance',
-      level: 'Licence',
-      duration: 'Moins de 2 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en gestion de projet',
-      nameCompany: 'Air France',
-      locationCompany: 'Marseille',
-      period: 'Du 15/04/2024 au 15/06/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 60,
-      firstTag: 'Finance',
-      secondTag: 'Marketing',
-      level: 'BTS, DUT, BUT',
-      duration: 'Entre 2 et 6 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en design UX/UI',
-      nameCompany: 'Renault',
-      locationCompany: 'Nice',
-      period: 'Du 20/04/2024 au 20/06/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 50,
-      firstTag: 'Design',
-      secondTag: 'Informatique',
-      level: 'Master, DEA, DESS',
-      duration: 'Plus de 12 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + " en finance d'entreprise",
-      nameCompany: 'TotalEnergies',
-      locationCompany: 'Toulouse',
-      period: 'Du 25/05/2024 au 25/06/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 25,
-      firstTag: 'Finance',
-      secondTag: 'Marketing',
-      level: 'Licence',
-      duration: 'Entre 2 et 6 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en marketing digital',
-      nameCompany: "L'Oréal",
-      locationCompany: 'Bordeaux',
-      period: 'Du 01/02/2024 au 30/06/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 15,
-      firstTag: 'Marketing',
-      secondTag: 'Design',
-      level: 'Master, DEA, DESS',
-      duration: 'Entre 2 et 6 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en ressources humaines',
-      nameCompany: 'SNCF',
-      locationCompany: 'Strasbourg',
-      period: 'Du 01/05/2024 au 05/07/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 10,
-      firstTag: 'Design',
-      secondTag: 'Finance',
-      level: 'BTS, DUT, BUT',
-      duration: 'Entre 2 et 6 mois',
-    },
-    {
-      logo: 'intel.svg',
-      nameOffer: getTypeTranslation() + ' en data science',
-      nameCompany: 'Capgemini',
-      locationCompany: 'Nantes',
-      period: 'Du 10/05/2024 au 10/07/2024 (62 jours)',
-      typeOffer: getTypeTranslation(),
-      restDay: 75,
-      firstTag: 'Informatique',
-      secondTag: 'Marketing',
-      level: 'Licence',
-      duration: 'Entre 2 et 6 mois',
-    },
-  ];
+  useEffect(() => {
+    fetchOffers();
+  }, [filter, sort]);
+
+  const fetchOffers = async () => {
+    const response = await fetch('http://localhost:8000/api/offers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filters: filter,
+        order: sort === 'dateRecent' ? 'DESC' : 'ASC',
+        orderBy: sort === 'alphaAZ' || sort === 'alphaZA' ? 'nameOffer' : 'createdAt',
+        page: 1,
+        limit: 10
+      })
+    });
+    const data = await response.json();
+    setOffers(data);
+  };
 
   const handleProfileChange = (e) => {
     const { value, checked } = e.target;
-    setFilter((prevState) => {
+    setFilter(prevState => {
       const profiles = checked
         ? [...prevState.profiles, value]
-        : prevState.profiles.filter((profile) => profile !== value);
+        : prevState.profiles.filter(profile => profile !== value);
       return { ...prevState, profiles };
     });
   };
 
   const handleLevelChange = (e) => {
     const { value, checked } = e.target;
-    setFilter((prevState) => {
+    setFilter(prevState => {
       const levels = checked
         ? [...prevState.levels, value]
-        : prevState.levels.filter((level) => level !== value);
+        : prevState.levels.filter(level => level !== value);
       return { ...prevState, levels };
     });
   };
 
   const handleDurationChange = (e) => {
     const { value, checked } = e.target;
-    setFilter((prevState) => {
+    setFilter(prevState => {
       const duration = checked
         ? [...prevState.duration, value]
-        : prevState.duration.filter((d) => d !== value);
+        : prevState.duration.filter(d => d !== value);
       return { ...prevState, duration };
     });
   };
 
   const handleDistanceChange = (e) => {
-    setFilter((prevState) => ({ ...prevState, distance: e.target.value }));
+    setFilter(prevState => ({ ...prevState, distance: e.target.value }));
   };
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
   };
 
-  const filteredOffers = offerData.filter((offer) => {
-    const profileMatch =
-      filter.profiles.length === 0 ||
-      filter.profiles.includes(offer.firstTag) ||
-      filter.profiles.includes(offer.secondTag);
-    const levelMatch =
-      filter.levels.length === 0 || filter.levels.includes(offer.level);
-    const durationMatch =
-      filter.duration.length === 0 || filter.duration.includes(offer.duration);
+  const filteredOffers = offers.filter(offer => {
+    const profileMatch = filter.profiles.length === 0 || filter.profiles.includes(offer.firstTag) || filter.profiles.includes(offer.secondTag);
+    const levelMatch = filter.levels.length === 0 || filter.levels.includes(offer.level);
+    const durationMatch = filter.duration.length === 0 || filter.duration.includes(offer.duration);
     const distanceMatch = true;
 
     return profileMatch && levelMatch && durationMatch && distanceMatch;
@@ -186,13 +97,9 @@ export default function Offers({ type }) {
 
   const sortedOffers = [...filteredOffers].sort((a, b) => {
     if (sort === 'dateRecent') {
-      return (
-        new Date(b.period.split(' ')[2]) - new Date(a.period.split(' ')[2])
-      );
+      return new Date(b.period.split(' ')[2]) - new Date(a.period.split(' ')[2]);
     } else if (sort === 'dateOld') {
-      return (
-        new Date(a.period.split(' ')[2]) - new Date(b.period.split(' ')[2])
-      );
+      return new Date(a.period.split(' ')[2]) - new Date(b.period.split(' ')[2]);
     } else if (sort === 'alphaAZ') {
       return a.nameOffer.localeCompare(b.nameOffer);
     } else if (sort === 'alphaZA') {
@@ -229,22 +136,9 @@ export default function Offers({ type }) {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {[
-                  'Design',
-                  'Commercial',
-                  'Marketing',
-                  'Business',
-                  'Management',
-                  'Finance',
-                  'Industrie',
-                  'Informatique',
-                ].map((profile) => (
+                {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
                   <div className="d-flex" key={profile}>
-                    <input
-                      type="checkbox"
-                      value={profile}
-                      onChange={handleProfileChange}
-                    />
+                    <input type="checkbox" value={profile} onChange={handleProfileChange} />
                     <label>{profile}</label>
                   </div>
                 ))}
@@ -304,14 +198,7 @@ export default function Offers({ type }) {
                 </p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={filter.distance}
-                onChange={handleDistanceChange}
-                disabled={true}
-              />
+              <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} disabled={true} />
               <button>A moins de {filter.distance} km</button>
             </div>
           </section>
