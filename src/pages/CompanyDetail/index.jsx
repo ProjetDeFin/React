@@ -1,59 +1,41 @@
+import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ThumbnailResumeOffer from '../../components/Card/ThumbnailResumeOffer';
 import './index.scss';
 
-export default function Companies() {
-  const offerData = [
-    {
-      nameOffer: 'Stage en marketing digital',
-      periodOffer: '01/07/2024 au 31/08/2024',
-      descriptionOffer:
-        'Apprenez les bases du marketing digital au sein de notre équipe dynamique.',
-      firstTag: 'Marketing',
-      secondTag: 'Design',
-    },
-    {
-      nameOffer: 'Développeur Wordpress',
-      periodOffer: '01/07/2024 au 31/08/2024',
-      descriptionOffer:
-        'Développez des interfaces utilisateur modernes et réactives.',
-      firstTag: 'Informatique',
-      secondTag: 'Design',
-    },
-    {
-      nameOffer: 'Analyste financier junior',
-      periodOffer: '01/07/2024 au 31/08/2024',
-      descriptionOffer:
-        "Participez à l'analyse financière et à la préparation des rapports.",
-      firstTag: 'Finance',
-      secondTag: 'Marketing',
-    },
-    {
-      nameOffer: 'UX/UI design',
-      periodOffer: '01/07/2024 au 31/08/2024',
-      descriptionOffer:
-        'Concevez des supports de communication visuelle percutants.',
-      firstTag: 'Design',
-      secondTag: 'Marketing',
-    },
-    {
-      nameOffer: 'Support IT',
-      periodOffer: '01/07/2024 au 31/08/2024',
-      descriptionOffer: 'Assurez le support technique et la maintenance.',
-      firstTag: 'Informatique',
-      secondTag: 'Finance',
-    },
-  ];
+export default function CompanyDetail() {
+  const { id } = useParams();
+  const [company, setCompany] = useState(null);
+  const [offers, setOffers] = useState([]);
+
+  useEffect(() => {
+    fetchCompanyDetails();
+  }, [id]);
+
+  const fetchCompanyDetails = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/companies/${id}`);
+      const data = await response.json();
+      setCompany(data);
+      setOffers(data.offers); // Assumes the API returns offers within the company data
+    } catch (error) {
+      console.error('Failed to fetch company details:', error);
+    }
+  };
+
+  if (!company) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="company-detail">
       <div className="grey">
         <div className="container">
           <p className="text-left">Accueil / Entreprises / <span className="purple">MentalWorks</span></p>
-          <h2>Mentalworks</h2>
-          <a href="" className="link d-flex">
-            mentalworks.fr <Icon icon="tabler:arrow-right" />
+          <h2>{company.name}</h2>
+          <a href={company.website} className="link d-flex">
+            {company.website} <Icon icon="tabler:arrow-right" />
           </a>
           <div className="d-flex summary justify-start">
             <div className="d-flex">
@@ -62,7 +44,7 @@ export default function Companies() {
               </div>
               <div>
                 <p>Activité</p>
-                <p>Informatique</p>
+                <p>{company.activity}</p>
               </div>
             </div>
             <div className="d-flex">
@@ -71,7 +53,7 @@ export default function Companies() {
               </div>
               <div>
                 <p>Ancienneté</p>
-                <p>24 ans</p>
+                <p>{company.age} ans</p>
               </div>
             </div>
             <div className="d-flex">
@@ -80,7 +62,7 @@ export default function Companies() {
               </div>
               <div>
                 <p>Effectifs</p>
-                <p>22</p>
+                <p>{company.employees}</p>
               </div>
             </div>
             <div className="d-flex">
@@ -89,7 +71,7 @@ export default function Companies() {
               </div>
               <div>
                 <p>Chiffre d'affaires</p>
-                <p>1,2 M€</p>
+                <p>{company.revenue} M€</p>
               </div>
             </div>
             <div className="d-flex">
@@ -98,7 +80,7 @@ export default function Companies() {
               </div>
               <div>
                 <p>Situation</p>
-                <p>Compiègne (60200)</p>
+                <p>{company.location}</p>
               </div>
             </div>
           </div>
@@ -110,103 +92,72 @@ export default function Companies() {
             <section>
               <div className="presentation">
                 <h3>Présentation</h3>
-                <p>
-                  Mentalworks est à la fois une agence web et webmarketing mais
-                  aussi une SSII/ESN spécialisée dans le développement et la
-                  maintenance d'applications sur-mesure.
-                </p>
-                <p>
-                  Mentalworks représente une nouvelle génération : celle des
-                  agences digitales technologiques. Notre particularité est
-                  d'intégrer à la fois une agence web et e-marketing (conseil
-                  stratégique, SEO/SEA/CM) mais aussi une SSII/ESN composée de
-                  développeurs spécialisés pour couvrir toutes les technologies
-                  et répondre à tous les besoins: créer ou développer des
-                  applications métiers ou applis mobiles/tablettes, relier ou
-                  synchroniser un site e-commerce avec un ERP/CRM existant ou
-                  avec tout autre système d'information, etc.
-                </p>
-                <p>
-                  Experts du framework PHP Symfony et .NET Nous avons développé
-                  une gamme de solutions d'entreprises sur étagère en mode
-                  licence ou abonnement (SaaS) : smart INTRANET/EXTRANET, smart
-                  CRM/ERP, smart CSE, smart ASSO et Smart MAIRIES. N'hésitez pas
-                  à nous contacter pour vous les présenter et organiser une
-                  démonstration.
-                </p>
-                <p>
-                  Une équipe pluridisciplinaire composée d'experts imagine et
-                  conçoit avec vous votre projet. Vous êtes conseillé et
-                  accompagné du début à la fin. Notre valeur ajoutée : écouter,
-                  échanger, comprendre, analyser, être force de proposition,
-                  penser digital et multicanal mais aussi et surtout optimiser
-                  l'expérience utilisateur pour tirer le meilleur potentiel de
-                  chaque support .
-                </p>
-                <p>
-                  Nous travaillons avec tous nos clients avec la même
-                  implication et le même engagement. Quel que soit votre besoin
-                  et votre budget, partenaires de votre réussite, nous
-                  trouverons ensemble la solution pour développer une stratégie
-                  digitale gagnante. La vôtre.
-                </p>
+                <p>{company.description}</p>
               </div>
               <div>
                 <h3>Réseaux sociaux</h3>
                 <div className="d-flex justify-start">
-                  <a href="https://www.linkedin.com/">
-                    <div className="rs d-flex">
-                      <Icon icon="mdi:linkedin" />
-                      <p>linkedin.com</p>
-                    </div>
-                  </a>
-                  <a href="https://x.com/home?lang=fr">
-                    <div className="rs d-flex">
-                      <Icon icon="mdi:twitter" />
-                      <p>twitter.com</p>
-                    </div>
-                  </a>
-                  <a href="https://www.facebook.com/?locale=fr_FR">
-                    <div className="rs d-flex">
-                      <Icon icon="mdi:facebook" />
-                      <p>facebook.com</p>
-                    </div>
-                  </a>
-                  <a href="https://www.instagram.com/">
-                    <div className="rs d-flex">
-                      <Icon icon="mdi:instagram" />
-                      <p>Instagram</p>
-                    </div>
-                  </a>
+                  {company.socialLinks.linkedin && (
+                    <a href={company.socialLinks.linkedin}>
+                      <div className="rs d-flex">
+                        <Icon icon="mdi:linkedin" />
+                        <p>linkedin.com</p>
+                      </div>
+                    </a>
+                  )}
+                  {company.socialLinks.twitter && (
+                    <a href={company.socialLinks.twitter}>
+                      <div className="rs d-flex">
+                        <Icon icon="mdi:twitter" />
+                        <p>twitter.com</p>
+                      </div>
+                    </a>
+                  )}
+                  {company.socialLinks.facebook && (
+                    <a href={company.socialLinks.facebook}>
+                      <div className="rs d-flex">
+                        <Icon icon="mdi:facebook" />
+                        <p>facebook.com</p>
+                      </div>
+                    </a>
+                  )}
+                  {company.socialLinks.instagram && (
+                    <a href={company.socialLinks.instagram}>
+                      <div className="rs d-flex">
+                        <Icon icon="mdi:instagram" />
+                        <p>Instagram</p>
+                      </div>
+                    </a>
+                  )}
                 </div>
               </div>
               <div className="d-flex gallery">
                 <div className="d-flex direction-column">
-                  <img src="/img/company/detail4.jpg" alt="" />
-                  <img src="/img/company/detail1.jpg" alt="" />
+                  <img src={company.images[0]} alt="" />
+                  <img src={company.images[1]} alt="" />
                 </div>
                 <div className="d-flex direction-column">
-                  <img src="/img/company/detail3.jpg" alt="" />
-                  <img src="/img/company/detail2.jpg" alt="" />
-                  <img src="/img/company/detail5.jpg" alt="" />
+                  <img src={company.images[2]} alt="" />
+                  <img src={company.images[3]} alt="" />
+                  <img src={company.images[4]} alt="" />
                 </div>
               </div>
             </section>
             <section>
-              <img className="logo" src="/img/logo/company1.png" alt="" />
+              <img className="logo" src={company.logo} alt="" />
               <div className="situation">
                 <h3>Situation</h3>
-                <p>Mentalworks</p>
-                <p>41 rue Irène Joliot Curie</p>
-                <p>Bâtiment Millenium</p>
-                <p>60610 Lacroix Saint-Ouen</p>
+                <p>{company.name}</p>
+                <p>{company.address}</p>
+                <p>{company.city}</p>
+                <p>{company.postalCode}</p>
               </div>
               <div className="map">
-                <a href="" className="link d-flex">
+                <a href={company.mapLink} className="link d-flex">
                   Voir sur une carte <Icon icon="tabler:arrow-right" />
                 </a>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2597.4660064693376!2d2.7818889770599915!3d49.38117627140783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e7d69aefe1ca19%3A0xa2bd048d657fa30e!2sMentalWorks!5e0!3m2!1sfr!2sfr!4v1717313852498!5m2!1sfr!2sfr"
+                  src={company.mapEmbed}
                   width="420"
                   height="420"
                   style={{ border: 0, borderRadius: 6 }}
@@ -218,54 +169,34 @@ export default function Companies() {
               </div>
               <div className="contact">
                 <h3>Nous joindre</h3>
-                <p>Téléphone : 03 44 86 22 55</p>
-                <p>Du lundi au vendredi de 8h30 à 18h30</p>
-                <a href="" className="link d-flex">
+                <p>Téléphone : {company.phone}</p>
+                <p>{company.hours}</p>
+                <a href={company.contactLink} className="link d-flex">
                   Nous envoyer un message <Icon icon="tabler:arrow-right" />
                 </a>
                 <span></span>
               </div>
               <div className="additional-contact">
                 <h3>Vos contacts</h3>
-                <div>
-                  <p>Directeur des Ressources Humaines</p>
-                  <p>Olivier SALESSE</p>
-                  <div className="d-flex justify-start">
-                    <a href="" target="_blank">
-                      <Icon icon="mdi:linkedin" />
-                    </a>
-                    <a href="" target="_blank">
-                      <Icon icon="carbon:email" />
-                    </a>
+                {company.contacts.map((contact, index) => (
+                  <div key={index}>
+                    <p>{contact.role}</p>
+                    <p>{contact.name}</p>
+                    <div className="d-flex justify-start">
+                      {contact.linkedin && (
+                        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+                          <Icon icon="mdi:linkedin" />
+                        </a>
+                      )}
+                      {contact.email && (
+                        <a href={`mailto:${contact.email}`} target="_blank" rel="noopener noreferrer">
+                          <Icon icon="carbon:email" />
+                        </a>
+                      )}
+                    </div>
+                    <span></span>
                   </div>
-                  <span></span>
-                </div>
-                <div>
-                  <p>Responsable des offres de stage</p>
-                  <p>Mathieu MOUNIER</p>
-                  <div className="d-flex justify-start">
-                    <a href="" target="_blank">
-                      <Icon icon="mdi:linkedin" />
-                    </a>
-                    <a href="" target="_blank">
-                      <Icon icon="carbon:email" />
-                    </a>
-                  </div>
-                  <span></span>
-                </div>
-                <div>
-                  <p>Responsable des offres en alternance</p>
-                  <p>Jeff MARTINS</p>
-                  <div className="d-flex justify-start">
-                    <a href="" target="_blank">
-                      <Icon icon="mdi:linkedin" />
-                    </a>
-                    <a href="" target="_blank">
-                      <Icon icon="carbon:email" />
-                    </a>
-                  </div>
-                  <span></span>
-                </div>
+                ))}
               </div>
             </section>
           </div>
@@ -276,31 +207,35 @@ export default function Companies() {
           <div className="offer-internship">
             <h3>Offres de stage proposées</h3>
             <div className="d-flex wrap justify-start">
-              {offerData.slice(0, 3).map((offer, index) => (
-                <ThumbnailResumeOffer
-                  key={index}
-                  nameOffer={offer.nameOffer}
-                  periodOffer={offer.periodOffer}
-                  descriptionOffer={offer.descriptionOffer}
-                  firstTag={offer.firstTag}
-                  secondTag={offer.secondTag}
-                />
-              ))}
+              {offers
+                .filter(offer => offer.type === 'internship')
+                .map((offer, index) => (
+                  <ThumbnailResumeOffer
+                    key={index}
+                    nameOffer={offer.name}
+                    periodOffer={offer.period}
+                    descriptionOffer={offer.description}
+                    firstTag={offer.firstTag}
+                    secondTag={offer.secondTag}
+                  />
+                ))}
             </div>
           </div>
           <div className="offer-alternated-training">
             <h3>Offres d'alternance proposées</h3>
             <div className="d-flex wrap justify-start">
-              {offerData.slice(-2).map((offer, index) => (
-                <ThumbnailResumeOffer
-                  key={index + 3} // To ensure unique keys, adjust the index
-                  nameOffer={offer.nameOffer}
-                  periodOffer={offer.periodOffer}
-                  descriptionOffer={offer.descriptionOffer}
-                  firstTag={offer.firstTag}
-                  secondTag={offer.secondTag}
-                />
-              ))}
+              {offers
+                .filter(offer => offer.type === 'apprenticeship')
+                .map((offer, index) => (
+                  <ThumbnailResumeOffer
+                    key={index + offers.length} // To ensure unique keys
+                    nameOffer={offer.name}
+                    periodOffer={offer.period}
+                    descriptionOffer={offer.description}
+                    firstTag={offer.firstTag}
+                    secondTag={offer.secondTag}
+                  />
+                ))}
             </div>
           </div>
         </div>

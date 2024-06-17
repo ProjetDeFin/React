@@ -124,17 +124,15 @@ export default function OfferDetail() {
                   <p className="description"><strong>MentalWorks</strong> . lacroix St Ouen - Du 20/05/2024 au 28/08/2024(39 jours)</p>
                   <div className="d-flex tag justify-start">
                     <p className="type-offer">{lastOffers[2].type}</p>
-                    <span></span>
-                      {lastOffers[1].tags.map((tag, index) => (
-                        <p className={`tag ${tag.name}`} key={index}>{tag.name}{index < lastOffers[1].tags.length - 1}</p>
-                      ))}
+                    {lastOffers[1].tags.map((tag, index) => (
+                      <p className={`tag ${tag.name}`} key={index}>{tag.name}{index < lastOffers[1].tags.length - 1}</p>
+                    ))}
                   </div>
                 </div>
               </div>
               <div className="d-flex">
-                  <Icon icon="material-symbols-light:share-outline"/>
-                  <span></span>
-                  <Link className='btn' to="/postuler/1">Postuler</Link>
+                <Icon icon="material-symbols-light:share-outline"/>
+                <Link className='btn' to="/postuler/1">Postuler</Link>
               </div>
             </div>
           </div>
