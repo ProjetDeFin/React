@@ -1,10 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import ThumbnailOfferCompany from '../../components/Card/ThumbnailOfferCompany';
 import './index.scss';
+import OfferCompany from '../../components/Card/OfferCompany';
 
 export default function Companies() {
-  const [filter, setFilter] = useState({ sectors: [], categories: [], size: [], distance: 50 });
+  const getTypeTranslation = () => {
+    switch (type) {
+      case 'internships':
+        return 'Stage';
+      case 'apprenticeships':
+        return 'Alternance';
+      default:
+        return 'Stage';
+    }
+  };
+
+  const [filter, setFilter] = useState({ profiles: [], levels: [], duration: [], type: getTypeTranslation(), distance: 100});
   const [sort, setSort] = useState('alphaAZ');
   const [allSectorsChecked, setAllSectorsChecked] = useState(true);
   const [offers, setOffers] = useState([]);
@@ -34,33 +45,33 @@ export default function Companies() {
     }
   };
 
-  const handleSectorChange = (e) => {
+  const handleProfileChange = (e) => {
     const { value, checked } = e.target;
     setFilter(prevState => {
-      const sectors = checked
-        ? [...prevState.sectors, value]
-        : prevState.sectors.filter(sector => sector !== value);
-      return { ...prevState, sectors };
+      const profiles = checked
+        ? [...prevState.profiles, value]
+        : prevState.profiles.filter(profile => profile !== value);
+      return { ...prevState, profiles };
     });
   };
 
-  const handleCategoryChange = (e) => {
+  const handleLevelChange = (e) => {
     const { value, checked } = e.target;
     setFilter(prevState => {
-      const categories = checked
-        ? [...prevState.categories, value]
-        : prevState.categories.filter(category => category !== value);
-      return { ...prevState, categories };
+      const levels = checked
+        ? [...prevState.levels, value]
+        : prevState.levels.filter(level => level !== value);
+      return { ...prevState, levels };
     });
   };
 
-  const handleSizeChange = (e) => {
+  const handleDurationChange = (e) => {
     const { value, checked } = e.target;
     setFilter(prevState => {
-      const size = checked
-        ? [...prevState.size, value]
-        : prevState.size.filter(size => size !== value);
-      return { ...prevState, size };
+      const duration = checked
+        ? [...prevState.duration, value]
+        : prevState.duration.filter(d => d !== value);
+      return { ...prevState, duration };
     });
   };
 
@@ -73,7 +84,7 @@ export default function Companies() {
   };
 
   return (
-    <div className="company-list">
+    <div className="offers">
       <div className="grey text-center">
         <div className="container">
           <p className="text-left">Accueil / Offre / <span className="purple">{getTypeTranslation()}</span></p>
@@ -94,7 +105,7 @@ export default function Companies() {
           <section className="filter">
             <div className="profiles">
               <div className="d-flex title">
-                <p>Secteur d'activité</p>
+                <p>Profils métiers</p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
@@ -105,18 +116,17 @@ export default function Companies() {
                   }} disabled={filter.sectors.length >= 1} />
                   <label>Tous</label>
                 </div>
-                {['Commerce', 'Industrie mécanique', 'Industrie chimique', 'Automobile', 'Informatique', 'Réseaux, téléphonie, FAI', 'Tourisme, sport', 'Transport', 'Finances', 'Loisirs', 'Alimentation', 'Santé, bien-être', 'Immobilier, BTP', 'Média', 'Autre'].map(sector => (
-                  <div className="d-flex" key={sector}>
-                    <input type="checkbox" value={sector} checked={filter.sectors.includes(sector)}
-                           onChange={handleSectorChange} disabled={allSectorsChecked} />
-                    <label>{sector}</label>
+                {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
+                  <div className="d-flex" key={profile}>
+                    <input type="checkbox" value={profile} onChange={handleProfileChange} />
+                    <label>{profile}</label>
                   </div>
                 ))}
               </div>
             </div>
             <div className="level-of-study">
               <div className="d-flex title">
-                <p>Catégorie</p>
+                <p>Niveau recherché</p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
@@ -140,7 +150,7 @@ export default function Companies() {
             </div>
             <div className="duration">
               <div className="d-flex title">
-                <p>Effectifs</p>
+                <p>Durée</p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
@@ -193,16 +203,22 @@ export default function Companies() {
                 </select>
               </div>
             </div>
-            <div className="d-flex wrap">
-              {companies.map((company, index) => (
-                <ThumbnailOfferCompany
-                  key={index}
-                  logoCompany={company.logo}
-                  nameCompany={company.nameCompany}
-                  descriptionCompany={company.descriptionCompany}
-                  availablePosition={company.labelPoste}
-                  firstTag={company.tags[0]}
-                  secondTag={company.tags[1]}
+            <div className="d-flex direction-column">
+              {offers.map((offer) => (
+                <OfferCompany
+                  logo={offer.logo}
+                  typeOffer={offer.typeOffer}
+                  nameOffer={offer.nameOffer}
+                  nameCompany={offer.nameCompany}
+                  locationCompany={offer.locationCompany}
+                  descriptionCompany={offer.descriptionCompany}
+                  firstTag={offer.firstTag}
+                  secondTag={offer.secondTag}
+                  inOfferPage={true}
+                  period={offer.period}
+                  restDay={offer.restDay}
+                  offerId={offer.id}
+                  key={offer.id}
                 />
               ))}
             </div>
