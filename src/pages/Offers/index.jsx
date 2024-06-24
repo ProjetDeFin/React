@@ -1,80 +1,66 @@
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import CompanyCard from '../../components/Card/OfferCompany';
+import ThumbnailOfferCompany from '../../components/Card/ThumbnailOfferCompany';
 import './index.scss';
 
-export default function Offers({ type }) {
-  const [filter, setFilter] = useState({
-    profiles: [],
-    levels: [],
-    duration: [],
-    distance: 100,
-  });
-
-  const [sort, setSort] = useState('dateRecent');
+export default function Companies() {
+  const [filter, setFilter] = useState({ sectors: [], categories: [], size: [], distance: 50 });
+  const [sort, setSort] = useState('alphaAZ');
+  const [allSectorsChecked, setAllSectorsChecked] = useState(true);
   const [offers, setOffers] = useState([]);
-
-  // TODO: remove this when API call
-  const getTypeTranslation = () => {
-    switch (type) {
-      case 'internships':
-        return 'Stage';
-      case 'apprenticeships':
-        return 'Alternance';
-      default:
-        return 'Stage';
-    }
-  };
 
   useEffect(() => {
     fetchOffers();
   }, [filter, sort]);
 
   const fetchOffers = async () => {
-    const response = await fetch('http://localhost:8000/api/offers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        filters: filter,
-        order: sort === 'dateRecent' ? 'DESC' : 'ASC',
-        orderBy: sort === 'alphaAZ' || sort === 'alphaZA' ? 'nameOffer' : 'createdAt',
+    try {
+      const queryParams = new URLSearchParams({
+        filters: JSON.stringify(filter),
+        order: sort,
+        orderBy: 'name',
         page: 1,
         limit: 10
-      })
-    });
-    const data = await response.json();
-    setOffers(data);
+      });
+
+      const response = await fetch(`/api/companies?${queryParams}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setOffers(data);
+    } catch (error) {
+      console.error('Failed to fetch companies:', error);
+    }
   };
 
-  const handleProfileChange = (e) => {
+  const handleSectorChange = (e) => {
     const { value, checked } = e.target;
     setFilter(prevState => {
-      const profiles = checked
-        ? [...prevState.profiles, value]
-        : prevState.profiles.filter(profile => profile !== value);
-      return { ...prevState, profiles };
-    });
-  };
-
-  const handleLevelChange = (e) => {
-    const { value, checked } = e.target;
-    setFilter(prevState => {
-      const levels = checked
-        ? [...prevState.levels, value]
-        : prevState.levels.filter(level => level !== value);
-      return { ...prevState, levels };
+      const sectors = checked
+        ? [...prevState.sectors, value]
+        : prevState.sectors.filter(sector => sector !== value);
+      return { ...prevState, sectors };
     });
   };
 
-  const handleDurationChange = (e) => {
+  const handleCategoryChange = (e) => {
     const { value, checked } = e.target;
     setFilter(prevState => {
-      const duration = checked
-        ? [...prevState.duration, value]
-        : prevState.duration.filter(d => d !== value);
-      return { ...prevState, duration };
+      const categories = checked
+        ? [...prevState.categories, value]
+        : prevState.categories.filter(category => category !== value);
+      return { ...prevState, categories };
+    });
+  };
+
+  const handleSizeChange = (e) => {
+    const { value, checked } = e.target;
+    setFilter(prevState => {
+      const size = checked
+        ? [...prevState.size, value]
+        : prevState.size.filter(size => size !== value);
+      return { ...prevState, size };
     });
   };
 
@@ -86,32 +72,8 @@ export default function Offers({ type }) {
     setSort(e.target.value);
   };
 
-  const filteredOffers = offers.filter(offer => {
-    const profileMatch = filter.profiles.length === 0 || filter.profiles.includes(offer.firstTag) || filter.profiles.includes(offer.secondTag);
-    const levelMatch = filter.levels.length === 0 || filter.levels.includes(offer.level);
-    const durationMatch = filter.duration.length === 0 || filter.duration.includes(offer.duration);
-    const distanceMatch = true;
-
-    return profileMatch && levelMatch && durationMatch && distanceMatch;
-  });
-
-  const sortedOffers = [...filteredOffers].sort((a, b) => {
-    if (sort === 'dateRecent') {
-      return new Date(b.period.split(' ')[2]) - new Date(a.period.split(' ')[2]);
-    } else if (sort === 'dateOld') {
-      return new Date(a.period.split(' ')[2]) - new Date(b.period.split(' ')[2]);
-    } else if (sort === 'alphaAZ') {
-      return a.nameOffer.localeCompare(b.nameOffer);
-    } else if (sort === 'alphaZA') {
-      return b.nameOffer.localeCompare(a.nameOffer);
-    } else if (sort === 'deadline') {
-      return b.restDay - a.restDay;
-    }
-    return 0;
-  });
-
   return (
-    <div className="offers">
+    <div className="company-list">
       <div className="grey text-center">
         <div className="container">
           <p className="text-left">Accueil / Offre / <span className="purple">{getTypeTranslation()}</span></p>
@@ -132,21 +94,29 @@ export default function Offers({ type }) {
           <section className="filter">
             <div className="profiles">
               <div className="d-flex title">
-                <p>Profils métiers</p>
+                <p>Secteur d'activité</p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
-                  <div className="d-flex" key={profile}>
-                    <input type="checkbox" value={profile} onChange={handleProfileChange} />
-                    <label>{profile}</label>
+                <div className="d-flex">
+                  <input type="checkbox" checked={allSectorsChecked} onChange={() => {
+                    setAllSectorsChecked(!allSectorsChecked);
+                    setFilter(prevState => ({ ...prevState, sectors: [] }));
+                  }} disabled={filter.sectors.length >= 1} />
+                  <label>Tous</label>
+                </div>
+                {['Commerce', 'Industrie mécanique', 'Industrie chimique', 'Automobile', 'Informatique', 'Réseaux, téléphonie, FAI', 'Tourisme, sport', 'Transport', 'Finances', 'Loisirs', 'Alimentation', 'Santé, bien-être', 'Immobilier, BTP', 'Média', 'Autre'].map(sector => (
+                  <div className="d-flex" key={sector}>
+                    <input type="checkbox" value={sector} checked={filter.sectors.includes(sector)}
+                           onChange={handleSectorChange} disabled={allSectorsChecked} />
+                    <label>{sector}</label>
                   </div>
                 ))}
               </div>
             </div>
             <div className="level-of-study">
               <div className="d-flex title">
-                <p>Niveau recherché</p>
+                <p>Catégorie</p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
@@ -170,7 +140,7 @@ export default function Offers({ type }) {
             </div>
             <div className="duration">
               <div className="d-flex title">
-                <p>Durée</p>
+                <p>Effectifs</p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
@@ -198,15 +168,15 @@ export default function Offers({ type }) {
                 </p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
-              <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} disabled={true} />
-              <button>A moins de {filter.distance} km</button>
+              <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} />
+              <p className="distance-text">À moins de {filter.distance} km</p>
             </div>
           </section>
           <section className="result">
             <div className="d-flex">
               <div>
                 <h3>Résultats</h3>
-                <p>{sortedOffers.length} offres trouvées</p>
+                <p>{companies.length} entreprises trouvées</p>
               </div>
               <div className="d-flex">
                 <p>Trier par :</p>
@@ -223,22 +193,16 @@ export default function Offers({ type }) {
                 </select>
               </div>
             </div>
-            <div className="d-flex direction-column">
-              {sortedOffers.map((offer, index) => (
-                <CompanyCard
+            <div className="d-flex wrap">
+              {companies.map((company, index) => (
+                <ThumbnailOfferCompany
                   key={index}
-                  logo={offer.logo}
-                  typeOffer={offer.typeOffer}
-                  nameOffer={offer.nameOffer}
-                  nameCompany={offer.nameCompany}
-                  locationCompany={offer.locationCompany}
-                  descriptionCompany={offer.descriptionCompany}
-                  firstTag={offer.firstTag}
-                  secondTag={offer.secondTag}
-                  inOfferPage={true}
-                  period={offer.period}
-                  restDay={offer.restDay}
-                  offerId="1"
+                  logoCompany={company.logo}
+                  nameCompany={company.nameCompany}
+                  descriptionCompany={company.descriptionCompany}
+                  availablePosition={company.labelPoste}
+                  firstTag={company.tags[0]}
+                  secondTag={company.tags[1]}
                 />
               ))}
             </div>
