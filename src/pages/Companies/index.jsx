@@ -19,19 +19,15 @@ export default function Companies() {
   }, [filter, sort]);
 
   const fetchCompanies = async () => {
-    const response = await fetch('http://localhost:8000/api/companies', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        filters: filter,
-        order: sort === 'alphaAZ' ? 'ASC' : 'DESC',
-        orderBy: 'name',
-        page: 1,
-        limit: 10
-      })
+    const queryParams = new URLSearchParams({
+      filters: JSON.stringify(filter),
+      order: sort,
+      orderBy: 'name',
+      page: 1,
+      limit: 10
     });
+
+    const response = await fetch(`/api/companies?${queryParams}`);
     const data = await response.json();
     setCompanies(data);
   };
