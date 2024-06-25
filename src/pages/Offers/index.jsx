@@ -207,6 +207,7 @@ export default function Offers({ type }) {
     <div className="offers">
       <div className="grey text-center">
         <div className="container">
+          <p className="text-left">Accueil / Offre / <span className="purple">{getTypeTranslation()}</span></p>
           <h2>
             Offres de{' '}
             <span className="turquoise">

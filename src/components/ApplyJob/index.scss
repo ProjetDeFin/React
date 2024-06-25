@@ -95,10 +95,32 @@
 
     section {
       margin-bottom: 30px;
+
+      &.profil {
+        span.line  {
+          margin-top: 20px;
+        }
+      }
+      &.document {
+        label {
+          margin-bottom: 30px;
+        }
+      }
+      &.skill-tag,
+      &.language,
+      &.experience {
+        span {
+          margin-top: 30px;
+        }
+      }
     }
 
     .direction-column {
       width: inherit;
+    }
+
+    input[type=file] {
+      display: none;
     }
 
     label {
@@ -106,6 +128,8 @@
       border: 1px dashed #4640de;
       background-color: #f8f8fd;
       gap: 16px;
+      border-radius: 8px;
+      cursor: pointer;
 
       svg {
         color: #4640de;

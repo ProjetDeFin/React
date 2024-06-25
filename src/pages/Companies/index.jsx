@@ -163,18 +163,20 @@ export default function Companies() {
     }
     return 0;
   });
-  console.log(filter);
 
   return (
     <div className="company-list">
       <div className="grey text-center">
-        <h2>
-          Liste des <span className="turquoise">entreprises</span>
-        </h2>
-        <p>
-          Decouvrez les entreprises qui proposent des offres de stage ou
-          d'alternance
-        </p>
+        <div className="container">
+          <p className="text-left">Accueil / <span className="purple">Entreprises</span></p>
+          <h2>
+            Liste des <span className="turquoise">entreprises</span>
+          </h2>
+          <p>
+            Decouvrez les entreprises qui proposent des offres de stage ou
+            d'alternance
+          </p>
+        </div>
       </div>
       <div className="container">
         <div className="d-flex align-start">
@@ -315,6 +317,7 @@ export default function Companies() {
               {sortedCompanies.map((company, index) => (
                 <ThumbnailOfferCompany
                   key={index}
+                  // mettre company.id
                   logoCompany={company.logo}
                   nameCompany={company.nameCompany}
                   descriptionCompany={company.descriptionCompany}

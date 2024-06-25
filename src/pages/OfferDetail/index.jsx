@@ -112,6 +112,34 @@ export default function OfferDetail() {
 
   return (
     <div className="offer-detail">
+      <div className="grey">
+        <div className="container">
+          <p className="text-left">Accueil / Offres / Stages / <span className="purple">Assistant Social Media</span></p>
+          <div className="announce-box">
+            <div className="d-flex">
+              <div className="d-flex">
+                <img src="/img/logo/intel.svg" alt="" />
+                <div>
+                  <h2>Assistant Social Media</h2>
+                  <p className="description"><strong>MentalWorks</strong> . lacroix St Ouen - Du 20/05/2024 au 28/08/2024(39 jours)</p>
+                  <div className="d-flex tag justify-start">
+                    <p className="type-offer">{lastOffers[2].type}</p>
+                    <span></span>
+                      {lastOffers[1].tags.map((tag, index) => (
+                        <p className={`tag ${tag.name}`} key={index}>{tag.name}{index < lastOffers[1].tags.length - 1}</p>
+                      ))}
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex">
+                  <Icon icon="material-symbols-light:share-outline"/>
+                  <span></span>
+                  <Link className='btn' to="/postuler/1">Postuler</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="d-flex align-start">
           <section>
@@ -255,7 +283,7 @@ export default function OfferDetail() {
             </div>
           </section>
         </div>
-        <Link to={'/apply-job/1'} className="btn">
+        <Link to={'/postuler/1'} className="btn">
           Postuler
         </Link>
         <span className="line break-content"></span>
@@ -305,7 +333,7 @@ export default function OfferDetail() {
         <div className="container">
           <div className="d-flex">
             <h2>Offres de stage similaires</h2>
-            <Link to="/offers/internships" className="link d-flex">
+            <Link to="/offre/stage" className="link d-flex">
               toutes les offres
               <Icon icon="tabler:arrow-right" />
             </Link>

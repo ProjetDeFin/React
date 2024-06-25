@@ -158,6 +158,10 @@ a {
   text-align: right;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .d-flex {
   display: flex;
   justify-content: space-between;
@@ -197,6 +201,10 @@ a {
 
 .turquoise {
   color: #26a4ff;
+}
+
+.purple {
+  color: #4640de;
 }
 
 input,

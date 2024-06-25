@@ -50,6 +50,7 @@ export default function Companies() {
     <div className="company-detail">
       <div className="grey">
         <div className="container">
+          <p className="text-left">Accueil / Entreprises / <span className="purple">MentalWorks</span></p>
           <h2>Mentalworks</h2>
           <a href="" className="link d-flex">
             mentalworks.fr <Icon icon="tabler:arrow-right" />
