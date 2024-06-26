@@ -3,9 +3,10 @@ import './index.scss';
 
 export default function Registration() {
   const [password, setPassword] = useState('');
+  const [confirmationPassword, setConfirmationPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const validatePassword = (password) => {
+  const validatePassword = (password, confirmationPassword) => {
     const minLength = /^(?=.{8,})/;
     const specialChar = /^(?=.*[!@#$%^&*])/;
     const digit = /^(?=.*\d)/;
@@ -25,18 +26,21 @@ export default function Registration() {
     if (!uppercase.test(password)) {
       errors.push('Le mot de passe doit contenir au moins une majuscule.');
     }
+    if (password !== confirmationPassword) {
+      errors.push('Les mots de passe ne correspondent pas.');
+    }
 
     return errors;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const errorMessages = validatePassword(password);
+    const errorMessages = validatePassword(password, confirmationPassword);
     if (errorMessages.length > 0) {
       setErrors(errorMessages);
     } else {
       setErrors([]);
-      console.log('Form submitted');
+      // Ajouter la logique pour soumettre le formulaire ici
     }
   };
 
@@ -68,6 +72,17 @@ export default function Registration() {
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="d-flex direction-column align-start">
+              <label htmlFor="passwordConfirmation">Confirmation du mot de passe</label>
+              <input
+                type="password"
+                name="passwordConfirmation"
+                id="passwordConfirmation"
+                placeholder="Confirmation du mot de passe"
+                value={confirmationPassword}
+                onChange={(e) => setConfirmationPassword(e.target.value)}
               />
             </div>
             {errors.length > 0 && (

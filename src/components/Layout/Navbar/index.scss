@@ -54,4 +54,14 @@ nav {
   .account {
     gap: 1em;
   }
+  .connected > .d-flex {
+    gap: 12px;
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    a {
+      width: 140px;
+    }
+  }
 }
