@@ -27,7 +27,7 @@ export default function Companies() {
       limit: 10
     });
 
-    const response = await fetch(`/api/companies?${queryParams}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`);
     const data = await response.json();
     setCompanies(data);
   };

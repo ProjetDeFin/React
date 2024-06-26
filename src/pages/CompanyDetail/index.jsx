@@ -15,7 +15,7 @@ export default function CompanyDetail() {
 
   const fetchCompanyDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/companies/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/companies/${id}`);
       const data = await response.json();
       setCompany(data);
       setOffers(data.offers); // Assumes the API returns offers within the company data

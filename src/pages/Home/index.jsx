@@ -10,7 +10,7 @@ export default function Home() {
   const [home, setHome] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/home')
+    fetch(`${process.env.REACT_APP_API_URL}api/home`)
       .then((response) => response.json())
       .then((data) => {
         setHome(data);
