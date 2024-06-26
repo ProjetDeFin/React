@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import ThumbnailOfferCompany from '../../components/Card/ThumbnailOfferCompany';
 import './index.scss';
-import { useState } from 'react';
 
 export default function Companies() {
   const [filter, setFilter] = useState({
@@ -12,96 +12,25 @@ export default function Companies() {
   });
   const [sort, setSort] = useState('alphaAZ');
   const [allSectorsChecked, setAllSectorsChecked] = useState(true);
-  const companiesData = [
-    {
-      logo: 'intel.svg',
-      nameCompany: 'TotalEnergies',
-      descriptionCompany:
-        "TotalEnergies est une entreprise française de pétrole et de gaz qui vise à transformer l'énergie durablement.",
-      labelPoste: '2 stages, 1 alternance',
-      tags: ['Informatique', 'Marketing'],
-      sector: 'Commerce',
-      categories: ['Services aux particuliers', 'Services aux entreprises'],
-      employees: 1000,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: 'BNP Paribas',
-      descriptionCompany:
-        "BNP Paribas est une des principales banques de France offrant des services financiers à l'international.",
-      labelPoste: '1 stage, 1 alternance',
-      tags: ['Finance', 'Design'],
-      sector: 'Finance',
-      categories: ['Mairie, collectivité', 'Association, ONG'],
-      employees: 250,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: 'Renault',
-      descriptionCompany:
-        'Renault est un constructeur automobile français renommé pour ses véhicules innovants.',
-      labelPoste: '1 stage',
-      tags: ['Informatique', 'Design'],
-      sector: 'Automobile',
-      categories: ["Organismes d'état", 'Autres'],
-      employees: 100,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: 'Société Générale',
-      descriptionCompany:
-        'Société Générale est une banque française offrant divers services bancaires et financiers.',
-      labelPoste: '1 alternance',
-      tags: ['Finance', 'Marketing'],
-      sector: 'Finance',
-      categories: ['Services aux entreprises', 'Mairie, collectivité'],
-      employees: 50,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: 'Orange',
-      descriptionCompany:
-        "Orange est une multinationale française de télécommunications, l'un des principaux opérateurs mondiaux.",
-      labelPoste: '2 stages',
-      tags: ['Informatique', 'Marketing'],
-      sector: 'Réseaux, téléphonie, FAI',
-      categories: ['Association, ONG', "Organismes d'état"],
-      employees: 10,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: "L'Oréal",
-      descriptionCompany:
-        "L'Oréal est un leader mondial de la beauté, spécialisé dans les produits cosmétiques et de soins.",
-      labelPoste: '1 stage, 1 alternance',
-      tags: ['Marketing', 'Design'],
-      sector: 'Santé, bien-être',
-      categories: ['Association, ONG', "Organismes d'état"],
-      employees: 10,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: 'Airbus',
-      descriptionCompany:
-        "Airbus est un leader mondial de l'aérospatiale, fabriquant des avions commerciaux et militaires.  constructeur d'avion français, allemand, espagnol et britannique et une coopération industrielle internationale présente dans le secteur",
-      labelPoste: '1 stage',
-      tags: ['Informatique', 'Design'],
-      sector: 'Industrie mécanique',
-      categories: ['Association, ONG', "Organismes d'état"],
-      employees: 10,
-    },
-    {
-      logo: 'intel.svg',
-      nameCompany: 'Carrefour',
-      descriptionCompany:
-        'Carrefour est une entreprise française de grande distribution, leader dans le commerce de détail.',
-      labelPoste: '1 alternance',
-      tags: ['Marketing', 'Finance'],
-      sector: 'Commerce',
-      categories: ['Association, ONG', "Organismes d'état"],
-      employees: 10,
-    },
-  ];
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    fetchCompanies();
+  }, [filter, sort]);
+
+  const fetchCompanies = async () => {
+    const queryParams = new URLSearchParams({
+      filters: JSON.stringify(filter),
+      order: sort,
+      orderBy: 'name',
+      page: 1,
+      limit: 10
+    });
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`);
+    const data = await response.json();
+    setCompanies(data);
+  };
 
   const handleSectorChange = (e) => {
     const { value, checked } = e.target;
@@ -140,29 +69,6 @@ export default function Companies() {
   const handleSortChange = (e) => {
     setSort(e.target.value);
   };
-
-  const filteredCompanies = companiesData.filter((company) => {
-    const sectorMatch =
-      filter.sectors.length === 0 || filter.sectors.includes(company.sector);
-    const categoryMatch =
-      filter.categories.length === 0 ||
-      filter.categories.some((category) =>
-        company.categories.includes(category),
-      );
-    const sizeMatch =
-      filter.size.length === 0 || filter.size.includes(company.size);
-
-    return sectorMatch && categoryMatch && sizeMatch;
-  });
-
-  const sortedCompanies = [...filteredCompanies].sort((a, b) => {
-    if (sort === 'alphaAZ') {
-      return a.nameCompany.localeCompare(b.nameCompany);
-    } else if (sort === 'alphaZA') {
-      return b.nameCompany.localeCompare(a.nameCompany);
-    }
-    return 0;
-  });
 
   return (
     <div className="company-list">
@@ -303,7 +209,7 @@ export default function Companies() {
             <div className="d-flex">
               <div>
                 <h3>Résultats</h3>
-                <p>{sortedCompanies.length} entreprises trouvées</p>
+                <p>{companies.length} entreprises trouvées</p>
               </div>
               <div className="d-flex">
                 <p>Trier par :</p>
@@ -314,7 +220,7 @@ export default function Companies() {
               </div>
             </div>
             <div className="d-flex wrap">
-              {sortedCompanies.map((company, index) => (
+              {companies.map((company, index) => (
                 <ThumbnailOfferCompany
                   key={index}
                   // mettre company.id

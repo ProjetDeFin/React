@@ -6,6 +6,34 @@ import { Icon } from '@iconify/react';
 export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage('Login successful!');
+        localStorage.setItem('token', result.token);
+      } else {
+        setMessage(result.message || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again.');
+    }
+  };
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -29,6 +57,8 @@ export default function Login() {
                   name="email"
                   id="email"
                   placeholder="jean.bernard@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="d-flex direction-column align-start">
@@ -54,9 +84,9 @@ export default function Login() {
               <input className="btn" type="submit" value="SE CONNECTER" />
               <p className="text-right">Mot de passe oublié ?</p>
             </form>
+            {message && <p className="message">{message}</p>}
           </div>
         </div>
       </div>
-    </div>
   );
 }
