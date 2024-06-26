@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { Icon } from '@iconify/react/dist/iconify.js';
 import './index.scss';
 
 export default function Registration() {
   const [password, setPassword] = useState('');
   const [confirmationPassword, setConfirmationPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmationPassword, setShowConfirmationPassword] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const validatePassword = (password, confirmationPassword) => {
@@ -44,6 +47,15 @@ export default function Registration() {
     }
   };
 
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleShowConfirmationPassword = () => {
+    setShowConfirmationPassword(!showConfirmationPassword);
+  };
+
   return (
     <div className="grey registration">
       <div className="d-flex justify-center align-center">
@@ -65,25 +77,43 @@ export default function Registration() {
             </div>
             <div className="d-flex direction-column align-start">
               <label htmlFor="password">Mot de passe</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Mot de passe"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="password-container d-flex justify-start">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  id="password"
+                  placeholder="Mot de passe"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="toggle-visibility btn"
+                  onClick={toggleShowPassword}
+                >
+                  {showPassword ? <Icon icon="weui:eyes-off-filled" /> : <Icon icon="weui:eyes-on-outlined" />}
+                  </button>
+              </div>
             </div>
             <div className="d-flex direction-column align-start">
               <label htmlFor="passwordConfirmation">Confirmation du mot de passe</label>
-              <input
-                type="password"
-                name="passwordConfirmation"
-                id="passwordConfirmation"
-                placeholder="Confirmation du mot de passe"
-                value={confirmationPassword}
-                onChange={(e) => setConfirmationPassword(e.target.value)}
-              />
+              <div className="password-container d-flex justify-start">
+                <input
+                  type={showConfirmationPassword ? 'text' : 'password'}
+                  name="passwordConfirmation"
+                  id="passwordConfirmation"
+                  placeholder="Confirmation du mot de passe"
+                  value={confirmationPassword}
+                  onChange={(e) => setConfirmationPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="toggle-visibility btn"
+                  onClick={toggleShowConfirmationPassword}
+                >
+                  {showConfirmationPassword ? <Icon icon="weui:eyes-off-filled" /> : <Icon icon="weui:eyes-on-outlined" />}
+                </button>
+              </div>
             </div>
             {errors.length > 0 && (
               <ul className="error-list">
