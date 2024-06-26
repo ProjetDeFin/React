@@ -6,6 +6,7 @@ export default function Navbar() {
   const isOffersActive =
     location.pathname === '/offre/stage' ||
     location.pathname === '/offre/alternance';
+  const isAdminPath = location.pathname === '/admin/';
 
   return (
     <div className="container">
@@ -38,22 +39,36 @@ export default function Navbar() {
             Etudiants
           </NavLink>
         </div>
-        <div className="d-flex account">
-          <NavLink
-            to="connexion"
-            activeClassName="is-active"
-            className="btn btn-empty"
-          >
-            Se connecter
-          </NavLink>
-          <NavLink
-            to="/inscription"
-            activeClassName="is-active"
-            className="btn"
-          >
-            Créer un compte
-          </NavLink>
-        </div>
+        {!isAdminPath ? (
+          <div className="d-flex account no-connexion">
+            <NavLink
+              to="/connexion"
+              activeClassName="is-active"
+              className="btn btn-empty"
+            >
+              Se connecter
+            </NavLink>
+            <NavLink
+              to="/inscription"
+              activeClassName="is-active"
+              className="btn"
+            >
+              Créer un compte
+            </NavLink>
+          </div>
+        ) : (
+          <div className="d-flex account connected dropdown">
+            <div className="d-flex">
+              <img src="/img/profil-picture/avatar.jpg" alt="" />
+              <h4>Olivier SALESSE</h4>
+            </div>
+            <div className="dropdown-content d-flex direction-column">
+              <NavLink to="">Dashboard</NavLink>
+              <NavLink to="">Profil</NavLink>
+              <NavLink to="">Deconnexion</NavLink>
+            </div>
+          </div>
+        )}
       </nav>
     </div>
   );
