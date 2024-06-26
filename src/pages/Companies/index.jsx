@@ -70,29 +70,6 @@ export default function Companies() {
     setSort(e.target.value);
   };
 
-  const filteredCompanies = companiesData.filter((company) => {
-    const sectorMatch =
-      filter.sectors.length === 0 || filter.sectors.includes(company.sector);
-    const categoryMatch =
-      filter.categories.length === 0 ||
-      filter.categories.some((category) =>
-        company.categories.includes(category),
-      );
-    const sizeMatch =
-      filter.size.length === 0 || filter.size.includes(company.size);
-
-    return sectorMatch && categoryMatch && sizeMatch;
-  });
-
-  const sortedCompanies = [...filteredCompanies].sort((a, b) => {
-    if (sort === 'alphaAZ') {
-      return a.nameCompany.localeCompare(b.nameCompany);
-    } else if (sort === 'alphaZA') {
-      return b.nameCompany.localeCompare(a.nameCompany);
-    }
-    return 0;
-  });
-
   return (
     <div className="company-list">
       <div className="grey text-center">

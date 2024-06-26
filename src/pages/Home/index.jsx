@@ -16,7 +16,9 @@ export default function Home() {
         setHome(data);
       }
     );
-  }, [home]);
+  }, []);
+
+  console.log(home);
 
   return (
     <div className="homepage">
@@ -32,8 +34,8 @@ export default function Home() {
                 qui correspondent à votre profil et à vos attentes.
               </p>
               <p>
-                <span>1254</span> offres de <strong>stages</strong> |{' '}
-                <span>987</span> offres <strong>d'alternance</strong>{' '}
+                <span>{ home.internshipsOffersCount }</span> offres de <strong>stages</strong> |{' '}
+                <span>{ home.apprenticeshipsOffersCount }</span> offres <strong>d'alternance</strong>{' '}
                 n'attendent que vous !
               </p>
             </div>
@@ -70,7 +72,7 @@ export default function Home() {
               <Icon icon="tabler:arrow-right" />
             </Link>
           </div>
-          <div className="d-flex wrap">
+          <div className="d-flex wrap flex-start">
             {home.offers && home.offers.map((offer) => (
               <CompanyCard
                 logo={offer.company.logo}
@@ -81,7 +83,7 @@ export default function Home() {
                 descriptionCompany={offer.description}
                 firstTag={offer.jobProfiles[0].name || ''}
                 secondTag={offer.jobProfiles[1].name || ''}
-                offerId={1}
+                offerId={offer.id}
               />
             ))}
           </div>
@@ -98,18 +100,19 @@ export default function Home() {
               <Icon icon="tabler:arrow-right" />
             </Link>
           </div>
-          <div className="d-flex wrap">
-            {/*{home.applications && home.applications.map((apply) => (
+          <div className="d-flex wrap flex-start">
+            {home.applications && home.applications.map((apply) => (
               <ApplyStudent
-                profilPicture={apply.student.picture}
-                titleApply={apply.name}
-                agePerson={apply.student.age}
-                locationPerson={apply.student.city}
-                namePerson={apply.student.name}
-                tag={apply.tags[0].name || ''}
+                profilPicture={apply.studentPicture}
+                titleApply={apply.title}
+                agePerson={apply.studentAge}
+                locationPerson={apply.studentCity}
+                namePerson={apply.studentFullName}
+                tag={apply.type || ''}
                 periodApply={apply.period || ''}
+                idApply={apply.id}
               />
-            ))}*/}
+            ))}
           </div>
         </div>
       </section>
