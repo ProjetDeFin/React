@@ -7,7 +7,6 @@ import './index.scss';
 export default function Layout({ children }) {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
-  console.log(location);
 
   return (
     <div className="layout">

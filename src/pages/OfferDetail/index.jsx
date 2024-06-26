@@ -1,13 +1,33 @@
 import { Icon } from '@iconify/react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CompanyCard from '../../components/Card/OfferCompany';
 import './index.scss';
+import OfferCompany from '../../components/Card/OfferCompany';
+import { useEffect, useState } from 'react';
 
 export default function OfferDetail() {
   const marketing = { name: 'Marketing', color: '#d6a196' };
   const design = { name: 'Design', color: '#acd696' };
   const finance = { name: 'Finance', color: '#96d6d6' };
   const it = { name: 'Informatique', color: '#9696d6' };
+  const [offer, setOffer] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/api/offers/${id}`,
+{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application'
+        }}
+    )
+      .then(r => r.json())
+      .then(data => {
+      setOffer(data);
+      });
+   }, []);
+
+
 
   const lastOffers = [
     {
@@ -16,11 +36,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 1',
         logo: 'company1.png',
-        location: 'Paris',
+        location: 'Paris'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, design],
+      tags: [marketing, design]
     },
     {
       name: 'Offer 2',
@@ -28,11 +48,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 2',
         logo: 'company1.png',
-        location: 'Lyon',
+        location: 'Lyon'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
+      tags: [design, finance]
     },
     {
       name: 'Offer 3',
@@ -40,11 +60,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 3',
         logo: 'company1.png',
-        location: 'Marseille',
+        location: 'Marseille'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
+      tags: [marketing, it]
     },
     {
       name: 'Offer 4',
@@ -52,11 +72,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 4',
         logo: 'company1.png',
-        location: 'Toulouse',
+        location: 'Toulouse'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
+      tags: [design, finance]
     },
     {
       name: 'Offer 5',
@@ -64,11 +84,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 5',
         logo: 'company1.png',
-        location: 'Nice',
+        location: 'Nice'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
+      tags: [marketing, it]
     },
     {
       name: 'Offer 6',
@@ -76,11 +96,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 6',
         logo: 'company1.png',
-        location: 'Nantes',
+        location: 'Nantes'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
+      tags: [design, finance]
     },
     {
       name: 'Offer 7',
@@ -88,11 +108,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 7',
         logo: 'company1.png',
-        location: 'Strasbourg',
+        location: 'Strasbourg'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
+      tags: [marketing, it]
     },
     {
       name: 'Offer 8',
@@ -100,12 +120,12 @@ export default function OfferDetail() {
       company: {
         name: 'Company 8',
         logo: 'company1.png',
-        location: 'Bordeaux',
+        location: 'Bordeaux'
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
-    },
+      tags: [design, finance]
+    }
   ];
 
   const progress = 12;
@@ -114,7 +134,7 @@ export default function OfferDetail() {
     <div className="offer-detail">
       <div className="grey">
         <div className="container">
-          <p className="text-left">Accueil / Offres / Stages / <span className="purple">Assistant Social Media</span></p>
+          <p className="text-left">Accueil / Offres / Stages / <span className="purple">{offer.title}</span></p>
           <div className="announce-box">
             <div className="d-flex">
               <div className="d-flex">
@@ -124,8 +144,9 @@ export default function OfferDetail() {
                   <p className="description"><strong>MentalWorks</strong> . lacroix St Ouen - Du 20/05/2024 au 28/08/2024(39 jours)</p>
                   <div className="d-flex tag justify-start">
                     <p className="type-offer">{lastOffers[2].type}</p>
-                    {lastOffers[1].tags.map((tag, index) => (
-                      <p className={`tag ${tag.name}`} key={index}>{tag.name}{index < lastOffers[1].tags.length - 1}</p>
+                    {offer.jobProfiles && offer.jobProfiles.map((tag) => (
+                      <p className="tag" style={{ backgroundColor: `${tag.color}50`, color: tag.color }}
+                         key={tag.id}>{tag.name}</p>
                     ))}
                   </div>
                 </div>
@@ -144,12 +165,7 @@ export default function OfferDetail() {
             <div>
               <h2>A propos de ce stage</h2>
               <p>
-                Mentalworks est à la recherche d'un(e) assistant(e) en marketing
-                des médias sociaux pour l'aider à gérer ses réseaux en ligne.
-                Vous serez responsable de la surveillance de nos canaux de
-                médias sociaux, de la création de contenu, de la recherche de
-                moyens efficaces d'engager la communauté et d'inciter les autres
-                à s'engager sur nos canaux.
+                {offer.description}
               </p>
             </div>
             <div className="mission">
@@ -232,7 +248,7 @@ export default function OfferDetail() {
             <div className="deadline">
               <h3>Échéances</h3>
               <div className="grey">
-                <p>Reste 3 jours pour postuler</p>
+                <p>Reste {`${offer.restDay} ${offer.restDay > 1 ? 'jours' : 'jour'}`} pour postuler</p>
                 <div className="progress-bar-container">
                   <div
                     className={`progress-bar ${progress > 30 ? 'high' : progress > 20 ? 'medium' : 'low'}`}
@@ -242,19 +258,19 @@ export default function OfferDetail() {
               </div>
               <div className="d-flex">
                 <p className="label">Postuler avant le</p>
-                <p>17 mai 2024</p>
+                <p>{offer.formatedEndApplyDate}</p>
               </div>
               <div className="d-flex">
                 <p className="label">Offre publiée le</p>
-                <p>15 avril 2024</p>
+                <p>{offer.formatedStartAt}</p>
               </div>
               <div className="d-flex">
                 <p className="label">Type d'offre</p>
-                <p>Stage</p>
+                <p>{offer.type}</p>
               </div>
               <div className="d-flex">
                 <p className="label">Gratification</p>
-                <p>Non obligatoire</p>
+                <p>{offer.restDay > 60 ? 'Obligatoire' : 'Non obligatoire'}</p>
               </div>
               <div className="d-flex">
                 <p className="label">Candidatures déposées</p>
@@ -265,23 +281,23 @@ export default function OfferDetail() {
             <div className="profil">
               <h3>Profils métiers</h3>
               <div className="d-flex justify-start">
-                <p className="tag Marketing">Marketing</p>
-                <p className="tag Design">Design</p>
+                {offer.jobProfiles && offer.jobProfiles.map((tag) => (
+                  <p className="tag" style={{ backgroundColor: `${tag.color}50`, color: tag.color }} key={tag.id}>{tag.name}</p>
+                ))}
               </div>
               <span className="line"></span>
             </div>
             <div className="skill">
+              <h3>Compétences recherchées</h3>
               <div className="d-flex justify-start wrap">
-                <p className="type-offer">Gestion de projet</p>
-                <p className="type-offer">Maîtrise du Français</p>
-                <p className="type-offer">Social Media Marketing</p>
-                <p className="type-offer">Canva</p>
-                <p className="type-offer">Réseaux Sociaux</p>
+                {offer.skill && offer.skill.map((skill) => (
+                  <p className="type-offer" key={skill.id}>{skill.name}</p>
+                ))}
               </div>
             </div>
           </section>
         </div>
-        <Link to={'/postuler/1'} className="btn">
+        <Link to={`/postuler/${offer.id}`} className="btn">
           Postuler
         </Link>
         <span className="line break-content"></span>
@@ -340,14 +356,17 @@ export default function OfferDetail() {
             {lastOffers.map((offer, index) => (
               <CompanyCard
                 key={index}
-                logo={offer.company.logo}
+                logo={offer.companyLogo}
                 typeOffer={offer.type}
-                nameOffer={offer.name}
-                nameCompany={offer.company.name}
-                locationCompany={offer.company.location || ''}
+                nameOffer={offer.title}
+                nameCompany={offer.companyName}
+                locationCompany={offer.companyCity}
                 descriptionCompany={offer.description}
                 firstTag={offer.tags[0].name || ''}
                 secondTag={offer.tags[1].name || ''}
+                restDay={offer.restDay}
+                period={offer.period}
+                offerId={offer.id}
               />
             ))}
           </div>

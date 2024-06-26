@@ -9,11 +9,11 @@ export default function ApplyStudent({
   locationPerson,
   tag,
   periodApply,
-  // idApply
+  idApply
 }) {
   return (
     // <Link to={`/apply-job/${idApply}`}>
-    <div className="apply-student-card">
+    <div className="apply-student-card" key={idApply}>
       <div className="d-flex justify-start">
         <div>
           <img src={`/img/profil-picture/${profilPicture}`} alt="" />

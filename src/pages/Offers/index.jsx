@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import './index.scss';
 import OfferCompany from '../../components/Card/OfferCompany';
 
-export default function Companies() {
+export default function Offers({ type }) {
   const getTypeTranslation = () => {
     switch (type) {
       case 'internships':
@@ -15,33 +15,39 @@ export default function Companies() {
     }
   };
 
-  const [filter, setFilter] = useState({ profiles: [], levels: [], duration: [], type: getTypeTranslation(), distance: 100});
-  const [sort, setSort] = useState('alphaAZ');
-  const [allSectorsChecked, setAllSectorsChecked] = useState(true);
+  const [filter, setFilter] = useState({
+    profiles: [],
+    levels: [],
+    duration: [],
+    type: getTypeTranslation(),
+    distance: 100
+  });
   const [offers, setOffers] = useState([]);
+  const [order, setOrder] = useState('ASC');
+  const [orderBy, setOrderBy] = useState('title');
 
   useEffect(() => {
     fetchOffers();
-  }, [filter, sort]);
+  }, [filter, orderBy, order]);
 
   const fetchOffers = async () => {
     try {
       const queryParams = new URLSearchParams({
         filters: JSON.stringify(filter),
-        order: sort,
-        orderBy: 'name',
+        order: order,
+        orderBy: orderBy,
         page: 1,
         limit: 10
       });
 
-      const response = await fetch(`/api/companies?${queryParams}`);
+      const response = await fetch(`http://localhost:8000/api/offers?${queryParams}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
       setOffers(data);
     } catch (error) {
-      console.error('Failed to fetch companies:', error);
+      console.error('Failed to fetch offers:', error);
     }
   };
 
@@ -80,7 +86,9 @@ export default function Companies() {
   };
 
   const handleSortChange = (e) => {
-    setSort(e.target.value);
+    const values = e.target.value.split('-');
+    setOrderBy(values[0]);
+    setOrder(values[1]);
   };
 
   return (
@@ -109,13 +117,6 @@ export default function Companies() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                <div className="d-flex">
-                  <input type="checkbox" checked={allSectorsChecked} onChange={() => {
-                    setAllSectorsChecked(!allSectorsChecked);
-                    setFilter(prevState => ({ ...prevState, sectors: [] }));
-                  }} disabled={filter.sectors.length >= 1} />
-                  <label>Tous</label>
-                </div>
                 {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
                   <div className="d-flex" key={profile}>
                     <input type="checkbox" value={profile} onChange={handleProfileChange} />
@@ -135,7 +136,7 @@ export default function Companies() {
                   'Licence',
                   'BTS, DUT, BUT',
                   'BAC',
-                  'CAP, BEP',
+                  'CAP, BEP'
                 ].map((level) => (
                   <div className="d-flex" key={level}>
                     <input
@@ -158,7 +159,7 @@ export default function Companies() {
                   'Moins de 2 mois',
                   'Entre 2 et 6 mois',
                   'Entre 6 et 12 mois',
-                  'Plus de 12 mois',
+                  'Plus de 12 mois'
                 ].map((duration) => (
                   <div className="d-flex" key={duration}>
                     <input
@@ -186,19 +187,19 @@ export default function Companies() {
             <div className="d-flex">
               <div>
                 <h3>Résultats</h3>
-                <p>{companies.length} entreprises trouvées</p>
+                <p>{ offers && offers.length > 0 ? offers.length : 0 } entreprises trouvées</p>
               </div>
               <div className="d-flex">
                 <p>Trier par :</p>
-                <select value={sort} onChange={handleSortChange}>
-                  <option value="dateRecent">
+                <select value={orderBy+'-'+order} onChange={handleSortChange}>
+                  <option value="updatedAt-ASC">
                     Date de publication (plus récent)
                   </option>
-                  <option value="dateOld">
+                  <option value="updatedAt-DESC">
                     Date de publication (plus vieux)
                   </option>
-                  <option value="alphaAZ">Alphabétique (A-Z)</option>
-                  <option value="alphaZA">Alphabétique (Z-A)</option>
+                  <option value="title-ASC">Alphabétique (A-Z)</option>
+                  <option value="title-DESC">Alphabétique (Z-A)</option>
                   <option value="deadline">Date limite pour postuler</option>
                 </select>
               </div>
@@ -206,19 +207,16 @@ export default function Companies() {
             <div className="d-flex direction-column">
               {offers.map((offer) => (
                 <OfferCompany
-                  logo={offer.logo}
-                  typeOffer={offer.typeOffer}
-                  nameOffer={offer.nameOffer}
-                  nameCompany={offer.nameCompany}
-                  locationCompany={offer.locationCompany}
-                  descriptionCompany={offer.descriptionCompany}
-                  firstTag={offer.firstTag}
-                  secondTag={offer.secondTag}
+                  logo={offer.companyLogo}
+                  typeOffer={offer.type}
+                  nameOffer={offer.title}
+                  nameCompany={offer.companyName}
+                  locationCompany={offer.companyCity}
+                  tags={offer.jobProfiles}
                   inOfferPage={true}
                   period={offer.period}
                   restDay={offer.restDay}
                   offerId={offer.id}
-                  key={offer.id}
                 />
               ))}
             </div>
