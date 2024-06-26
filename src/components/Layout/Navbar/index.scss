@@ -29,6 +29,7 @@ nav {
     }
   }
 
+
   .menu {
     gap: 2.2em;
 
@@ -62,6 +63,20 @@ nav {
     }
     a {
       width: 140px;
+    }
+  }
+  @media screen and (width > 1100px) {
+    button.hamburger {
+      display: none;
+    }
+  }
+  @media screen and (width <= 1100px) {
+    button.hamburger {
+      display: block;
+    }
+    .menu,
+    .no-connexion {
+      display: none;
     }
   }
 }

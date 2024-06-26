@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './index.scss';
+import 'hamburgers/dist/hamburgers.css';
 
 export default function Navbar() {
   const location = useLocation();
@@ -7,6 +9,12 @@ export default function Navbar() {
     location.pathname === '/offre/stage' ||
     location.pathname === '/offre/alternance';
   const isAdminPath = location.pathname === '/admin/';
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="container">
@@ -17,7 +25,16 @@ export default function Navbar() {
             <p>Bourse aux Stages</p>
           </div>
         </NavLink>
-        <div className="d-flex menu">
+        <button
+          className={`hamburger hamburger--spin ${isMenuOpen ? 'is-active' : ''}`}
+          type="button"
+          onClick={toggleMenu}
+        >
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+        </button>
+        <div className={`d-flex menu ${isMenuOpen ? 'is-open' : ''}`}>
           <NavLink to="/" activeClassName="is-active">
             Accueil
           </NavLink>
