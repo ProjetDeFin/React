@@ -26,10 +26,6 @@ export default function Offers({ type }) {
   const [order, setOrder] = useState('ASC');
   const [orderBy, setOrderBy] = useState('title');
 
-  useEffect(() => {
-    fetchOffers();
-  }, [filter, orderBy, order]);
-
   const fetchOffers = async () => {
     try {
       const queryParams = new URLSearchParams({
@@ -40,7 +36,7 @@ export default function Offers({ type }) {
         limit: 10
       });
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}api/offers?${queryParams}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/offers?${queryParams}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -50,6 +46,10 @@ export default function Offers({ type }) {
       console.error('Failed to fetch offers:', error);
     }
   };
+
+  useEffect(() => {
+    fetchOffers();
+  }, [filter, orderBy, order]);
 
   const handleProfileChange = (e) => {
     const { value, checked } = e.target;
