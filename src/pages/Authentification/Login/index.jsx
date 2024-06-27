@@ -2,6 +2,7 @@ import './index.scss';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -24,8 +25,15 @@ export default function Login() {
       const result = await response.json();
 
       if (response.ok) {
-        // TODO toast
         localStorage.setItem('token', result.token);
+        const decoded = jwtDecode(result.token);
+        const detailedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/login/details/${decoded.username}`);
+        if (detailedResponse.ok) {
+          const detailedResult = await detailedResponse.json();
+          localStorage.setItem('firstName', detailedResult.firstName);
+          localStorage.setItem('lastName', detailedResult.lastName);
+          localStorage.setItem('id', detailedResult.id);
+        }
       } else {
         setMessage(result.message || 'Login failed. Please try again.');
       }
