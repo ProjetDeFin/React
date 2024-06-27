@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import { useParams } from 'react-router-dom';
 import ThumbnailResumeOffer from '../../components/Card/ThumbnailResumeOffer';
 import './index.scss';
+import Map from '../../components/Map';
 
 export default function CompanyDetail() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export default function CompanyDetail() {
 
   const fetchCompanyDetails = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}api/companies/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies/${id}`);
       const data = await response.json();
       setCompany(data);
       setOffers(data.offers); // Assumes the API returns offers within the company data
@@ -32,7 +33,7 @@ export default function CompanyDetail() {
     <div className="company-detail">
       <div className="grey">
         <div className="container">
-          <p className="text-left">Accueil / Entreprises / <span className="purple">MentalWorks</span></p>
+          <p className="text-left">Accueil / Entreprises / <span className="purple">{company.name}</span></p>
           <h2>{company.name}</h2>
           <a href={company.website} className="link d-flex">
             {company.website} <Icon icon="tabler:arrow-right" />
@@ -44,6 +45,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Activité</p>
+
                 <p>{company.activity}</p>
               </div>
             </div>
@@ -62,7 +64,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Effectifs</p>
-                <p>{company.employees}</p>
+                <p>{company.workforce}</p>
               </div>
             </div>
             <div className="d-flex">
@@ -71,7 +73,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Chiffre d'affaires</p>
-                <p>{company.revenue} M€</p>
+                <p>{company.sellFigure} M€</p>
               </div>
             </div>
             <div className="d-flex">
@@ -80,7 +82,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Situation</p>
-                <p>{company.location}</p>
+                <p>{company.address1}</p>
               </div>
             </div>
           </div>
@@ -97,32 +99,32 @@ export default function CompanyDetail() {
               <div>
                 <h3>Réseaux sociaux</h3>
                 <div className="d-flex justify-start">
-                  {company.socialLinks.linkedin && (
-                    <a href={company.socialLinks.linkedin}>
+                  {company.linkedinUrl && (
+                    <a href={company.linkedinUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:linkedin" />
                         <p>linkedin.com</p>
                       </div>
                     </a>
                   )}
-                  {company.socialLinks.twitter && (
-                    <a href={company.socialLinks.twitter}>
+                  {company.xUrl && (
+                    <a href={company.xUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:twitter" />
                         <p>twitter.com</p>
                       </div>
                     </a>
                   )}
-                  {company.socialLinks.facebook && (
-                    <a href={company.socialLinks.facebook}>
+                  {company.facebookUrl && (
+                    <a href={company.facebookUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:facebook" />
                         <p>facebook.com</p>
                       </div>
                     </a>
                   )}
-                  {company.socialLinks.instagram && (
-                    <a href={company.socialLinks.instagram}>
+                  {company.instagramUrl && (
+                    <a href={company.instagramUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:instagram" />
                         <p>Instagram</p>
@@ -133,13 +135,13 @@ export default function CompanyDetail() {
               </div>
               <div className="d-flex gallery">
                 <div className="d-flex direction-column">
-                  <img src={company.images[0]} alt="" />
-                  <img src={company.images[1]} alt="" />
+                  <img src={company} alt="" />
+                  <img src={company} alt="" />
                 </div>
                 <div className="d-flex direction-column">
-                  <img src={company.images[2]} alt="" />
-                  <img src={company.images[3]} alt="" />
-                  <img src={company.images[4]} alt="" />
+                  <img src={company} alt="" />
+                  <img src={company} alt="" />
+                  <img src={company} alt="" />
                 </div>
               </div>
             </section>
@@ -152,6 +154,7 @@ export default function CompanyDetail() {
                 <p>{company.city}</p>
                 <p>{company.postalCode}</p>
               </div>
+              <Map />
               <div className="map">
                 <a href={company.mapLink} className="link d-flex">
                   Voir sur une carte <Icon icon="tabler:arrow-right" />

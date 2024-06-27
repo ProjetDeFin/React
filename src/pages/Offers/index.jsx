@@ -27,29 +27,29 @@ export default function Offers({ type }) {
   const [orderBy, setOrderBy] = useState('title');
 
   useEffect(() => {
-    fetchOffers();
-  }, [filter, orderBy, order]);
-
-  const fetchOffers = async () => {
-    try {
-      const queryParams = new URLSearchParams({
-        filters: JSON.stringify(filter),
-        order: order,
-        orderBy: orderBy,
-        page: 1,
-        limit: 10
-      });
-
-      const response = await fetch(`${process.env.REACT_APP_API_URL}api/offers?${queryParams}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    if (filter.type !== getTypeTranslation()) {
+      if (filter.type !== getTypeTranslation()) {
+        setFilter((prevState) => ({
+          ...prevState,
+          type: getTypeTranslation()
+        }));
       }
-      const data = await response.json();
-      setOffers(data);
-    } catch (error) {
-      console.error('Failed to fetch offers:', error);
     }
-  };
+
+    const queryParams = new URLSearchParams({
+      filters: JSON.stringify(filter),
+      order: order,
+      orderBy: orderBy,
+      page: 1,
+      limit: 10
+    });
+
+    fetch(`${process.env.REACT_APP_API_URL}/api/offers?${queryParams}`)
+      .then(r => r.json())
+      .then((data) => {
+        setOffers(data);
+      });
+  }, [filter, orderBy, order, getTypeTranslation()]);
 
   const handleProfileChange = (e) => {
     const { value, checked } = e.target;

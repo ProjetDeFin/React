@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './index.scss';
-import 'hamburgers/dist/hamburgers.css';
 
 export default function Navbar() {
   const location = useLocation();

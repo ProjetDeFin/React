@@ -14,7 +14,7 @@ export default function OfferDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/offers/${id}`,
+    fetch(`${process.env.REACT_APP_API_URL}/api/offers/${id}`,
 {
         method: 'GET',
         headers: {
