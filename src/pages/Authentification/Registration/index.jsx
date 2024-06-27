@@ -41,7 +41,6 @@ export default function Registration() {
   };
 
   const handleSubmit = async (event) => {
-    console.log('ici');
     event.preventDefault();
     const errorMessages = validatePassword(password, confirmationPassword);
     if (errorMessages.length > 0) {
@@ -51,6 +50,9 @@ export default function Registration() {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             firstName,
             name,
