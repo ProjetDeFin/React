@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './index.scss';
 import 'hamburgers/dist/hamburgers.css';
@@ -8,9 +8,14 @@ export default function Navbar() {
   const isOffersActive =
     location.pathname === '/offre/stage' ||
     location.pathname === '/offre/alternance';
-  const isAdminPath = location.pathname === '/admin/';
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -56,7 +61,24 @@ export default function Navbar() {
             Etudiants
           </NavLink>
         </div>
-        {!isAdminPath ? (
+        {isLoggedIn ? (
+          <div className="d-flex account connected dropdown">
+            <div className="d-flex">
+              <img src="/img/profil-picture/avatar.jpg" alt="" />
+              <h4>Olivier SALESSE</h4>
+            </div>
+            <div className="dropdown-content d-flex direction-column">
+              <NavLink to="">Dashboard</NavLink>
+              <NavLink to="">Profil</NavLink>
+              <NavLink to="" onClick={() => {
+                localStorage.removeItem('token');
+                setIsLoggedIn(false);
+              }}>
+                Deconnexion
+              </NavLink>
+            </div>
+          </div>
+        ) : (
           <div className="d-flex account no-connexion">
             <NavLink
               to="/connexion"
@@ -72,18 +94,6 @@ export default function Navbar() {
             >
               Créer un compte
             </NavLink>
-          </div>
-        ) : (
-          <div className="d-flex account connected dropdown">
-            <div className="d-flex">
-              <img src="/img/profil-picture/avatar.jpg" alt="" />
-              <h4>Olivier SALESSE</h4>
-            </div>
-            <div className="dropdown-content d-flex direction-column">
-              <NavLink to="">Dashboard</NavLink>
-              <NavLink to="">Profil</NavLink>
-              <NavLink to="">Deconnexion</NavLink>
-            </div>
           </div>
         )}
       </nav>
