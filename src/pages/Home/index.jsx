@@ -5,20 +5,20 @@ import { Icon } from '@iconify/react';
 import './index.scss';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import axios from "axios";
 
 export default function Home() {
   const [home, setHome] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/home`)
-      .then((response) => response.json())
-      .then((data) => {
-        setHome(data);
+    const fetchHome = async () => {
+      const data = await axios.get(`${process.env.REACT_APP_API_URL}/api/home`);
+      if (data.status === 200) {
+        setHome(data.data);
       }
-    );
+    }
+    fetchHome();
   }, []);
-
-  console.log(home);
 
   return (
     <div className="homepage">

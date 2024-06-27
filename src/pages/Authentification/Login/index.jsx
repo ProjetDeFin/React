@@ -15,7 +15,6 @@ export default function Login() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
         },
         body: JSON.stringify({ email, password }),
       });
@@ -23,7 +22,7 @@ export default function Login() {
       const result = await response.json();
 
       if (response.ok) {
-        setMessage('Login successful!');
+        // TODO toast
         localStorage.setItem('token', result.token);
       } else {
         setMessage(result.message || 'Login failed. Please try again.');
