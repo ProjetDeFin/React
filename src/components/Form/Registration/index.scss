@@ -1,0 +1,60 @@
+.form-registration {
+    margin: 40px 0 80px 0;
+
+    .container form > .align-start {
+        gap: 40px;
+    }
+    button[type=submit] {
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    .reveal {
+        padding: 15px 24px;
+    }
+
+    select {
+        padding: 1rem 2rem;
+        background-color: inherit;
+    }
+    input {
+        width: 100%;
+    }
+
+    input, 
+    select {
+        border: 1px solid #D6DDEB;
+    }
+
+    .align-start {
+        gap: 16px;
+    }
+    .personal {
+        & > .d-flex {
+            gap: 16px;
+            margin-bottom: 16px;
+
+            &:last-child > .d-flex {
+                width: 100%;
+            }
+        }
+    }
+    .organisation {
+        & > .d-flex {
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+    }
+    .additional-information {
+        margin-top: 40px;
+
+        & > .d-flex {
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+    }
+    h3 {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+}
