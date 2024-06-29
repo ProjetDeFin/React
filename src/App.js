@@ -12,6 +12,8 @@ import AdminApplyJob from './pages/Admin/ApplyJob';
 import AdminOffer from './pages/Admin/Offer';
 import AdminAddOffer from './pages/Admin/AddOffer';
 import Registration from './pages/Authentification/Registration';
+import RegistrationCompany from './pages/Authentification/Registration/Company';
+import RegistrationStudent from './pages/Authentification/Registration/Student';
 import Login from './pages/Authentification/Login';
 
 export default function App() {
@@ -36,6 +38,8 @@ export default function App() {
             <Route path="/postuler/:id" element={<ApplyJobWrapper />} />
             <Route path="/connexion" element={<Login />} />
             <Route path="/creation-compte" element={<Registration />} />
+            <Route path="/inscription/entreprise" element={<RegistrationCompany />} />
+            <Route path="/inscription/etudiant" element={<RegistrationStudent />} />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
