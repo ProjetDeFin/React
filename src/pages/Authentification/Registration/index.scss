@@ -1,32 +1,27 @@
 .registration {
   line-height: 160%;
+  margin: 60px 0  200px 0;
 
-  .content {
-    margin: 60px 0 80px 0;
-
-    h2 {
-      line-height: 160%;
-    }
-
-    p {
-      margin: 0 0 24px 0;
-    }
-
-    .direction-column {
-      margin-bottom: 24px;
-      gap: 16px;
+  p {
+    &.text-center {
+      margin-bottom: 80px;
+      font-size: 24px;
+      font-weight: 600;
     }
   }
 
-  .error-list {
-    margin-bottom: 12px;
-    color: #4640DE;
+  .justify-center {
+    gap: 60px;
   }
-  .password-container {
-    width: 100%;
-    svg {
-      width: 20px;
-      height: 20px;
+
+  a {
+    border: 1px solid  grey;
+    padding: 20px;
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
     }
   }
+
 }
