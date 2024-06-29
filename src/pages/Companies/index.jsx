@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import ThumbnailOfferCompany from '../../components/Card/ThumbnailOfferCompany';
 import './index.scss';
+import axios from 'axios';
 
 export default function Companies() {
   const [filter, setFilter] = useState({
@@ -15,10 +16,6 @@ export default function Companies() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    fetchCompanies();
-  }, [filter, sort]);
-
-  const fetchCompanies = async () => {
     const queryParams = new URLSearchParams({
       filters: JSON.stringify(filter),
       order: sort,
@@ -27,10 +24,17 @@ export default function Companies() {
       limit: 10
     });
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`);
-    const data = await response.json();
-    setCompanies(data);
-  };
+    axios.get(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      console.log(response);
+    })
+    // console.log(response);
+    // const data = await response.json();
+    // setCompanies(data);
+  }, [filter, sort]);
 
   const handleSectorChange = (e) => {
     const { value, checked } = e.target;
