@@ -2,7 +2,7 @@ import './index.scss';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -14,20 +14,25 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
         },
-        body: JSON.stringify({ email, password }),
-      });
+      );
 
       const result = await response.json();
 
       if (response.ok) {
         localStorage.setItem('token', result.token);
         const decoded = jwtDecode(result.token);
-        const detailedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/login/details/${decoded.username}`);
+        const detailedResponse = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/login/details/${decoded.username}`,
+        );
         if (detailedResponse.ok) {
           const detailedResult = await detailedResponse.json();
           localStorage.setItem('firstName', detailedResult.firstName);
@@ -54,7 +59,8 @@ export default function Login() {
             <h2>BIENVENUE</h2>
             <h3>Connectez-vous pour continuer</h3>
             <p>
-              Pas encore de compte ? <Link to="/inscription">Créez-en un !</Link>
+              Pas encore de compte ?{' '}
+              <Link to="/inscription">Créez-en un !</Link>
             </p>
             <form method="post">
               <div className="d-flex direction-column align-start">
@@ -84,7 +90,11 @@ export default function Login() {
                     className="toggle-visibility btn"
                     onClick={toggleShowPassword}
                   >
-                    {showPassword ? <Icon icon="mdi:eye-off" /> : <Icon icon="mdi:eye" />}
+                    {showPassword ? (
+                      <Icon icon="mdi:eye-off" />
+                    ) : (
+                      <Icon icon="mdi:eye" />
+                    )}
                   </button>
                 </div>
               </div>

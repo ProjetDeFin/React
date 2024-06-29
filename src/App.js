@@ -38,8 +38,14 @@ export default function App() {
             <Route path="/postuler/:id" element={<ApplyJobWrapper />} />
             <Route path="/connexion" element={<Login />} />
             <Route path="/creation-compte" element={<Registration />} />
-            <Route path="/inscription/entreprise" element={<RegistrationCompany />} />
-            <Route path="/inscription/etudiant" element={<RegistrationStudent />} />
+            <Route
+              path="/inscription/entreprise"
+              element={<RegistrationCompany />}
+            />
+            <Route
+              path="/inscription/etudiant"
+              element={<RegistrationStudent />}
+            />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />

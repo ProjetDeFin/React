@@ -15,7 +15,9 @@ export default function CompanyDetail() {
 
   const fetchCompanyDetails = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}api/companies/${id}`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}api/companies/${id}`,
+      );
       const data = await response.json();
       setCompany(data);
       setOffers(data.offers); // Assumes the API returns offers within the company data
@@ -32,7 +34,9 @@ export default function CompanyDetail() {
     <div className="company-detail">
       <div className="grey">
         <div className="container">
-          <p className="text-left">Accueil / Entreprises / <span className="purple">MentalWorks</span></p>
+          <p className="text-left">
+            Accueil / Entreprises / <span className="purple">MentalWorks</span>
+          </p>
           <h2>{company.name}</h2>
           <a href={company.website} className="link d-flex">
             {company.website} <Icon icon="tabler:arrow-right" />
@@ -184,12 +188,20 @@ export default function CompanyDetail() {
                     <p>{contact.name}</p>
                     <div className="d-flex justify-start">
                       {contact.linkedin && (
-                        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={contact.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Icon icon="mdi:linkedin" />
                         </a>
                       )}
                       {contact.email && (
-                        <a href={`mailto:${contact.email}`} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={`mailto:${contact.email}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Icon icon="carbon:email" />
                         </a>
                       )}
@@ -208,7 +220,7 @@ export default function CompanyDetail() {
             <h3>Offres de stage proposées</h3>
             <div className="d-flex wrap justify-start">
               {offers
-                .filter(offer => offer.type === 'internship')
+                .filter((offer) => offer.type === 'internship')
                 .map((offer, index) => (
                   <ThumbnailResumeOffer
                     key={index}
@@ -225,7 +237,7 @@ export default function CompanyDetail() {
             <h3>Offres d'alternance proposées</h3>
             <div className="d-flex wrap justify-start">
               {offers
-                .filter(offer => offer.type === 'apprenticeship')
+                .filter((offer) => offer.type === 'apprenticeship')
                 .map((offer, index) => (
                   <ThumbnailResumeOffer
                     key={index + offers.length} // To ensure unique keys

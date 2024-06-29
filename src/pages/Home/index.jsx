@@ -3,9 +3,9 @@ import CompanyCard from '../../components/Card/OfferCompany';
 import ApplyStudent from '../../components/Card/ApplyStudent';
 import { Icon } from '@iconify/react';
 import './index.scss';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from "axios";
+import axios from 'axios';
 
 export default function Home() {
   const [home, setHome] = useState([]);
@@ -16,7 +16,7 @@ export default function Home() {
       if (data.status === 200) {
         setHome(data.data);
       }
-    }
+    };
     fetchHome();
   }, []);
 
@@ -34,9 +34,10 @@ export default function Home() {
                 qui correspondent à votre profil et à vos attentes.
               </p>
               <p>
-                <span>{ home.internshipsOffersCount }</span> offres de <strong>stages</strong> |{' '}
-                <span>{ home.apprenticeshipsOffersCount }</span> offres <strong>d'alternance</strong>{' '}
-                n'attendent que vous !
+                <span>{home.internshipsOffersCount}</span> offres de{' '}
+                <strong>stages</strong> |{' '}
+                <span>{home.apprenticeshipsOffersCount}</span> offres{' '}
+                <strong>d'alternance</strong> n'attendent que vous !
               </p>
             </div>
             <img src="/img/home-man.png" alt="" />
@@ -44,9 +45,7 @@ export default function Home() {
         </div>
       </section>
       <div className="container">
-        {home.categories &&
-          <CompaniesForward companies={home.companies} />
-        }
+        {home.categories && <CompaniesForward companies={home.companies} />}
         <section className="account-creation">
           <div className="d-flex align-start">
             <div>
@@ -73,19 +72,20 @@ export default function Home() {
             </Link>
           </div>
           <div className="d-flex wrap flex-start">
-            {home.offers && home.offers.map((offer) => (
-              <CompanyCard
-                logo={offer.company.logo}
-                typeOffer={offer.type}
-                nameOffer={offer.title}
-                nameCompany={offer.company.name}
-                locationCompany={offer.company.city || ''}
-                descriptionCompany={offer.description}
-                firstTag={offer.jobProfiles[0].name || ''}
-                secondTag={offer.jobProfiles[1].name || ''}
-                offerId={offer.id}
-              />
-            ))}
+            {home.offers &&
+              home.offers.map((offer) => (
+                <CompanyCard
+                  logo={offer.company.logo}
+                  typeOffer={offer.type}
+                  nameOffer={offer.title}
+                  nameCompany={offer.company.name}
+                  locationCompany={offer.company.city || ''}
+                  descriptionCompany={offer.description}
+                  firstTag={offer.jobProfiles[0].name || ''}
+                  secondTag={offer.jobProfiles[1].name || ''}
+                  offerId={offer.id}
+                />
+              ))}
           </div>
         </section>
       </div>
@@ -101,18 +101,19 @@ export default function Home() {
             </Link>
           </div>
           <div className="d-flex wrap flex-start">
-            {home.applications && home.applications.map((apply) => (
-              <ApplyStudent
-                profilPicture={apply.studentPicture}
-                titleApply={apply.title}
-                agePerson={apply.studentAge}
-                locationPerson={apply.studentCity}
-                namePerson={apply.studentFullName}
-                tag={apply.type || ''}
-                periodApply={apply.period || ''}
-                idApply={apply.id}
-              />
-            ))}
+            {home.applications &&
+              home.applications.map((apply) => (
+                <ApplyStudent
+                  profilPicture={apply.studentPicture}
+                  titleApply={apply.title}
+                  agePerson={apply.studentAge}
+                  locationPerson={apply.studentCity}
+                  namePerson={apply.studentFullName}
+                  tag={apply.type || ''}
+                  periodApply={apply.period || ''}
+                  idApply={apply.id}
+                />
+              ))}
           </div>
         </div>
       </section>

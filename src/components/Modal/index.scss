@@ -1,42 +1,43 @@
 .modal {
-    select {
-        padding: 8px 12px;
-    }
-    label {
-        background-color: inherit !important;
-        padding: 0 !important;
-        border: inherit !important;
+  select {
+    padding: 8px 12px;
+  }
+  label {
+    background-color: inherit !important;
+    padding: 0 !important;
+    border: inherit !important;
+  }
+  .delete {
+    font-size: 18px;
+  }
+  .prompt-modal {
+    background-color: #fff;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+      rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    padding: 12px;
+    margin-top: 12px;
+    border: #4640de 1px solid;
+    gap: 12px;
 
+    .d-flex {
+      gap: 4px;
+      width: 100%;
     }
-    .delete {
-        font-size: 18px;
-    }
-    .prompt-modal {
-        background-color: #fff;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-        padding: 12px;
-        margin-top: 12px;
-        border: #4640de 1px solid;
-        gap: 12px;
 
-        .d-flex {
-            gap: 4px;
-            width: 100%;
-        }
-
-        .add,
-        select,
-        input {
-            width: 100%;
-        }
-        .add {
-            margin-top: 12px;
-            padding: 8px 0;
-            background-color: #4640de;
-            color: #fff;
-            border-width: 0px;
-            font-weight: 600;
-            font-size: 14px;
-        }
+    .add,
+    select,
+    input {
+      width: 100%;
     }
+    .add {
+      margin-top: 12px;
+      padding: 8px 0;
+      background-color: #4640de;
+      color: #fff;
+      border-width: 0px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
 }

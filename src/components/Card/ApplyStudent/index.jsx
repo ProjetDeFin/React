@@ -9,7 +9,7 @@ export default function ApplyStudent({
   locationPerson,
   tag,
   periodApply,
-  idApply
+  idApply,
 }) {
   return (
     // <Link to={`/apply-job/${idApply}`}>
