@@ -1,21 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './index.scss';
 import 'hamburgers/dist/hamburgers.css';
 
-export default function Navbar() {
+export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const location = useLocation();
   const isOffersActive =
     location.pathname === '/offre/stage' ||
     location.pathname === '/offre/alternance';
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -74,6 +68,9 @@ export default function Navbar() {
                 to=""
                 onClick={() => {
                   localStorage.removeItem('token');
+                  localStorage.removeItem('id');
+                  localStorage.removeItem('firstName');
+                  localStorage.removeItem('lastName');
                   setIsLoggedIn(false);
                 }}
               >
