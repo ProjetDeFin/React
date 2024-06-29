@@ -120,8 +120,9 @@ export default function FormRegistration() {
         <div className="form-registration">
             <div className="container">
                 <form method="post" onSubmit={handleSubmit}>
-                    <div className="d-flex">
+                    <div className="d-flex align-start">
                         <section className="personal">
+                            <h3>Votre identite</h3>
                             <div className="d-flex">
                                 <div className="d-flex direction-column align-start">
                                     <label htmlFor="gender">Genre</label>
@@ -147,18 +148,18 @@ export default function FormRegistration() {
                             <div className="d-flex">
                                 <div className="d-flex direction-column align-start">
                                     <label htmlFor="password">Mot de passe</label>
-                                    <div className="password-input">
+                                    <div className="password-input d-flex">
                                         <input type={showPassword ? "text" : "password"} name="password" id="password" value={formData.password} onChange={handleInputChange} />
-                                        <button type="button" onClick={toggleShowPassword}>
+                                        <button className="reveal btn" type="button" onClick={toggleShowPassword}>
                                             <Icon icon={showPassword ? 'mdi:eye-off' : 'mdi:eye'} />
                                         </button>
                                     </div>
                                 </div>
                                 <div className="d-flex direction-column align-start">
                                     <label htmlFor="confirmPassword">Confirmation du mot de passe</label>
-                                    <div className="password-input">
+                                    <div className="password-input d-flex">
                                         <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} />
-                                        <button type="button" onClick={toggleShowConfirmPassword}>
+                                        <button className="reveal btn" type="button" onClick={toggleShowConfirmPassword}>
                                             <Icon icon={showConfirmPassword ? 'mdi:eye-off' : 'mdi:eye'} />
                                         </button>
                                     </div>
@@ -178,7 +179,7 @@ export default function FormRegistration() {
                             </div>
                         </section>
                         {isEntreprise && (
-                            <section>
+                            <section className="organisation">
                                 <h3>Votre organisation</h3>
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
@@ -227,7 +228,7 @@ export default function FormRegistration() {
                             </section>
                         )}
                         {isEtudiant && (
-                            <section>
+                            <section className="additional-information">
                                 <div className="d-flex">
                                     <div className="d-flex direction-column align-start">
                                         <label htmlFor="studyLevel">Niveau d'étude</label>
@@ -255,7 +256,7 @@ export default function FormRegistration() {
                         </div>
                     )}
                     {message && <div className="message">{message}</div>}
-                    <button type="submit">Créer mon compte</button>
+                    <button className="btn" type="submit">Créer mon compte</button>
                 </form>
             </div>
         </div>
