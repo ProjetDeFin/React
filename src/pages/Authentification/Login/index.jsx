@@ -3,16 +3,12 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { jwtDecode } from 'jwt-decode';
-import { toast } from 'react-toastify';
 
-export default function Login({ setIsLoggedIn, isLoggedIn }) {
+export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successToast }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
-
-  const errorToast = (message) => toast.error(message);
-  const successToast = (message) => toast.success(message);
 
   useEffect(() => {
     if (isLoggedIn) {
