@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
 export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successToast }) {
   const [password, setPassword] = useState('');
