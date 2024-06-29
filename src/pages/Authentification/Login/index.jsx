@@ -1,14 +1,24 @@
 import './index.scss';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
-export default function Login() {
+export default function Login({ setIsLoggedIn, isLoggedIn }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const errorToast = (message) => toast.error(message);
+  const successToast = (message) => toast.success(message);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,12 +48,19 @@ export default function Login() {
           localStorage.setItem('firstName', detailedResult.firstName);
           localStorage.setItem('lastName', detailedResult.lastName);
           localStorage.setItem('id', detailedResult.id);
+          console.log(setIsLoggedIn);
+          setIsLoggedIn(true);
+          successToast('Login successful');
+          navigate('/');
+        } else {
+          errorToast('Invalid server response.');
         }
       } else {
-        setMessage(result.message || 'Login failed. Please try again.');
+        errorToast('Invalid credentials.');
       }
     } catch (error) {
-      setMessage('An error occurred. Please try again.');
+      console.log(error);
+      errorToast('An error occurred. Please try again.');
     }
   };
 
@@ -56,17 +73,17 @@ export default function Login() {
       <div className="d-flex justify-center align-center">
         <div className="content">
           <div className="text-center">
-            <h2>BIENVENUE</h2>
+            <h2>Bienvenue</h2>
             <h3>Connectez-vous pour continuer</h3>
             <p>
               Pas encore de compte ?{' '}
               <Link to="/inscription">Créez-en un !</Link>
             </p>
-            <form method="post">
+            <form method="post" onSubmit={handleSubmit}>
               <div className="d-flex direction-column align-start">
                 <label htmlFor="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   placeholder="jean.bernard@gmail.com"
@@ -101,7 +118,6 @@ export default function Login() {
               <input className="btn" type="submit" value="SE CONNECTER" />
               <p className="text-right">Mot de passe oublié ?</p>
             </form>
-            {message && <p className="message">{message}</p>}
           </div>
         </div>
       </div>
