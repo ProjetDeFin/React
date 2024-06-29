@@ -14,20 +14,17 @@ export default function OfferDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/offers/${id}`,
-{
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application'
-        }}
-    )
-      .then(r => r.json())
-      .then(data => {
-      setOffer(data);
+    fetch(`${process.env.REACT_APP_API_URL}api/offers/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setOffer(data);
       });
-   }, []);
-
-
+  }, []);
 
   const lastOffers = [
     {
@@ -36,11 +33,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 1',
         logo: 'company1.png',
-        location: 'Paris'
+        location: 'Paris',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, design]
+      tags: [marketing, design],
     },
     {
       name: 'Offer 2',
@@ -48,11 +45,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 2',
         logo: 'company1.png',
-        location: 'Lyon'
+        location: 'Lyon',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance]
+      tags: [design, finance],
     },
     {
       name: 'Offer 3',
@@ -60,11 +57,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 3',
         logo: 'company1.png',
-        location: 'Marseille'
+        location: 'Marseille',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it]
+      tags: [marketing, it],
     },
     {
       name: 'Offer 4',
@@ -72,11 +69,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 4',
         logo: 'company1.png',
-        location: 'Toulouse'
+        location: 'Toulouse',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance]
+      tags: [design, finance],
     },
     {
       name: 'Offer 5',
@@ -84,11 +81,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 5',
         logo: 'company1.png',
-        location: 'Nice'
+        location: 'Nice',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it]
+      tags: [marketing, it],
     },
     {
       name: 'Offer 6',
@@ -96,11 +93,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 6',
         logo: 'company1.png',
-        location: 'Nantes'
+        location: 'Nantes',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance]
+      tags: [design, finance],
     },
     {
       name: 'Offer 7',
@@ -108,11 +105,11 @@ export default function OfferDetail() {
       company: {
         name: 'Company 7',
         logo: 'company1.png',
-        location: 'Strasbourg'
+        location: 'Strasbourg',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it]
+      tags: [marketing, it],
     },
     {
       name: 'Offer 8',
@@ -120,12 +117,12 @@ export default function OfferDetail() {
       company: {
         name: 'Company 8',
         logo: 'company1.png',
-        location: 'Bordeaux'
+        location: 'Bordeaux',
       },
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance]
-    }
+      tags: [design, finance],
+    },
   ];
 
   const progress = 12;
@@ -134,26 +131,43 @@ export default function OfferDetail() {
     <div className="offer-detail">
       <div className="grey">
         <div className="container">
-          <p className="text-left">Accueil / Offres / Stages / <span className="purple">{offer.title}</span></p>
+          <p className="text-left">
+            Accueil / Offres / Stages /{' '}
+            <span className="purple">{offer.title}</span>
+          </p>
           <div className="announce-box">
             <div className="d-flex">
               <div className="d-flex">
                 <img src="/img/logo/intel.svg" alt="" />
                 <div>
                   <h2>Assistant Social Media</h2>
-                  <p className="description"><strong>MentalWorks</strong> . lacroix St Ouen - Du 20/05/2024 au 28/08/2024(39 jours)</p>
+                  <p className="description">
+                    <strong>MentalWorks</strong> . lacroix St Ouen - Du
+                    20/05/2024 au 28/08/2024(39 jours)
+                  </p>
                   <div className="d-flex tag justify-start">
                     <p className="type-offer">{lastOffers[2].type}</p>
-                    {offer.jobProfiles && offer.jobProfiles.map((tag) => (
-                      <p className="tag" style={{ backgroundColor: `${tag.color}50`, color: tag.color }}
-                         key={tag.id}>{tag.name}</p>
-                    ))}
+                    {offer.jobProfiles &&
+                      offer.jobProfiles.map((tag) => (
+                        <p
+                          className="tag"
+                          style={{
+                            backgroundColor: `${tag.color}50`,
+                            color: tag.color,
+                          }}
+                          key={tag.id}
+                        >
+                          {tag.name}
+                        </p>
+                      ))}
                   </div>
                 </div>
               </div>
               <div className="d-flex">
-                <Icon icon="material-symbols-light:share-outline"/>
-                <Link className='btn' to="/postuler/1">Postuler</Link>
+                <Icon icon="material-symbols-light:share-outline" />
+                <Link className="btn" to="/postuler/1">
+                  Postuler
+                </Link>
               </div>
             </div>
           </div>
@@ -164,9 +178,7 @@ export default function OfferDetail() {
           <section>
             <div>
               <h2>A propos de ce stage</h2>
-              <p>
-                {offer.description}
-              </p>
+              <p>{offer.description}</p>
             </div>
             <div className="mission">
               <h2>Missions</h2>
@@ -248,7 +260,11 @@ export default function OfferDetail() {
             <div className="deadline">
               <h3>Échéances</h3>
               <div className="grey">
-                <p>Reste {`${offer.restDay} ${offer.restDay > 1 ? 'jours' : 'jour'}`} pour postuler</p>
+                <p>
+                  Reste{' '}
+                  {`${offer.restDay} ${offer.restDay > 1 ? 'jours' : 'jour'}`}{' '}
+                  pour postuler
+                </p>
                 <div className="progress-bar-container">
                   <div
                     className={`progress-bar ${progress > 30 ? 'high' : progress > 20 ? 'medium' : 'low'}`}
@@ -281,18 +297,31 @@ export default function OfferDetail() {
             <div className="profil">
               <h3>Profils métiers</h3>
               <div className="d-flex justify-start">
-                {offer.jobProfiles && offer.jobProfiles.map((tag) => (
-                  <p className="tag" style={{ backgroundColor: `${tag.color}50`, color: tag.color }} key={tag.id}>{tag.name}</p>
-                ))}
+                {offer.jobProfiles &&
+                  offer.jobProfiles.map((tag) => (
+                    <p
+                      className="tag"
+                      style={{
+                        backgroundColor: `${tag.color}50`,
+                        color: tag.color,
+                      }}
+                      key={tag.id}
+                    >
+                      {tag.name}
+                    </p>
+                  ))}
               </div>
               <span className="line"></span>
             </div>
             <div className="skill">
               <h3>Compétences recherchées</h3>
               <div className="d-flex justify-start wrap">
-                {offer.skill && offer.skill.map((skill) => (
-                  <p className="type-offer" key={skill.id}>{skill.name}</p>
-                ))}
+                {offer.skill &&
+                  offer.skill.map((skill) => (
+                    <p className="type-offer" key={skill.id}>
+                      {skill.name}
+                    </p>
+                  ))}
               </div>
             </div>
           </section>

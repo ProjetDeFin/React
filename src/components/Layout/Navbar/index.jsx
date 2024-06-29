@@ -70,10 +70,13 @@ export default function Navbar() {
             <div className="dropdown-content d-flex direction-column">
               <NavLink to="">Dashboard</NavLink>
               <NavLink to="">Profil</NavLink>
-              <NavLink to="" onClick={() => {
-                localStorage.removeItem('token');
-                setIsLoggedIn(false);
-              }}>
+              <NavLink
+                to=""
+                onClick={() => {
+                  localStorage.removeItem('token');
+                  setIsLoggedIn(false);
+                }}
+              >
                 Deconnexion
               </NavLink>
             </div>

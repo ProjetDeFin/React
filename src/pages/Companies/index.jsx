@@ -21,16 +21,18 @@ export default function Companies() {
       order: sort,
       orderBy: 'name',
       page: 1,
-      limit: 10
+      limit: 10,
     });
 
-    axios.get(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      console.log(response);
-    })
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
     // console.log(response);
     // const data = await response.json();
     // setCompanies(data);
@@ -78,7 +80,9 @@ export default function Companies() {
     <div className="company-list">
       <div className="grey text-center">
         <div className="container">
-          <p className="text-left">Accueil / <span className="purple">Entreprises</span></p>
+          <p className="text-left">
+            Accueil / <span className="purple">Entreprises</span>
+          </p>
           <h2>
             Liste des <span className="turquoise">entreprises</span>
           </h2>
