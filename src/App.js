@@ -12,6 +12,7 @@ import ApplyJobWrapper from './pages/ApplyJobWrapper';
 import AdminApplyJob from './pages/Admin/ApplyJob';
 import AdminOffer from './pages/Admin/Offer';
 import AdminAddOffer from './pages/Admin/AddOffer';
+import AdminCompany from './pages/Admin/Company';
 import Registration from './pages/Authentification/Registration';
 import RegistrationCompany from './pages/Authentification/Registration/Company';
 import RegistrationStudent from './pages/Authentification/Registration/Student';
@@ -62,6 +63,7 @@ export default function App() {
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
+            <Route path="/admin/entreprise" element={<AdminCompany />} />
             <Route path="/inscription" element={<Registration />} />
             <Route path="/connexion" element={<Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />} />
             <Route path="*" element={<Error />} />
