@@ -6,6 +6,7 @@ export default function AdminCompany() {
     const [showForm, setShowForm] = useState(false);
     const [siret, setSiret] = useState('');
     const [siretError, setSiretError] = useState('');
+    const [files, setFiles] = useState([]);
 
     const toggleForm = () => {
         setShowForm(!showForm);
@@ -25,6 +26,10 @@ export default function AdminCompany() {
         const value = event.target.value;
         setSiret(value);
         validateSiret(value);
+    };
+
+    const handleFileChange = (event) => {
+        setFiles(event.target.files);
     };
 
     return (
@@ -103,11 +108,18 @@ export default function AdminCompany() {
                             </div>
                         </section>
                         <section className="more-information">
-                            <h2>Complement d'information</h2>
+                            <h2>Complément d'information</h2>
                             <div className="d-flex direction-column align-start">
                                 <div className="d-flex">
                                     <label htmlFor="logo">Logo</label>
-                                    <input type="file" name="logo" id="logo" />
+                                    <input 
+                                        type="file" 
+                                        name="logo" 
+                                        id="logo" 
+                                        multiple
+                                        accept=".jpg, .jpeg, .png, .gif"
+                                        onChange={handleFileChange}
+                                    />
                                 </div>
                                 <p>Version Full (800px de large) et version picto (300px par 300px) JPG, PNG, GIF acceptés</p>
                             </div>
