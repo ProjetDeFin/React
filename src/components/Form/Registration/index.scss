@@ -54,10 +54,18 @@
   .additional-information {
     margin-top: 40px;
     width: 50%;
+    
+    select {
+      width: 100%;
+    }
 
     & > .d-flex {
       gap: 16px;
       margin-bottom: 16px;
+
+      & > .d-flex {
+        width: 100%;
+      }
     }
   }
   h3 {
