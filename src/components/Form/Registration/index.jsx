@@ -55,7 +55,7 @@ export default function FormRegistration() {
     position: '',
     organizationName: '',
     siret: '',
-    industry: '',
+    activity: '',
     category: '',
     address: '',
     addressComplement: '',
@@ -327,24 +327,43 @@ export default function FormRegistration() {
                 </div>
                 <div className="d-flex">
                   <div className="d-flex direction-column align-start">
-                    <label htmlFor="industry">Secteur d'activité</label>
-                    <input
-                      type="text"
-                      name="industry"
-                      id="industry"
-                      value={formData.industry}
+                    <label htmlFor="activity">Secteur d'activité</label>
+                    <select 
+                      name="activity" 
+                      id="activity"
+                      value={formData.activity}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="IT">Technologies de l'information</option>
+                      <option value="Finance">Finance / Banque</option>
+                      <option value="Santé">Santé / Pharmaceutique</option>
+                      <option value="Éducation">Éducation / Enseignement</option>
+                      <option value="Commerce">Commerce / Distribution</option>
+                      <option value="Industrie">Industrie</option>
+                      <option value="Consulting">Conseil / Consulting</option>
+                      <option value="Art">Art / Culture</option>
+                      <option value="Tourisme">Tourisme / Hôtellerie</option>
+                      <option value="Transport">Transport / Logistique</option>
+                      <option value="Énergie">Énergie / Environnement</option>
+                      <option value="Services">Services aux entreprises</option>
+                      <option value="Communication">Communication / Médias</option>
+                    </select>
                   </div>
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="category">Catégorie</label>
-                    <input
-                      type="text"
-                      name="category"
+                    <select 
+                      name="category" 
                       id="category"
                       value={formData.category}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="1">Services aux particuliers</option>
+                      <option value="2">Services aux entreprises</option>
+                      <option value="3">Mairie, collectivité</option>
+                      <option value="4">Association, ONG</option>
+                      <option value="5">Organismes d'état</option>
+                      <option value="6">Autres</option>
+                    </select>
                   </div>
                 </div>
                 <div className="d-flex direction-column align-start">
@@ -410,23 +429,43 @@ export default function FormRegistration() {
                 <div className="d-flex">
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="studyLevel">Niveau d'étude</label>
-                    <input
-                      type="text"
+                    <select 
                       name="studyLevel"
                       id="studyLevel"
                       value={formData.studyLevel}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="-3">3eme</option>
+                      <option value="-2">Seconde</option>
+                      <option value="-1">Premiere</option>
+                      <option value="-1">Terminal</option>
+                      <option value="0" selected>bac +0</option>
+                      <option value="1">bac +1</option>
+                      <option value="2">bac +2</option>
+                      <option value="3">bac +3</option>
+                      <option value="4">bac +4</option>
+                      <option value="5">bac +5</option>
+                      <option value="6">bac +6</option>
+                      <option value="7">bac +7</option>
+                      <option value="8">bac +8</option>
+                    </select>
                   </div>
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="diploma">Diplôme préparé</label>
-                    <input
-                      type="text"
+                    <select 
                       name="diploma"
                       id="diploma"
                       value={formData.diploma}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="1">Brevet des colleges</option>
+                      <option value="2">CAP</option>
+                      <option value="3">Baccalaureat</option>
+                      <option value="4">BTS</option>
+                      <option value="5">License</option>
+                      <option value="6">Master</option>
+                      <option value="7">Doctorat</option>
+                    </select>
                   </div>
                 </div>
                 <div className="d-flex direction-column align-start">

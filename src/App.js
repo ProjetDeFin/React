@@ -13,6 +13,7 @@ import AdminApplyJob from './pages/Admin/ApplyJob';
 import AdminOffer from './pages/Admin/Offer';
 import AdminAddOffer from './pages/Admin/AddOffer';
 import AdminCompany from './pages/Admin/Company';
+import AdminCandidat from './pages/Admin/Candidate';
 import AdminProfil from './pages/Admin/Profil';
 import Registration from './pages/Authentification/Registration';
 import RegistrationCompany from './pages/Authentification/Registration/Company';
@@ -65,6 +66,7 @@ export default function App() {
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
             <Route path="/admin/entreprise" element={<AdminCompany />} />
+            <Route path="/admin/liste-candidats" element={<AdminCandidat />} />
             <Route path="/admin/mon-profil" element={<AdminProfil />} />
             <Route path="/inscription" element={<Registration />} />
             <Route path="/connexion" element={<Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />} />

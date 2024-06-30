@@ -26,7 +26,7 @@ export default function NavbarAdmin() {
               Fiche entreprise
             </NavLink>
             <NavLink
-              to="/admin/apply"
+              to="/admin/liste-candidats"
               className="d-flex justify-start"
               activeClassName="is-active"
             >
