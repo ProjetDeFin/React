@@ -45,7 +45,7 @@ export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successTo
           localStorage.setItem('firstName', detailedResult.firstName);
           localStorage.setItem('lastName', detailedResult.lastName);
           localStorage.setItem('id', detailedResult.id);
-          console.log(setIsLoggedIn);
+          localStorage.setItem('role', decoded.roles[0]);
           setIsLoggedIn(true);
           successToast('Login successful');
           navigate('/');
@@ -56,7 +56,6 @@ export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successTo
         errorToast('Invalid credentials.');
       }
     } catch (error) {
-      console.log(error);
       errorToast('An error occurred. Please try again.');
     }
   };
