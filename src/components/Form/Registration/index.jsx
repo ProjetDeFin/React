@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import './index.scss';
 
 const skillOptions = [
@@ -72,7 +73,7 @@ export default function FormRegistration() {
     skills: [],
     languages: []
   });
-
+  const animatedComponents = makeAnimated();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -501,6 +502,7 @@ export default function FormRegistration() {
                       className="basic-multi-select"
                       classNamePrefix="select"
                       onChange={handleSkillsChange}
+                      components={animatedComponents}
                     />
                   </div>
                   <div className="d-flex direction-column align-start">
@@ -510,6 +512,7 @@ export default function FormRegistration() {
                       name="language"
                       options={languageOptions}
                       className="basic-multi-select"
+                      components={animatedComponents}
                       classNamePrefix="select"
                       onChange={handleLanguagesChange}
                     />
