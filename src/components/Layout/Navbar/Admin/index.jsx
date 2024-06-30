@@ -10,6 +10,14 @@ export default function NavbarAdmin() {
           <h3>Mon compte</h3>
           <div className="d-flex direction-column align-start menu-admin">
             <NavLink
+              to="/admin/mon-profil"
+              className="d-flex justify-start"
+              activeClassName="is-active"
+            >
+              <Icon icon="carbon:user-profile" />
+              Mon profil
+            </NavLink>
+            <NavLink
               to="/admin/entreprise"
               className="d-flex justify-start"
               activeClassName="is-active"
