@@ -39,12 +39,13 @@ const languageOptions = [
 
 export default function FormRegistration() {
   const location = useLocation();
-  const isEntreprise = location.pathname === '/inscription/entreprise';
-  const isEtudiant = location.pathname === '/inscription/etudiant';
-  const isMyProfil = location.pathname === '/admin/mon-profil';
+
+  let isStudent = location.pathname === '/inscription/etudiant';
+  let isCompany = location.pathname === '/inscription/entreprise';
+  const isMyProfile = location.pathname === '/admin/mon-profil';
 
   const [formData, setFormData] = useState({
-    gender: 'homme',
+    gender: 'man',
     firstName: '',
     lastName: '',
     email: '',
@@ -64,14 +65,16 @@ export default function FormRegistration() {
     studyLevel: '',
     diploma: '',
     schoolName: '',
-    profilPicture: '',
+    profilePicture: '',
     cv: '',
     personalWebsite: '',
     linkedin: '',
     drivingLicense: false,
     disability: false,
     skills: [],
-    languages: []
+    languages: [],
+    isStudent,
+    isCompany,
   });
   const animatedComponents = makeAnimated();
   const [showPassword, setShowPassword] = useState(false);
@@ -81,7 +84,7 @@ export default function FormRegistration() {
 
   const validatePassword = (password, confirmPassword) => {
     const minLength = /^(?=.{8,})/;
-    const specialChar = /^(?=.*[!@#$%^&*])/;
+    const specialChar = /^(?=.*[!@#$.%^&*])/;
     const digit = /^(?=.*\d)/;
     const uppercase = /^(?=.*[A-Z])/;
 
@@ -132,7 +135,7 @@ export default function FormRegistration() {
       formData.confirmPassword,
     );
 
-    if (isEntreprise && !validateSiret(formData.siret)) {
+    if (isCompany && !validateSiret(formData.siret)) {
       errorMessages.push('Le numéro SIRET est invalide.');
     }
 
@@ -192,9 +195,9 @@ export default function FormRegistration() {
                     value={formData.gender}
                     onChange={handleInputChange}
                   >
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                    <option value="non-binaire">Non binaire</option>
+                    <option value="man">Homme</option>
+                    <option value="woman">Femme</option>
+                    <option value="other">Non binaire</option>
                   </select>
                 </div>
                 <div className="d-flex direction-column align-start">
@@ -273,7 +276,7 @@ export default function FormRegistration() {
                 </div>
               </div>
               <div className="d-flex">
-                {isEntreprise && (
+                {isCompany && (
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="position">Fonction / poste</label>
                     <input
@@ -297,7 +300,7 @@ export default function FormRegistration() {
                 </div>
               </div>
             </section>
-            {isEntreprise && (
+            {isCompany && (
               <section className="organisation">
                 <h3>Votre organisation</h3>
                 <div className="d-flex">
@@ -402,7 +405,7 @@ export default function FormRegistration() {
                 </div>
               </section>
             )}
-            {(isEtudiant || isMyProfil) && (
+            {(isStudent || isMyProfile) && (
               <section className="additional-information">
                 <div className="d-flex">
                   <div className="d-flex direction-column align-start">
@@ -436,15 +439,15 @@ export default function FormRegistration() {
                     onChange={handleInputChange}
                   />
                 </div>
-                {isMyProfil && (
+                {isMyProfile && (
                   <div className="my-profil">
                   <div className="d-flex direction-column align-start">
-                    <label htmlFor="profilPicture">Photo de profil</label>
+                    <label htmlFor="profilePicture">Photo de profil</label>
                     <input
                       type="file"
-                      name="profilPicture"
-                      id="profilPicture"
-                      value={formData.profilPicture}
+                      name="profilePicture"
+                      id="profilePicture"
+                      value={formData.profilePicture}
                       onChange={handleInputChange}
                     />
                   </div>
