@@ -71,6 +71,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   localStorage.removeItem('id');
                   localStorage.removeItem('firstName');
                   localStorage.removeItem('lastName');
+                  localStorage.removeItem('role');
                   setIsLoggedIn(false);
                 }}
               >
