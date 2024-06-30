@@ -16,7 +16,9 @@ export default function CompanyDetail() {
 
   const fetchCompanyDetails = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies/${id}`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}api/companies/${id}`,
+      );
       const data = await response.json();
       setCompany(data);
       setOffers(data.offers); // Assumes the API returns offers within the company data
@@ -45,7 +47,6 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Activité</p>
-
                 <p>{company.activity}</p>
               </div>
             </div>
@@ -187,12 +188,20 @@ export default function CompanyDetail() {
                     <p>{contact.name}</p>
                     <div className="d-flex justify-start">
                       {contact.linkedin && (
-                        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={contact.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Icon icon="mdi:linkedin" />
                         </a>
                       )}
                       {contact.email && (
-                        <a href={`mailto:${contact.email}`} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={`mailto:${contact.email}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Icon icon="carbon:email" />
                         </a>
                       )}
@@ -211,7 +220,7 @@ export default function CompanyDetail() {
             <h3>Offres de stage proposées</h3>
             <div className="d-flex wrap justify-start">
               {offers
-                .filter(offer => offer.type === 'internship')
+                .filter((offer) => offer.type === 'internship')
                 .map((offer, index) => (
                   <ThumbnailResumeOffer
                     key={index}
@@ -228,7 +237,7 @@ export default function CompanyDetail() {
             <h3>Offres d'alternance proposées</h3>
             <div className="d-flex wrap justify-start">
               {offers
-                .filter(offer => offer.type === 'apprenticeship')
+                .filter((offer) => offer.type === 'apprenticeship')
                 .map((offer, index) => (
                   <ThumbnailResumeOffer
                     key={index + offers.length} // To ensure unique keys

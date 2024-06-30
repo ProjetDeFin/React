@@ -1,37 +1,62 @@
 import './index.scss';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
-export default function Login() {
+export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successToast }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
         },
-        body: JSON.stringify({ email, password }),
-      });
+      );
 
       const result = await response.json();
 
       if (response.ok) {
-        setMessage('Login successful!');
         localStorage.setItem('token', result.token);
+        const decoded = jwtDecode(result.token);
+        const detailedResponse = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/login/details/${decoded.username}`,
+        );
+        if (detailedResponse.ok) {
+          const detailedResult = await detailedResponse.json();
+          localStorage.setItem('firstName', detailedResult.firstName);
+          localStorage.setItem('lastName', detailedResult.lastName);
+          localStorage.setItem('id', detailedResult.id);
+          localStorage.setItem('role', decoded.roles[0]);
+          setIsLoggedIn(true);
+          successToast('Login successful');
+          navigate('/');
+        } else {
+          errorToast('Invalid server response.');
+        }
       } else {
-        setMessage(result.message || 'Login failed. Please try again.');
+        errorToast('Invalid credentials.');
       }
     } catch (error) {
-      setMessage('An error occurred. Please try again.');
+      errorToast('An error occurred. Please try again.');
     }
   };
 
@@ -44,16 +69,17 @@ export default function Login() {
       <div className="d-flex justify-center align-center">
         <div className="content">
           <div className="text-center">
-            <h2>BIENVENUE</h2>
+            <h2>Bienvenue</h2>
             <h3>Connectez-vous pour continuer</h3>
             <p>
-              Pas encore de compte ? <Link to="/inscription">Créez-en un !</Link>
+              Pas encore de compte ?{' '}
+              <Link to="/inscription">Créez-en un !</Link>
             </p>
-            <form method="post">
+            <form method="post" onSubmit={handleSubmit}>
               <div className="d-flex direction-column align-start">
                 <label htmlFor="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   placeholder="jean.bernard@gmail.com"
@@ -77,14 +103,17 @@ export default function Login() {
                     className="toggle-visibility btn"
                     onClick={toggleShowPassword}
                   >
-                    {showPassword ? <Icon icon="mdi:eye-off" /> : <Icon icon="mdi:eye" />}
+                    {showPassword ? (
+                      <Icon icon="mdi:eye-off" />
+                    ) : (
+                      <Icon icon="mdi:eye" />
+                    )}
                   </button>
                 </div>
               </div>
               <input className="btn" type="submit" value="SE CONNECTER" />
               <p className="text-right">Mot de passe oublié ?</p>
             </form>
-            {message && <p className="message">{message}</p>}
           </div>
         </div>
       </div>

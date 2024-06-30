@@ -20,7 +20,7 @@ export default function Offers({ type }) {
     levels: [],
     duration: [],
     type: getTypeTranslation(),
-    distance: 100
+    distance: 100,
   });
   const [offers, setOffers] = useState([]);
   const [order, setOrder] = useState('ASC');
@@ -53,36 +53,36 @@ export default function Offers({ type }) {
 
   const handleProfileChange = (e) => {
     const { value, checked } = e.target;
-    setFilter(prevState => {
+    setFilter((prevState) => {
       const profiles = checked
         ? [...prevState.profiles, value]
-        : prevState.profiles.filter(profile => profile !== value);
+        : prevState.profiles.filter((profile) => profile !== value);
       return { ...prevState, profiles };
     });
   };
 
   const handleLevelChange = (e) => {
     const { value, checked } = e.target;
-    setFilter(prevState => {
+    setFilter((prevState) => {
       const levels = checked
         ? [...prevState.levels, value]
-        : prevState.levels.filter(level => level !== value);
+        : prevState.levels.filter((level) => level !== value);
       return { ...prevState, levels };
     });
   };
 
   const handleDurationChange = (e) => {
     const { value, checked } = e.target;
-    setFilter(prevState => {
+    setFilter((prevState) => {
       const duration = checked
         ? [...prevState.duration, value]
-        : prevState.duration.filter(d => d !== value);
+        : prevState.duration.filter((d) => d !== value);
       return { ...prevState, duration };
     });
   };
 
   const handleDistanceChange = (e) => {
-    setFilter(prevState => ({ ...prevState, distance: e.target.value }));
+    setFilter((prevState) => ({ ...prevState, distance: e.target.value }));
   };
 
   const handleSortChange = (e) => {
@@ -95,7 +95,10 @@ export default function Offers({ type }) {
     <div className="offers">
       <div className="grey text-center">
         <div className="container">
-          <p className="text-left">Accueil / Offre / <span className="purple">{getTypeTranslation()}</span></p>
+          <p className="text-left">
+            Accueil / Offre /{' '}
+            <span className="purple">{getTypeTranslation()}</span>
+          </p>
           <h2>
             Offres de{' '}
             <span className="turquoise">
@@ -117,9 +120,22 @@ export default function Offers({ type }) {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {['Design', 'Commercial', 'Marketing', 'Business', 'Management', 'Finance', 'Industrie', 'Informatique'].map(profile => (
+                {[
+                  'Design',
+                  'Commercial',
+                  'Marketing',
+                  'Business',
+                  'Management',
+                  'Finance',
+                  'Industrie',
+                  'Informatique',
+                ].map((profile) => (
                   <div className="d-flex" key={profile}>
-                    <input type="checkbox" value={profile} onChange={handleProfileChange} />
+                    <input
+                      type="checkbox"
+                      value={profile}
+                      onChange={handleProfileChange}
+                    />
                     <label>{profile}</label>
                   </div>
                 ))}
@@ -136,7 +152,7 @@ export default function Offers({ type }) {
                   'Licence',
                   'BTS, DUT, BUT',
                   'BAC',
-                  'CAP, BEP'
+                  'CAP, BEP',
                 ].map((level) => (
                   <div className="d-flex" key={level}>
                     <input
@@ -159,7 +175,7 @@ export default function Offers({ type }) {
                   'Moins de 2 mois',
                   'Entre 2 et 6 mois',
                   'Entre 6 et 12 mois',
-                  'Plus de 12 mois'
+                  'Plus de 12 mois',
                 ].map((duration) => (
                   <div className="d-flex" key={duration}>
                     <input
@@ -179,7 +195,13 @@ export default function Offers({ type }) {
                 </p>
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
-              <input type="range" min="0" max="100" value={filter.distance} onChange={handleDistanceChange} />
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={filter.distance}
+                onChange={handleDistanceChange}
+              />
               <p className="distance-text">À moins de {filter.distance} km</p>
             </div>
           </section>
@@ -187,11 +209,17 @@ export default function Offers({ type }) {
             <div className="d-flex">
               <div>
                 <h3>Résultats</h3>
-                <p>{ offers && offers.length > 0 ? offers.length : 0 } entreprises trouvées</p>
+                <p>
+                  {offers && offers.length > 0 ? offers.length : 0} entreprises
+                  trouvées
+                </p>
               </div>
               <div className="d-flex">
                 <p>Trier par :</p>
-                <select value={orderBy+'-'+order} onChange={handleSortChange}>
+                <select
+                  value={orderBy + '-' + order}
+                  onChange={handleSortChange}
+                >
                   <option value="updatedAt-ASC">
                     Date de publication (plus récent)
                   </option>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import ThumbnailOfferCompany from '../../components/Card/ThumbnailOfferCompany';
 import './index.scss';
+import axios from 'axios';
 
 export default function Companies() {
   const [filter, setFilter] = useState({
@@ -21,15 +22,22 @@ export default function Companies() {
       order: order,
       orderBy: orderBy,
       page: 1,
-      limit: 10
+      limit: 10,
     });
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`)
-      .then(r => r.json())
-      .then((data) => {
-        setCompanies(data);
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log(response);
       });
-  }, [filter, orderBy, order]);
+    // console.log(response);
+    // const data = await response.json();
+    // setCompanies(data);
+  }, [filter, sort]);
 
   const handleSectorChange = (e) => {
     const { value, checked } = e.target;
@@ -75,7 +83,9 @@ export default function Companies() {
     <div className="company-list">
       <div className="grey text-center">
         <div className="container">
-          <p className="text-left">Accueil / <span className="purple">Entreprises</span></p>
+          <p className="text-left">
+            Accueil / <span className="purple">Entreprises</span>
+          </p>
           <h2>
             Liste des <span className="turquoise">entreprises</span>
           </h2>

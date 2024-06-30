@@ -2,20 +2,20 @@ import './index.scss';
 import { Link } from 'react-router-dom';
 
 export default function OfferCompany({
-                                       logo,
-                                       typeOffer,
-                                       nameOffer,
-                                       nameCompany,
-                                       locationCompany,
-                                       tags,
-                                       descriptionCompany,
-                                       firstTag,
-                                       secondTag,
-                                       inOfferPage = false,
-                                       restDay,
-                                       period,
-                                       offerId
-                                     }) {
+  logo,
+  typeOffer,
+  nameOffer,
+  nameCompany,
+  locationCompany,
+  tags,
+  descriptionCompany,
+  firstTag,
+  secondTag,
+  inOfferPage = false,
+  restDay,
+  period,
+  offerId,
+}) {
   const calculateProgress = (restDay) => {
     return Math.max(0, Math.min((restDay / 100) * 100, 100));
   };
@@ -53,15 +53,25 @@ export default function OfferCompany({
           <p className="description">
             {nameCompany} .{' '}
             <span>
-              {locationCompany} . {period} ({restDay} {restDay > 1 ? 'jours' : 'jour'})
+              {locationCompany} . {period} ({restDay}{' '}
+              {restDay > 1 ? 'jours' : 'jour'})
             </span>
           </p>
           <div className="d-flex justify-start">
             <p className="type-offer">{typeOffer}</p>
             <span className="line"></span>
-            {tags && tags.map((tag) => (
-              <p style={{ backgroundColor: `${tag.color}50`, color: tag.color }} className="tag">{tag.name}</p>
-            ))}
+            {tags &&
+              tags.map((tag) => (
+                <p
+                  style={{
+                    backgroundColor: `${tag.color}50`,
+                    color: tag.color,
+                  }}
+                  className="tag"
+                >
+                  {tag.name}
+                </p>
+              ))}
           </div>
         </div>
         <div>

@@ -10,7 +10,7 @@ export default function NavbarAdmin() {
           <h3>Mon compte</h3>
           <div className="d-flex direction-column align-start menu-admin">
             <NavLink
-              to=""
+              to="/admin/entreprise"
               className="d-flex justify-start"
               activeClassName="is-active"
             >
