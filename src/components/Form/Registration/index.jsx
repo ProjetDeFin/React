@@ -500,6 +500,7 @@ export default function FormRegistration() {
                       name="skills"
                       options={skillOptions}
                       className="basic-multi-select"
+                      closeMenuOnSelect={false}
                       classNamePrefix="select"
                       onChange={handleSkillsChange}
                       components={animatedComponents}
@@ -512,6 +513,7 @@ export default function FormRegistration() {
                       name="language"
                       options={languageOptions}
                       className="basic-multi-select"
+                      closeMenuOnSelect={false}
                       components={animatedComponents}
                       classNamePrefix="select"
                       onChange={handleLanguagesChange}
