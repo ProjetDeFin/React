@@ -240,6 +240,7 @@ export default function OfferDetail() {
                   <img key={index} src={`${process.env.REACT_APP_API_URL}${photo}`} alt={offer.companyName} />
                 ))}
               </div>
+              <Map lat={offer.companyLat} lng={offer.companyLng} />
             </div>
           </div>
         </section>
