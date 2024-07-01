@@ -1,4 +1,4 @@
-import Link from "../../../components/Link";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import ListAdmin from "../../../components/List/Admin";
 import './index.scss'
