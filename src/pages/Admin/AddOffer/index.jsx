@@ -372,17 +372,17 @@ export default function AddAdminOffer() {
                       </p>
                     </div>
                     <div className="d-flex direction-column align-start">
-                    <textarea
-                      name="profile"
-                      id="profile"
-                      placeholder="Saissez votre texte ici"
-                      value={formData.profile}
-                      onChange={handleInputChange}
-                    ></textarea>
-                    <p>{formData.profile.length} caractères</p>
-                    {errorMessages.profile && (
-                      <p className="error-message">{errorMessages.profile}</p>
-                    )}
+                      <textarea
+                        name="profile"
+                        id="profile"
+                        placeholder="Saissez votre texte ici"
+                        value={formData.profile}
+                        onChange={handleInputChange}
+                      ></textarea>
+                      <p>{formData.profile.length} caractères</p>
+                      {errorMessages.profile && (
+                        <p className="error-message">{errorMessages.profile}</p>
+                      )}
                     </div>
                   </div>
                 </div>
