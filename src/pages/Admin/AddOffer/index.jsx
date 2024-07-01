@@ -2,14 +2,79 @@ import './index.scss';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
+
+const skillOptions = [
+  { value: 'javascript', label: 'JavaScript' },
+  { value: 'react', label: 'React' },
+  { value: 'node', label: 'Node.js' },
+  { value: 'python', label: 'Python' },
+  { value: 'java', label: 'Java' },
+];
+
+const jobsProfils = [
+  { value: 'developer', label: 'Développeur' },
+  { value: 'designer', label: 'Designer' },
+  { value: 'project_manager', label: 'Chef de projet' },
+  { value: 'data_scientist', label: 'Data Scientist' },
+  { value: 'product_manager', label: 'Product Manager' },
+  { value: 'qa_engineer', label: 'Ingénieur QA' },
+  { value: 'devops_engineer', label: 'Ingénieur DevOps' },
+  { value: 'hr_specialist', label: 'Spécialiste RH' },
+  { value: 'marketing_specialist', label: 'Spécialiste Marketing' },
+  { value: 'sales_representative', label: 'Représentant des ventes' },
+  { value: 'customer_support', label: 'Support client' },
+  { value: 'financial_analyst', label: 'Analyste financier' },
+  { value: 'business_analyst', label: 'Analyste commercial' },
+  { value: 'consultant', label: 'Consultant' },
+  { value: 'content_writer', label: 'Rédacteur de contenu' },
+  { value: 'social_media_manager', label: 'Responsable des réseaux sociaux' },
+  { value: 'seo_specialist', label: 'Spécialiste SEO' },
+  { value: 'network_engineer', label: 'Ingénieur réseau' },
+];
+
+const animatedComponents = makeAnimated();
 
 export default function AddAdminOffer() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    offerType: [],
+    salary: '',
+    categories: '',
+    jobsProfils: [],
+    skills: [],
+    about: '',
+    mission: '',
+    profile: '',
+  });
   const navigate = useNavigate();
 
   if (localStorage.getItem('role') !== 'ROLE_COMPANY_RESPONSIBLE') {
     navigate('/admin/mon-profil');
   }
+
+  const handleJobsProfilsChange = (selectedOptions) => {
+    setFormData({ ...formData, jobsProfils: selectedOptions });
+  };
+
+  const handleSkillsChange = (selectedOptions) => {
+    setFormData({ ...formData, skills: selectedOptions });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    const updatedOptions = checked
+      ? [...formData.offerType, name]
+      : formData.offerType.filter((item) => item !== name);
+    setFormData({ ...formData, offerType: updatedOptions });
+  };
 
   const nextStep = (e) => {
     e.preventDefault();
@@ -23,6 +88,24 @@ export default function AddAdminOffer() {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Ici, vous pouvez envoyer les données formData vers votre API ou effectuer d'autres actions nécessaires.
+    console.log(formData);
+    // Exemple d'envoi vers l'API
+    // fetch('votre_url', {
+    //   method: 'POST',
+    //   body: JSON.stringify(formData),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // }).then(response => {
+    //   // Gérer la réponse de l'API
+    // }).catch(error => {
+    //   console.error('Erreur lors de l\'envoi des données', error);
+    // });
   };
 
   return (
@@ -67,7 +150,7 @@ export default function AddAdminOffer() {
             </div>
           </div>
           <div className="content-offer">
-            <form method="post">
+            <form onSubmit={handleSubmit}>
               <div className={`${currentStep === 1 ? 'active' : 'd-none'}`}>
                 <div className="block">
                   <div className="d-flex justify-start">
@@ -78,9 +161,11 @@ export default function AddAdminOffer() {
                     <div>
                       <input
                         type="text"
-                        name="name-offer"
+                        name="name"
                         id="name-offer"
                         placeholder="ex: Assistant marketing"
+                        value={formData.name}
+                        onChange={handleInputChange}
                       />
                       <p>Au moins 50 caractères</p>
                     </div>
@@ -94,12 +179,24 @@ export default function AddAdminOffer() {
                     <div>
                       <div className="d-flex direction-column align-start">
                         <div className="d-flex">
-                          <input type="checkbox" name="" id="" checked />
-                          <label htmlFor="">Stage</label>
+                          <input
+                            type="checkbox"
+                            name="stage"
+                            id="stage"
+                            checked={formData.offerType.includes('stage')}
+                            onChange={handleCheckboxChange}
+                          />
+                          <label htmlFor="stage">Stage</label>
                         </div>
                         <div className="d-flex">
-                          <input type="checkbox" name="" id="" />
-                          <label htmlFor="">Alternance</label>
+                          <input
+                            type="checkbox"
+                            name="alternance"
+                            id="alternance"
+                            checked={formData.offerType.includes('alternance')}
+                            onChange={handleCheckboxChange}
+                          />
+                          <label htmlFor="alternance">Alternance</label>
                         </div>
                       </div>
                     </div>
@@ -113,13 +210,13 @@ export default function AddAdminOffer() {
                     <div>
                       <input
                         type="text"
-                        name="name-offer"
-                        id="name-offer"
+                        name="salary"
+                        id="salary"
                         placeholder="Montants par mois"
+                        value={formData.salary}
+                        onChange={handleInputChange}
                       />
-                      <p>
-                        575 € par mois minimum pour les stages de plus de 2 mois
-                      </p>
+                      <p>575 € par mois minimum pour les stages de plus de 2 mois</p>
                     </div>
                   </div>
                 </div>
@@ -130,12 +227,17 @@ export default function AddAdminOffer() {
                       <p>You can select multiple job categories</p>
                     </div>
                     <div>
-                      <select name="" id="">
+                      <select
+                        name="categories"
+                        id="categories"
+                        value={formData.categories}
+                        onChange={handleInputChange}
+                      >
                         <option value="" disabled selected>
                           Choisir le type de job
                         </option>
-                        <option value="">Alternance</option>
-                        <option value="internship">Stage</option>
+                        <option value="alternance">Alternance</option>
+                        <option value="stage">Stage</option>
                       </select>
                     </div>
                   </div>
@@ -146,7 +248,18 @@ export default function AddAdminOffer() {
                       <h4>Profils métiers</h4>
                       <p>Ajoutez les métiers recherchés</p>
                     </div>
-                    <div></div>
+                    <div>
+                      <Select
+                        isMulti
+                        name="jobsProfils"
+                        options={jobsProfils}
+                        className="basic-multi-select"
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        classNamePrefix="select"
+                        onChange={handleJobsProfilsChange}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="block last">
@@ -155,7 +268,18 @@ export default function AddAdminOffer() {
                       <h4>Compétences</h4>
                       <p>Ajoutez les compétences recherchées</p>
                     </div>
-                    <div></div>
+                    <div>
+                      <Select
+                        isMulti
+                        name="skills"
+                        options={skillOptions}
+                        className="basic-multi-select"
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        classNamePrefix="select"
+                        onChange={handleSkillsChange}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="d-flex justify-end">
@@ -172,9 +296,11 @@ export default function AddAdminOffer() {
                       <p>Texte d'introduction qui résume l'offre</p>
                     </div>
                     <textarea
-                      name=""
-                      id=""
+                      name="about"
+                      id="about"
                       placeholder="Saissez votre texte ici"
+                      value={formData.about}
+                      onChange={handleInputChange}
                     ></textarea>
                   </div>
                 </div>
@@ -188,9 +314,11 @@ export default function AddAdminOffer() {
                       </p>
                     </div>
                     <textarea
-                      name=""
-                      id=""
+                      name="mission"
+                      id="mission"
                       placeholder="Saissez votre texte ici"
+                      value={formData.mission}
+                      onChange={handleInputChange}
                     ></textarea>
                   </div>
                 </div>
@@ -204,9 +332,11 @@ export default function AddAdminOffer() {
                       </p>
                     </div>
                     <textarea
-                      name=""
-                      id=""
+                      name="profile"
+                      id="profile"
                       placeholder="Saissez votre texte ici"
+                      value={formData.profile}
+                      onChange={handleInputChange}
                     ></textarea>
                   </div>
                 </div>
