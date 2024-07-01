@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import OfferDetail from './pages/OfferDetail';
 import CompanyDetail from './pages/CompanyDetail';
 import ApplyJobWrapper from './pages/ApplyJobWrapper';
+import Validation from './pages/Authentification/Validation';
 import AdminApplyJob from './pages/Admin/ApplyJob';
 import AdminOffer from './pages/Admin/Offer';
 import AdminAddOffer from './pages/Admin/AddOffer';
@@ -62,6 +63,7 @@ export default function App() {
               path="/inscription/etudiant"
               element={<RegistrationStudent />}
             />
+            <Route path="/profil/validation/token" element={<Validation />} />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
