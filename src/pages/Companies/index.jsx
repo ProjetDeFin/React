@@ -11,30 +11,34 @@ export default function Companies() {
     size: [],
     distance: 50,
   });
-  const [sort, setSort] = useState('alphaAZ');
   const [allSectorsChecked, setAllSectorsChecked] = useState(true);
   const [companies, setCompanies] = useState([]);
+  const [order, setOrder] = useState('ASC');
+  const [orderBy, setOrderBy] = useState('name');
 
   useEffect(() => {
     const queryParams = new URLSearchParams({
       filters: JSON.stringify(filter),
-      order: sort,
-      orderBy: 'name',
+      order: order,
+      orderBy: orderBy,
       page: 1,
       limit: 10
     });
 
-    axios.get(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      console.log(response);
-    })
-    // console.log(response);
-    // const data = await response.json();
-    // setCompanies(data);
-  }, [filter, sort]);
+    fetch(`${process.env.REACT_APP_API_URL}/api/companies?${queryParams}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCompanies(data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch companies:', error);
+      });
+  }, [filter, orderBy, order]);
 
   const handleSectorChange = (e) => {
     const { value, checked } = e.target;
@@ -71,7 +75,9 @@ export default function Companies() {
   };
 
   const handleSortChange = (e) => {
-    setSort(e.target.value);
+    const values = e.target.value.split('-');
+    setOrderBy(values[0]);
+    setOrder(values[1]);
   };
 
   return (
@@ -217,23 +223,21 @@ export default function Companies() {
               </div>
               <div className="d-flex">
                 <p>Trier par :</p>
-                <select value={sort} onChange={handleSortChange}>
-                  <option value="alphaAZ">Nom (A-Z)</option>
-                  <option value="alphaZA">Nom (Z-A)</option>
+                <select value={orderBy+'-'+order} onChange={handleSortChange}>
+                  <option value="title-ASC">Alphabétique (A-Z)</option>
+                  <option value="title-DESC">Alphabétique (Z-A)</option>
                 </select>
               </div>
             </div>
             <div className="d-flex wrap">
-              {companies.map((company, index) => (
+              {companies.map((company) => (
                 <ThumbnailOfferCompany
-                  key={index}
-                  // mettre company.id
+                  key={company.id}
                   logoCompany={company.logo}
-                  nameCompany={company.nameCompany}
-                  descriptionCompany={company.descriptionCompany}
-                  availablePosition={company.labelPoste}
-                  firstTag={company.tags[0]}
-                  secondTag={company.tags[1]}
+                  nameCompany={company.name}
+                  descriptionCompany={company.description}
+                  tags={company.sectors}
+                  idCompany={company.id}
                 />
               ))}
             </div>

@@ -81,8 +81,7 @@ export default function Home() {
                 nameCompany={offer.company.name}
                 locationCompany={offer.company.city || ''}
                 descriptionCompany={offer.description}
-                firstTag={offer.jobProfiles[0].name || ''}
-                secondTag={offer.jobProfiles[1].name || ''}
+                tags={offer.jobProfiles}
                 offerId={offer.id}
               />
             ))}

@@ -9,8 +9,6 @@ export default function OfferCompany({
                                        locationCompany,
                                        tags,
                                        descriptionCompany,
-                                       firstTag,
-                                       secondTag,
                                        inOfferPage = false,
                                        restDay,
                                        period,
@@ -23,21 +21,24 @@ export default function OfferCompany({
   const progress = calculateProgress(restDay);
 
   const defaultTemplate = (
-    <div className="company-card">
-      <div className="d-flex">
-        <img src={`/img/logo/${logo}`} alt="" />
-        <p className="type-offer">{typeOffer}</p>
+    <Link to={`/detail-offre/${offerId}`}>
+      <div className="company-card">
+        <div className="d-flex">
+          <img src={`/img/logo/${logo}`} alt="" />
+          <p className="type-offer">{typeOffer}</p>
+        </div>
+        <h5 className="name-offer">{nameOffer}</h5>
+        <p className="detail-company">
+          {nameCompany} . {locationCompany}
+        </p>
+        <p className="description-company">{descriptionCompany}</p>
+        <div className="d-flex tag-offer justify-start">
+          {tags && tags.map((tag) => (
+            <p style={{ backgroundColor: `${tag.color}50`, color: tag.color }} className="tag">{tag.name}</p>
+          ))}
+        </div>
       </div>
-      <h5 className="name-offer">{nameOffer}</h5>
-      <p className="detail-company">
-        {nameCompany} . {locationCompany}
-      </p>
-      <p className="description-company">{descriptionCompany}</p>
-      <div className="d-flex tag-offer justify-start">
-        <p className={`tag ${firstTag}`}>{firstTag}</p>
-        <p className={`tag ${secondTag}`}>{secondTag}</p>
-      </div>
-    </div>
+    </Link>
   );
 
   const offerPageTemplate = (
