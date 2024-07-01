@@ -129,6 +129,7 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
     isStudent: false,
     isCompany: false,
   });
+
   const animatedComponents = makeAnimated();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -188,6 +189,84 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
     setFormData({ ...formData, languages: selectedOptions });
   };
 
+
+  const fieldNamesInFrench = {
+    gender: 'Genre',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    email: 'Email',
+    password: 'Mot de passe',
+    confirmPassword: 'Confirmation du mot de passe',
+    mobile: 'Tel. mobile',
+    position: 'Fonction / poste',
+    organizationName: 'Nom de l\'organisation',
+    siret: 'Siret',
+    activity: 'Secteur d\'activité',
+    category: 'Catégorie',
+    address: 'Adresse',
+    addressComplement: 'Complément d\'adresse',
+    postalCode: 'Code postal',
+    city: 'Ville',
+    organizationPhone: 'Téléphone de l\'organisation',
+    studyLevel: 'Niveau d\'étude',
+    diploma: 'Diplôme préparé',
+    schoolName: 'Nom de l\'établissement',
+    profilePicture: 'Photo de profil',
+    cv: 'CV',
+    personalWebsite: 'Adresse de votre site personnel',
+    linkedin: 'Lien vers votre Linkedin',
+    drivingLicense: 'Permis de conduire',
+    disability: 'Forme de handicap',
+  };
+
+  const validateRequiredFields = () => {
+    let requiredFields = [];
+
+    if (isStudent) {
+      requiredFields = [
+        'gender',
+        'firstName',
+        'lastName',
+        'email',
+        'mobile',
+        'address',
+        'postalCode',
+        'city',
+        'studyLevel',
+      ];
+    } else if (isCompany) {
+      requiredFields = [
+        'gender',
+        'firstName',
+        'lastName',
+        'email',
+        'mobile',
+        'address',
+        'postalCode',
+        'city',
+        'organizationName',
+        'siret',
+        'activity',
+        'category',
+      ];
+    } else if (isMyProfile) {
+      requiredFields = [
+        'gender',
+        'firstName',
+        'lastName',
+        'email',
+        'mobile',
+        'address',
+        'postalCode',
+        'city',
+      ];
+    }
+
+    const missingFields = requiredFields.filter(field => !formData[field]);
+    const errorMessages = missingFields.map(field => `Le champ ${fieldNamesInFrench[field]} est obligatoire.`);
+    return errorMessages;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const errorMessages = validatePassword(formData.password, formData.confirmPassword);
@@ -195,6 +274,9 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
     if (formData.isCompany && !validateSiret(formData.siret)) {
       errorMessages.push('Le numéro SIRET est invalide.');
     }
+
+    const requiredFieldErrors = validateRequiredFields();
+    errorMessages.push(...requiredFieldErrors);
 
     if (errorMessages.length > 0) {
       setErrors(errorMessages);
@@ -232,6 +314,8 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
   const toggleShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
+  const renderRequiredIcon = () => <Icon icon="mdi:asterisk" className="required-icon" />;
 
   return (
       <div className="form-registration">

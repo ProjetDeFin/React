@@ -4,6 +4,13 @@
   .container form > .align-start {
     gap: 40px;
   }
+
+  .errors {
+    gap: 12px !important;
+    margin: 12px 0 20px 0;
+    color: #4640de;
+  }
+
   button[type='submit'] {
     margin-top: 12px;
     width: 100%;
