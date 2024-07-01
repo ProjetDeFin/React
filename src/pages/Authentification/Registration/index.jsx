@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './index.scss';
+import { useState } from 'react';
 
 export default function Registration() {
   const [firstName, setFirstName] = useState('');
