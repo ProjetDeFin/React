@@ -1,6 +1,9 @@
 .offer-detail {
   line-height: 160%;
-
+  .mission p,
+  .profil-wanted p{
+    width: 100%;
+  }
   .grey {
     padding: 20px 0 52px 0;
     margin-bottom: 72px;
@@ -104,6 +107,7 @@
 
           .d-flex {
             gap: 8px;
+            width: 100%;
 
             svg {
               color: #56cdad;
