@@ -1,15 +1,51 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import './index.scss';
+
+const skillOptions = [
+  { value: 'javascript', label: 'JavaScript' },
+  { value: 'react', label: 'React' },
+  { value: 'node', label: 'Node.js' },
+  { value: 'python', label: 'Python' },
+  { value: 'java', label: 'Java' },
+];
+
+const languageOptions = [
+  { value: 'french_a1', label: 'Français A1' },
+  { value: 'french_a2', label: 'Français A2' },
+  { value: 'french_b1', label: 'Français B1' },
+  { value: 'french_b2', label: 'Français B2' },
+  { value: 'english_a1', label: 'Anglais A1' },
+  { value: 'english_a2', label: 'Anglais A2' },
+  { value: 'english_b1', label: 'Anglais B1' },
+  { value: 'english_b2', label: 'Anglais B2' },
+  { value: 'german_a1', label: 'Allemand A1' },
+  { value: 'german_a2', label: 'Allemand A2' },
+  { value: 'german_b1', label: 'Allemand B1' },
+  { value: 'german_b2', label: 'Allemand B2' },
+  { value: 'italian_a1', label: 'Italien A1' },
+  { value: 'italian_a2', label: 'Italien A2' },
+  { value: 'italian_b1', label: 'Italien B1' },
+  { value: 'italian_b2', label: 'Italien B2' },
+  { value: 'chinese_a1', label: 'Chinois A1' },
+  { value: 'chinese_a2', label: 'Chinois A2' },
+  { value: 'chinese_b1', label: 'Chinois B1' },
+  { value: 'chinese_b2', label: 'Chinois B2' },
+];
+
 
 export default function FormRegistration() {
   const location = useLocation();
-  const isEntreprise = location.pathname === '/inscription/entreprise';
-  const isEtudiant = location.pathname === '/inscription/etudiant';
+
+  let isStudent = location.pathname === '/inscription/etudiant';
+  let isCompany = location.pathname === '/inscription/entreprise';
+  const isMyProfile = location.pathname === '/admin/mon-profil';
 
   const [formData, setFormData] = useState({
-    gender: 'homme',
+    gender: 'man',
     firstName: '',
     lastName: '',
     email: '',
@@ -19,7 +55,7 @@ export default function FormRegistration() {
     position: '',
     organizationName: '',
     siret: '',
-    industry: '',
+    activity: '',
     category: '',
     address: '',
     addressComplement: '',
@@ -29,8 +65,18 @@ export default function FormRegistration() {
     studyLevel: '',
     diploma: '',
     schoolName: '',
+    profilePicture: '',
+    cv: '',
+    personalWebsite: '',
+    linkedin: '',
+    drivingLicense: false,
+    disability: false,
+    skills: [],
+    languages: [],
+    isStudent,
+    isCompany,
   });
-
+  const animatedComponents = makeAnimated();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -38,7 +84,7 @@ export default function FormRegistration() {
 
   const validatePassword = (password, confirmPassword) => {
     const minLength = /^(?=.{8,})/;
-    const specialChar = /^(?=.*[!@#$%^&*])/;
+    const specialChar = /^(?=.*[!@#$.%^&*])/;
     const digit = /^(?=.*\d)/;
     const uppercase = /^(?=.*[A-Z])/;
 
@@ -48,9 +94,7 @@ export default function FormRegistration() {
       errors.push('Le mot de passe doit contenir au moins 8 caractères.');
     }
     if (!specialChar.test(password)) {
-      errors.push(
-        'Le mot de passe doit contenir au moins un caractère spécial.',
-      );
+      errors.push('Le mot de passe doit contenir au moins un caractère spécial.');
     }
     if (!digit.test(password)) {
       errors.push('Le mot de passe doit contenir au moins un chiffre.');
@@ -71,9 +115,18 @@ export default function FormRegistration() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    const val = type === 'checkbox' ? checked : value;
+    setFormData({ ...formData, [name]: val });
   };
+
+  const handleSkillsChange = (selectedOptions) => {
+    setFormData({ ...formData, skills: selectedOptions });
+  };
+
+  const handleLanguagesChange = (selectedOptions) => {
+    setFormData({...formData, languages: selectedOptions})
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -82,7 +135,7 @@ export default function FormRegistration() {
       formData.confirmPassword,
     );
 
-    if (isEntreprise && !validateSiret(formData.siret)) {
+    if (isCompany && !validateSiret(formData.siret)) {
       errorMessages.push('Le numéro SIRET est invalide.');
     }
 
@@ -142,9 +195,9 @@ export default function FormRegistration() {
                     value={formData.gender}
                     onChange={handleInputChange}
                   >
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                    <option value="non-binaire">Non binaire</option>
+                    <option value="man">Homme</option>
+                    <option value="woman">Femme</option>
+                    <option value="other">Non binaire</option>
                   </select>
                 </div>
                 <div className="d-flex direction-column align-start">
@@ -223,7 +276,7 @@ export default function FormRegistration() {
                 </div>
               </div>
               <div className="d-flex">
-                {isEntreprise && (
+                {isCompany && (
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="position">Fonction / poste</label>
                     <input
@@ -247,7 +300,7 @@ export default function FormRegistration() {
                 </div>
               </div>
             </section>
-            {isEntreprise && (
+            {isCompany && (
               <section className="organisation">
                 <h3>Votre organisation</h3>
                 <div className="d-flex">
@@ -274,24 +327,43 @@ export default function FormRegistration() {
                 </div>
                 <div className="d-flex">
                   <div className="d-flex direction-column align-start">
-                    <label htmlFor="industry">Secteur d'activité</label>
-                    <input
-                      type="text"
-                      name="industry"
-                      id="industry"
-                      value={formData.industry}
+                    <label htmlFor="activity">Secteur d'activité</label>
+                    <select 
+                      name="activity" 
+                      id="activity"
+                      value={formData.activity}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="IT">Technologies de l'information</option>
+                      <option value="Finance">Finance / Banque</option>
+                      <option value="Santé">Santé / Pharmaceutique</option>
+                      <option value="Éducation">Éducation / Enseignement</option>
+                      <option value="Commerce">Commerce / Distribution</option>
+                      <option value="Industrie">Industrie</option>
+                      <option value="Consulting">Conseil / Consulting</option>
+                      <option value="Art">Art / Culture</option>
+                      <option value="Tourisme">Tourisme / Hôtellerie</option>
+                      <option value="Transport">Transport / Logistique</option>
+                      <option value="Énergie">Énergie / Environnement</option>
+                      <option value="Services">Services aux entreprises</option>
+                      <option value="Communication">Communication / Médias</option>
+                    </select>
                   </div>
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="category">Catégorie</label>
-                    <input
-                      type="text"
-                      name="category"
+                    <select 
+                      name="category" 
                       id="category"
                       value={formData.category}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="1">Services aux particuliers</option>
+                      <option value="2">Services aux entreprises</option>
+                      <option value="3">Mairie, collectivité</option>
+                      <option value="4">Association, ONG</option>
+                      <option value="5">Organismes d'état</option>
+                      <option value="6">Autres</option>
+                    </select>
                   </div>
                 </div>
                 <div className="d-flex direction-column align-start">
@@ -352,28 +424,48 @@ export default function FormRegistration() {
                 </div>
               </section>
             )}
-            {isEtudiant && (
+            {(isStudent || isMyProfile) && (
               <section className="additional-information">
                 <div className="d-flex">
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="studyLevel">Niveau d'étude</label>
-                    <input
-                      type="text"
+                    <select 
                       name="studyLevel"
                       id="studyLevel"
                       value={formData.studyLevel}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="-3">3eme</option>
+                      <option value="-2">Seconde</option>
+                      <option value="-1">Premiere</option>
+                      <option value="-1">Terminal</option>
+                      <option value="0" selected>bac +0</option>
+                      <option value="1">bac +1</option>
+                      <option value="2">bac +2</option>
+                      <option value="3">bac +3</option>
+                      <option value="4">bac +4</option>
+                      <option value="5">bac +5</option>
+                      <option value="6">bac +6</option>
+                      <option value="7">bac +7</option>
+                      <option value="8">bac +8</option>
+                    </select>
                   </div>
                   <div className="d-flex direction-column align-start">
                     <label htmlFor="diploma">Diplôme préparé</label>
-                    <input
-                      type="text"
+                    <select 
                       name="diploma"
                       id="diploma"
                       value={formData.diploma}
                       onChange={handleInputChange}
-                    />
+                    >
+                      <option value="1">Brevet des colleges</option>
+                      <option value="2">CAP</option>
+                      <option value="3">Baccalaureat</option>
+                      <option value="4">BTS</option>
+                      <option value="5">License</option>
+                      <option value="6">Master</option>
+                      <option value="7">Doctorat</option>
+                    </select>
                   </div>
                 </div>
                 <div className="d-flex direction-column align-start">
@@ -386,6 +478,102 @@ export default function FormRegistration() {
                     onChange={handleInputChange}
                   />
                 </div>
+                {isMyProfile && (
+                  <div className="my-profil">
+                  <div className="d-flex direction-column align-start">
+                    <label htmlFor="profilePicture">Photo de profil</label>
+                    <input
+                      type="file"
+                      name="profilePicture"
+                      id="profilePicture"
+                      value={formData.profilePicture}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="d-flex">
+                    <div className="d-flex direction-column align-start">
+                      <label htmlFor="personalWebsite">Adresse de votre site personnel</label>
+                      <input
+                        type="text"
+                        name="personalWebsite"
+                        id="personalWebsite"
+                        value={formData.personalWebsite}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="d-flex direction-column align-start">
+                      <label htmlFor="linkedin">Lien vers votre Linkedin</label>
+                      <input
+                        type="text"
+                        name="linkedin"
+                        id="linkedin"
+                        value={formData.linkedin}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="d-flex">
+                    <div className="d-flex align-start">
+                      <label htmlFor="drivingLicense">Permis de conduire</label>
+                      <input
+                        type="checkbox"
+                        name="drivingLicense"
+                        id="drivingLicense"
+                        checked={formData.drivingLicense}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="d-flex align-start">
+                      <label htmlFor="disability">Forme de handicap</label>
+                      <input
+                        type="checkbox"
+                        name="disability"
+                        id="disability"
+                        checked={formData.disability}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="d-flex align-start language-skill">
+                  <div className="d-flex direction-column align-start">
+                    <label htmlFor="skills">Compétences</label>
+                    <Select
+                      isMulti
+                      name="skills"
+                      options={skillOptions}
+                      className="basic-multi-select"
+                      closeMenuOnSelect={false}
+                      classNamePrefix="select"
+                      onChange={handleSkillsChange}
+                      components={animatedComponents}
+                    />
+                  </div>
+                  <div className="d-flex direction-column align-start">
+                    <label htmlFor="skills">Languages et niveau</label>
+                    <Select
+                      isMulti
+                      name="language"
+                      options={languageOptions}
+                      className="basic-multi-select"
+                      closeMenuOnSelect={false}
+                      components={animatedComponents}
+                      classNamePrefix="select"
+                      onChange={handleLanguagesChange}
+                    />
+                  </div>
+                  </div>
+                  <div className="d-flex direction-column align-start">
+                    <label htmlFor="cv">CV</label>
+                    <input
+                      type="file"
+                      name="cv"
+                      id="cv"
+                      value={formData.cv}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  </div>
+                )}
               </section>
             )}
           </div>
