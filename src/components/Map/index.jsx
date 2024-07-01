@@ -6,11 +6,11 @@ import {
 } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '600px',
-  height: '450px'
+  width: '400px',
+  height: '400px'
 };
 
-const Map = ({ item = null, lat = null, lng = null }) => {
+const Map = ({lat = null, lng = null }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
@@ -20,12 +20,7 @@ const Map = ({ item = null, lat = null, lng = null }) => {
 
   let center = null;
 
-  if (item && item.lat && item.lng) {
-    center = {
-      lat: item.lat,
-      lng: item.lng
-    };
-  } else if (lat && lng) {
+  if (lat && lng) {
     center = {
       lat: lat,
       lng: lng
