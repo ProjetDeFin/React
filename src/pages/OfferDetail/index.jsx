@@ -54,7 +54,9 @@ export default function OfferDetail() {
                 </div>
               </div>
               <div className="d-flex">
-                <Icon icon="material-symbols-light:share-outline" />
+                <Link to={offer.companyLinkedin}>
+                  <Icon icon="material-symbols-light:share-outline" />
+                </Link>
                 <Link className="btn" to="/postuler/1">
                   Postuler
                 </Link>
@@ -168,7 +170,7 @@ export default function OfferDetail() {
               </div>
               <div className="d-flex">
                 <p className="label">Offre publiée le</p>
-                <p>{offer.formatedStartAt}</p>
+                <p>{offer.formatedStartApplyDate}</p>
               </div>
               <div className="d-flex">
                 <p className="label">Type d'offre</p>
@@ -223,7 +225,7 @@ export default function OfferDetail() {
         <section className="company-detail">
           <div className="d-flex">
             <div className="description">
-              <img src={`${process.env.REACT_APP_API_URL}/${offer.companyLogo}`} alt="" />
+              <img src={`${process.env.REACT_APP_API_URL}${offer.companyLogo}`} alt="" />
               <p>
                 {offer.companyDescription}
               </p>
@@ -234,11 +236,10 @@ export default function OfferDetail() {
             </div>
             <div className="d-flex gallery">
               <div className="d-flex direction-column">
-                <img src={`${process.env.REACT_APP_API_URL}/${offer.photo1}`} alt="" />
-                <img src={`${process.env.REACT_APP_API_URL}/${offer.photo2}`} alt="" />
-                <img src={`${process.env.REACT_APP_API_URL}/${offer.photo3}`} alt="" />
+                {offer.companyPhotos && offer.companyPhotos.map((photo) => (
+                  <img src={`${process.env.REACT_APP_API_URL}${photo}`} alt={offer.companyName} />
+                ))}
               </div>
-              <Map lat={offer.companyLat} lng={offer.companyLng} />
             </div>
           </div>
         </section>

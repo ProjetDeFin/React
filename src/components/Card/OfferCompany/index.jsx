@@ -25,7 +25,7 @@ export default function OfferCompany({
     <Link to={`/detail-offre/${offerId}`}>
       <div className="company-card">
         <div className="d-flex">
-          <img src={`/img/logo/${logo}`} alt="" />
+          <img src={`${process.env.REACT_APP_API_URL}${logo}`} alt={nameOffer} />
           <p className="type-offer">{typeOffer}</p>
         </div>
         <h5 className="name-offer">{nameOffer}</h5>
@@ -46,7 +46,7 @@ export default function OfferCompany({
     <div className="company-card-offer" key={offerId}>
       <div className="d-flex">
         <Link to={`/detail-offre/${offerId}`}>
-          <img src={`/img/logo/${logo}`} alt="" />
+          <img src={`${process.env.REACT_APP_API_URL}${logo}`} alt={nameOffer} />
         </Link>
         <div className="content">
           <Link to={`/detail-offre/${offerId}`}>
