@@ -24,14 +24,6 @@ const jobsProfils = [
   { value: 'hr_specialist', label: 'Spécialiste RH' },
   { value: 'marketing_specialist', label: 'Spécialiste Marketing' },
   { value: 'sales_representative', label: 'Représentant des ventes' },
-  { value: 'customer_support', label: 'Support client' },
-  { value: 'financial_analyst', label: 'Analyste financier' },
-  { value: 'business_analyst', label: 'Analyste commercial' },
-  { value: 'consultant', label: 'Consultant' },
-  { value: 'content_writer', label: 'Rédacteur de contenu' },
-  { value: 'social_media_manager', label: 'Responsable des réseaux sociaux' },
-  { value: 'seo_specialist', label: 'Spécialiste SEO' },
-  { value: 'network_engineer', label: 'Ingénieur réseau' },
 ];
 
 const animatedComponents = makeAnimated();
@@ -45,6 +37,11 @@ export default function AddAdminOffer() {
     categories: '',
     jobsProfils: [],
     skills: [],
+    about: '',
+    mission: '',
+    profile: '',
+  });
+  const [errorMessages, setErrorMessages] = useState({
     about: '',
     mission: '',
     profile: '',
@@ -92,6 +89,35 @@ export default function AddAdminOffer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validation des textarea
+    const { about, mission, profile } = formData;
+    let errors = {};
+    if (about.length < 300) {
+      errors = {
+        ...errors,
+        about: `Le texte doit contenir au moins 300 caractères. Actuellement : ${about.length} caractères.`,
+      };
+    }
+    if (mission.length < 300) {
+      errors = {
+        ...errors,
+        mission: `Le texte doit contenir au moins 300 caractères. Actuellement : ${mission.length} caractères.`,
+      };
+    }
+    if (profile.length < 300) {
+      errors = {
+        ...errors,
+        profile: `Le texte doit contenir au moins 300 caractères. Actuellement : ${profile.length} caractères.`,
+      };
+    }
+
+    // Afficher les erreurs si présentes
+    if (Object.keys(errors).length > 0) {
+      setErrorMessages(errors);
+      return;
+    }
+
     // Ici, vous pouvez envoyer les données formData vers votre API ou effectuer d'autres actions nécessaires.
     console.log(formData);
     // Exemple d'envoi vers l'API
@@ -216,7 +242,9 @@ export default function AddAdminOffer() {
                         value={formData.salary}
                         onChange={handleInputChange}
                       />
-                      <p>575 € par mois minimum pour les stages de plus de 2 mois</p>
+                      <p>
+                        575 € par mois minimum pour les stages de plus de 2 mois
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -233,7 +261,7 @@ export default function AddAdminOffer() {
                         value={formData.categories}
                         onChange={handleInputChange}
                       >
-                        <option value="" disabled selected>
+                        <option value="" disabled>
                           Choisir le type de job
                         </option>
                         <option value="alternance">Alternance</option>
@@ -295,13 +323,19 @@ export default function AddAdminOffer() {
                       <h4>A propos</h4>
                       <p>Texte d'introduction qui résume l'offre</p>
                     </div>
-                    <textarea
-                      name="about"
-                      id="about"
-                      placeholder="Saissez votre texte ici"
-                      value={formData.about}
-                      onChange={handleInputChange}
-                    ></textarea>
+                    <div className="d-flex direction-column align-start">
+                      <textarea
+                        name="about"
+                        id="about"
+                        placeholder="Saissez votre texte ici"
+                        value={formData.about}
+                        onChange={handleInputChange}
+                      ></textarea>
+                      <p>{formData.about.length} caractères</p>
+                      {errorMessages.about && (
+                        <p className="error-message">{errorMessages.about}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="block">
@@ -313,13 +347,19 @@ export default function AddAdminOffer() {
                         seront confiées au candidat
                       </p>
                     </div>
-                    <textarea
-                      name="mission"
-                      id="mission"
-                      placeholder="Saissez votre texte ici"
-                      value={formData.mission}
-                      onChange={handleInputChange}
-                    ></textarea>
+                    <div className="d-flex direction-column align-start">
+                      <textarea
+                        name="mission"
+                        id="mission"
+                        placeholder="Saissez votre texte ici"
+                        value={formData.mission}
+                        onChange={handleInputChange}
+                      ></textarea>
+                      <p>{formData.mission.length} caractères</p>
+                      {errorMessages.mission && (
+                        <p className="error-message">{errorMessages.mission}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="block last">
@@ -331,6 +371,7 @@ export default function AddAdminOffer() {
                         savoir-faire et de savoir-être.
                       </p>
                     </div>
+                    <div className="d-flex direction-column align-start">
                     <textarea
                       name="profile"
                       id="profile"
@@ -338,6 +379,11 @@ export default function AddAdminOffer() {
                       value={formData.profile}
                       onChange={handleInputChange}
                     ></textarea>
+                    <p>{formData.profile.length} caractères</p>
+                    {errorMessages.profile && (
+                      <p className="error-message">{errorMessages.profile}</p>
+                    )}
+                    </div>
                   </div>
                 </div>
                 <div className="d-flex">
@@ -364,6 +410,21 @@ export default function AddAdminOffer() {
                       value="Je publie mon offre"
                     />
                   </div>
+                  {errorMessages.about && (
+                    <p className="error-message">
+                      Champ "A propos" : {errorMessages.about}
+                    </p>
+                  )}
+                  {errorMessages.mission && (
+                    <p className="error-message">
+                      Champ "Mission" : {errorMessages.mission}
+                    </p>
+                  )}
+                  {errorMessages.profile && (
+                    <p className="error-message">
+                      Champ "Profil recherché" : {errorMessages.profile}
+                    </p>
+                  )}
                 </div>
                 <div className="d-flex">
                   <button className="btn" onClick={prevStep}>
