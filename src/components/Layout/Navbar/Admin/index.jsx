@@ -56,7 +56,7 @@ export default function NavbarAdmin() {
             </NavLink>
             <div className="d-flex profil">
               <img src="/img/profil-picture/avatar.jpg" alt="" />
-              <div className="d-flex direction-column align-start">
+              <div className="d-flex direction-column align-start account">
                 <h4>Olivier SALESSE</h4>
                 <p>Administrateur</p>
               </div>

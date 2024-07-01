@@ -54,6 +54,9 @@ nav {
   .account {
     gap: 1em;
   }
+  .connected .dropdown-content {
+    gap: 0 !important;
+  }
   .connected > .d-flex {
     gap: 12px;
     h4 {
