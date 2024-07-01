@@ -13,6 +13,7 @@ export default function OfferCompany({
   restDay,
   period,
   offerId,
+  duration,
 }) {
   const calculateProgress = (restDay) => {
     return Math.max(0, Math.min((restDay / 100) * 100, 100));
@@ -54,7 +55,7 @@ export default function OfferCompany({
           <p className="description">
             {nameCompany} .{' '}
             <span>
-              {locationCompany} . {period} ({restDay}{' '}
+              {locationCompany} . {period} ({duration}{' '}
               {restDay > 1 ? 'jours' : 'jour'})
             </span>
           </p>

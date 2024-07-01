@@ -37,8 +37,8 @@ export default function CompanyDetail() {
             Accueil / Entreprises / <span className="purple">MentalWorks</span>
           </p>
           <h2>{company.name}</h2>
-          <a href={company.website} className="link d-flex">
-            {company.website} <Icon icon="tabler:arrow-right" />
+          <a href={company.websiteUrl} className="link d-flex">
+            {company.websiteUrl} <Icon icon="tabler:arrow-right" />
           </a>
           <div className="d-flex summary justify-start">
             <div className="d-flex">
@@ -140,9 +140,9 @@ export default function CompanyDetail() {
                   <img src={company.photo2} alt="" />
                 </div>
                 <div className="d-flex direction-column">
-                  <img src={company.photo1} alt="" />
-                  <img src={company.photo1} alt="" />
-                  <img src={company.photo1} alt="" />
+                  <img src={company.photo3} alt="" />
+                  <img src={company.photo4} alt="" />
+                  <img src={company.photo5} alt="" />
                 </div>
               </div>
             </section>
