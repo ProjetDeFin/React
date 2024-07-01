@@ -59,10 +59,10 @@ export default function NavbarAdmin() {
               Paramètres
             </NavLink>
             <div className="d-flex profil">
-              <img src="/img/profil-picture/avatar.jpg" alt="" />
+              <img src={`${process.env.REACT_APP_API_URL}${localStorage.getItem('picture')}`} alt="avatar profil" />
               <div className="d-flex direction-column align-start account">
-                <h4>Olivier SALESSE</h4>
-                <p>Administrateur</p>
+                <h4>{`${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`}</h4>
+                <p> {localStorage.getItem('role') === 'ROLE_COMPANY_RESPONSIBLE' ? 'Administrateur' : localStorage.getItem('role') === 'ROLE_SUPER_ADMIN' ? 'Super-Administrateur' : 'Étudiant'} </p>
               </div>
             </div>
           </div>

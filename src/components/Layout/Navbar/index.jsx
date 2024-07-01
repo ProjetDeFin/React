@@ -58,12 +58,18 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
         {isLoggedIn ? (
           <div className="d-flex account connected dropdown">
             <div className="d-flex">
-              <img src="/img/profil-picture/avatar.jpg" alt="" />
-              <h4>Olivier SALESSE</h4>
+              <img src={`${process.env.REACT_APP_API_URL}${localStorage.getItem('picture')}`} alt="avatar profil" />
+              <h4>{`${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`}</h4>
             </div>
             <div className="dropdown-content d-flex direction-column">
-              <NavLink to="">Dashboard</NavLink>
-              <NavLink to="">Profil</NavLink>
+              {localStorage.getItem('role') === 'ROLE_COMPANY_RESPONSIBLE' ? (
+                <NavLink to="/admin/offres">Dashboard</NavLink>
+                ) : (
+                localStorage.getItem('role') === 'ROLE_SUPER_ADMIN' ? (
+                  <NavLink to={process.env.REACT_APP_API_URL}>Administration</NavLink>
+                ) : (''))
+              }
+              <NavLink to="/admin/mon-profil">Profil</NavLink>
               <NavLink
                 to=""
                 onClick={() => {

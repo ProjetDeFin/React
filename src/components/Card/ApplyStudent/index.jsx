@@ -16,7 +16,7 @@ export default function ApplyStudent({
     <div className="apply-student-card" key={idApply}>
       <div className="d-flex justify-start">
         <div>
-          <img src={`/img/profil-picture/${profilPicture}`} alt="" />
+          <img src={`${process.env.REACT_APP_API_URL}${profilPicture}`} alt="" />
         </div>
         <div className="description">
           <h3>{titleApply}</h3>

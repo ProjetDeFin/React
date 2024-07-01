@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </section>
       <div className="container">
-        {home.categories && <CompaniesForward companies={home.companies} />}
+        {home.companies && <CompaniesForward companies={home.companies} />}
         <section className="account-creation">
           <div className="d-flex align-start">
             <div>

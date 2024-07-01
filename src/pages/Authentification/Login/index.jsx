@@ -42,8 +42,10 @@ export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successTo
         );
         if (detailedResponse.ok) {
           const detailedResult = await detailedResponse.json();
+          console.log(detailedResult);
           localStorage.setItem('firstName', detailedResult.firstName);
           localStorage.setItem('lastName', detailedResult.lastName);
+          localStorage.setItem('picture', detailedResult.picture);
           localStorage.setItem('id', detailedResult.id);
           localStorage.setItem('role', decoded.roles[0]);
           setIsLoggedIn(true);

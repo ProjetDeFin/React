@@ -23,32 +23,42 @@ export default function Offers({ type }) {
     distance: 100,
   });
   const [offers, setOffers] = useState([]);
+  const [profiles, setProfiles] = useState([]);
+  const [levels, setLevels] = useState([]);
   const [order, setOrder] = useState('ASC');
   const [orderBy, setOrderBy] = useState('title');
 
-  const fetchOffers = async () => {
-    try {
-      const queryParams = new URLSearchParams({
-        filters: JSON.stringify(filter),
-        order: order,
-        orderBy: orderBy,
-        page: 1,
-        limit: 10,
-      });
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/offers?${queryParams}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setOffers(data);
-    } catch (error) {
-      console.error('Failed to fetch offers:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchOffers();
-  }, [filter, orderBy, order]);
+    const queryParams = new URLSearchParams({
+      filters: JSON.stringify(filter),
+      order: order,
+      orderBy: orderBy,
+      page: 1,
+      limit: 10,
+    });
+
+    fetch(`${process.env.REACT_APP_API_URL}/api/offers?${queryParams}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setOffers(data.offers);
+        setProfiles(data.jobProfiles);
+        setLevels(data.diplomas);
+      }).catch((error) => {
+        console.error('Failed to fetch offers:', error);
+      });
+    }, [filter, order, orderBy]);
 
   const handleProfileChange = (e) => {
     const { value, checked } = e.target;
@@ -119,23 +129,14 @@ export default function Offers({ type }) {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {[
-                  'Design',
-                  'Commercial',
-                  'Marketing',
-                  'Business',
-                  'Management',
-                  'Finance',
-                  'Industrie',
-                  'Informatique',
-                ].map((profile) => (
-                  <div className="d-flex" key={profile}>
+                {profiles && profiles.map((profile) => (
+                  <div className="d-flex" key={profile.id}>
                     <input
                       type="checkbox"
-                      value={profile}
+                      value={profile.name}
                       onChange={handleProfileChange}
                     />
-                    <label>{profile}</label>
+                    <label>{profile.name}</label>
                   </div>
                 ))}
               </div>
@@ -146,20 +147,14 @@ export default function Offers({ type }) {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {[
-                  'Master, DEA, DESS',
-                  'Licence',
-                  'BTS, DUT, BUT',
-                  'BAC',
-                  'CAP, BEP',
-                ].map((level) => (
-                  <div className="d-flex" key={level}>
+                { levels && levels.map((level) => (
+                  <div className="d-flex" key={level.id}>
                     <input
                       type="checkbox"
-                      value={level}
+                      value={level.name}
                       onChange={handleLevelChange}
                     />
-                    <label>{level}</label>
+                    <label>{level.name}</label>
                   </div>
                 ))}
               </div>
@@ -243,6 +238,7 @@ export default function Offers({ type }) {
                   inOfferPage={true}
                   period={offer.period}
                   restDay={offer.restDay}
+                  duration={offer.duration}
                   offerId={offer.id}
                 />
               ))}
