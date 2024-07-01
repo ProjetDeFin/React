@@ -16,7 +16,7 @@ export default function ThumbnailOfferCompany({
         </div>
         <h3>{nameCompany}</h3>
         <p className="description">{descriptionCompany}</p>
-        <div className="d-flex justify-start">
+        <div className="d-flex justify-start wrap">
           {tags && tags.map((tag) => (
             <p style={{ backgroundColor: `${tag.color}50`, color: tag.color }} className="tag">{tag.name}</p>
           ))}
