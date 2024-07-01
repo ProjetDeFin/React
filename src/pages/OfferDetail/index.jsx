@@ -4,128 +4,27 @@ import CompanyCard from '../../components/Card/OfferCompany';
 import './index.scss';
 import OfferCompany from '../../components/Card/OfferCompany';
 import { useEffect, useState } from 'react';
+import Map from '../../components/Map';
 
 export default function OfferDetail() {
-  const marketing = { name: 'Marketing', color: '#d6a196' };
-  const design = { name: 'Design', color: '#acd696' };
-  const finance = { name: 'Finance', color: '#96d6d6' };
-  const it = { name: 'Informatique', color: '#9696d6' };
   const [offer, setOffer] = useState({});
+  const [similarOffers, setSimilarOffers] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/offers/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        setOffer(data);
+    fetch(`${process.env.REACT_APP_API_URL}/api/offers/${id}`,
+{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application'
+        }}
+    )
+      .then(r => r.json())
+      .then(data => {
+      setOffer(data.offer);
+      setSimilarOffers(data.similarOffers);
       });
-  }, []);
-
-  const lastOffers = [
-    {
-      name: 'Offer 1',
-      type: 'Alternance',
-      company: {
-        name: 'Company 1',
-        logo: 'company1.png',
-        location: 'Paris',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, design],
-    },
-    {
-      name: 'Offer 2',
-      type: 'Stage',
-      company: {
-        name: 'Company 2',
-        logo: 'company1.png',
-        location: 'Lyon',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
-    },
-    {
-      name: 'Offer 3',
-      type: 'Alternance',
-      company: {
-        name: 'Company 3',
-        logo: 'company1.png',
-        location: 'Marseille',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
-    },
-    {
-      name: 'Offer 4',
-      type: 'Stage',
-      company: {
-        name: 'Company 4',
-        logo: 'company1.png',
-        location: 'Toulouse',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
-    },
-    {
-      name: 'Offer 5',
-      type: 'Stage',
-      company: {
-        name: 'Company 5',
-        logo: 'company1.png',
-        location: 'Nice',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
-    },
-    {
-      name: 'Offer 6',
-      type: 'Alternance',
-      company: {
-        name: 'Company 6',
-        logo: 'company1.png',
-        location: 'Nantes',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
-    },
-    {
-      name: 'Offer 7',
-      type: 'Stage',
-      company: {
-        name: 'Company 7',
-        logo: 'company1.png',
-        location: 'Strasbourg',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [marketing, it],
-    },
-    {
-      name: 'Offer 8',
-      type: 'Alternance',
-      company: {
-        name: 'Company 8',
-        logo: 'company1.png',
-        location: 'Bordeaux',
-      },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec.',
-      tags: [design, finance],
-    },
-  ];
-
-  const progress = 12;
+   }, [id]);
 
   return (
     <div className="offer-detail">
@@ -146,20 +45,11 @@ export default function OfferDetail() {
                     20/05/2024 au 28/08/2024(39 jours)
                   </p>
                   <div className="d-flex tag justify-start">
-                    <p className="type-offer">{lastOffers[2].type}</p>
-                    {offer.jobProfiles &&
-                      offer.jobProfiles.map((tag) => (
-                        <p
-                          className="tag"
-                          style={{
-                            backgroundColor: `${tag.color}50`,
-                            color: tag.color,
-                          }}
-                          key={tag.id}
-                        >
-                          {tag.name}
-                        </p>
-                      ))}
+                    <p className="type-offer">{offer.type}</p>
+                    {offer.jobProfiles && offer.jobProfiles.map((tag) => (
+                      <p className="tag" style={{ backgroundColor: `${tag.color}50`, color: tag.color }}
+                         key={tag.id}>{tag.name}</p>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -267,8 +157,8 @@ export default function OfferDetail() {
                 </p>
                 <div className="progress-bar-container">
                   <div
-                    className={`progress-bar ${progress > 30 ? 'high' : progress > 20 ? 'medium' : 'low'}`}
-                    style={{ width: `${progress}%` }}
+                    className={`progress-bar ${offer.restDay > 30 ? 'high' : offer.restDay > 20 ? 'medium' : 'low'}`}
+                    style={{ width: `${offer.restDay}%` }}
                   ></div>
                 </div>
               </div>
@@ -333,41 +223,22 @@ export default function OfferDetail() {
         <section className="company-detail">
           <div className="d-flex">
             <div className="description">
-              <img src="/img/logo/tesla.svg" alt="" />
+              <img src={`${process.env.REACT_APP_API_URL}/${offer.companyLogo}`} alt="" />
               <p>
-                Mentalworks est à la fois une agence web et webmarketing mais
-                aussi une SSII/ESN spécialisée dans le développement et la
-                maintenance d'applications sur-mesure.
+                {offer.companyDescription}
               </p>
-              <p>
-                Créé par des anciens de l'UTC et de l'INSSET, notre culture et
-                notre modèle atypique est un atout et une force qui nous permet
-                de couvrir l'intégralité de la chaîne de valeurs pour concevoir
-                et réaliser un site internet ou une application web de A à Z :
-                audit, conseil, ergonomie, création et webdesign, développement
-                front et back, maintenance corrective/évolutive, accompagnement
-                webmarketing et même des formations expertes.
-              </p>
-              <a href="" className="link d-flex">
-                En savoir plus sur MentalWorks
+              <Link to={`/detail-entreprise/${offer.companyId}`} className="link d-flex">
+                En savoir plus sur {offer.companyName}
                 <Icon icon="tabler:arrow-right" />
-              </a>
+              </Link>
             </div>
             <div className="d-flex gallery">
               <div className="d-flex direction-column">
-                <img src="/img/company/photo1.jpg" alt="" />
-                <img src="/img/company/photo2.jpg" alt="" />
-                <img src="/img/company/photo3.jpg" alt="" />
+                <img src={`${process.env.REACT_APP_API_URL}/${offer.photo1}`} alt="" />
+                <img src={`${process.env.REACT_APP_API_URL}/${offer.photo2}`} alt="" />
+                <img src={`${process.env.REACT_APP_API_URL}/${offer.photo3}`} alt="" />
               </div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2597.4660064693376!2d2.7818889770599915!3d49.38117627140783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e7d69aefe1ca19%3A0xa2bd048d657fa30e!2sMentalWorks!5e0!3m2!1sfr!2sfr!4v1717313852498!5m2!1sfr!2sfr"
-                width="420"
-                height="420"
-                style={{ border: 0, borderRadius: 6 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <Map lat={offer.companyLat} lng={offer.companyLng} />
             </div>
           </div>
         </section>
@@ -382,7 +253,7 @@ export default function OfferDetail() {
             </Link>
           </div>
           <div className="d-flex wrap">
-            {lastOffers.map((offer, index) => (
+            {similarOffers.map((offer, index) => (
               <CompanyCard
                 key={index}
                 logo={offer.companyLogo}
@@ -391,8 +262,7 @@ export default function OfferDetail() {
                 nameCompany={offer.companyName}
                 locationCompany={offer.companyCity}
                 descriptionCompany={offer.description}
-                firstTag={offer.tags[0].name || ''}
-                secondTag={offer.tags[1].name || ''}
+                tags={offer.jobProfiles}
                 restDay={offer.restDay}
                 period={offer.period}
                 offerId={offer.id}

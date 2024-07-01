@@ -35,10 +35,7 @@ export default function Offers({ type }) {
         page: 1,
         limit: 10,
       });
-
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/offers?${queryParams}`,
-      );
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/offers?${queryParams}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

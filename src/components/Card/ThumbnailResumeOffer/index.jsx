@@ -1,21 +1,25 @@
 import './index.scss';
+import { Link } from 'react-router-dom';
 
 export default function ThumbnailResumeOffer({
+  idOffer,
   nameOffer,
   periodOffer,
   descriptionOffer,
-  firstTag,
-  secondTag,
+  tags,
 }) {
   return (
-    <div className="thumbnail-resume-offer">
-      <h4>{nameOffer}</h4>
-      <p className="period">{periodOffer}</p>
-      <p className="description">{descriptionOffer}</p>
-      <div className="d-flex justify-start tags">
-        <p className={`tag ${firstTag}`}>{firstTag}</p>
-        <p className={`tag ${secondTag}`}>{secondTag}</p>
+    <Link to={`/detail-offre/${idOffer}`}>
+      <div className="thumbnail-resume-offer">
+        <h4>{nameOffer}</h4>
+        <p className="period">{periodOffer}</p>
+        <p className="description">{descriptionOffer}</p>
+        <div className="d-flex justify-start tags">
+          {tags && tags.map((tag) => (
+            <p style={{ backgroundColor: `${tag.color}50`, color: tag.color }} className="tag">{tag.name}</p>
+          ))}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

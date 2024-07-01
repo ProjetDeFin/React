@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
 
 export default function Home() {
   const [home, setHome] = useState([]);
@@ -72,20 +72,19 @@ export default function Home() {
             </Link>
           </div>
           <div className="d-flex wrap flex-start">
-            {home.offers &&
-              home.offers.map((offer) => (
-                <CompanyCard
-                  logo={offer.company.logo}
-                  typeOffer={offer.type}
-                  nameOffer={offer.title}
-                  nameCompany={offer.company.name}
-                  locationCompany={offer.company.city || ''}
-                  descriptionCompany={offer.description}
-                  firstTag={offer.jobProfiles[0].name || ''}
-                  secondTag={offer.jobProfiles[1].name || ''}
-                  offerId={offer.id}
-                />
-              ))}
+            {home.offers && home.offers.map((offer) => (
+              <CompanyCard
+                logo={offer.company.logo}
+                typeOffer={offer.type}
+                nameOffer={offer.title}
+                nameCompany={offer.company.name}
+                locationCompany={offer.company.city || ''}
+                descriptionCompany={offer.description}
+                tags={offer.jobProfiles}
+                offerId={offer.id}
+                key={offer.id}
+              />
+            ))}
           </div>
         </section>
       </div>
@@ -112,6 +111,7 @@ export default function Home() {
                   tag={apply.type || ''}
                   periodApply={apply.period || ''}
                   idApply={apply.id}
+                  key={apply.id}
                 />
               ))}
           </div>

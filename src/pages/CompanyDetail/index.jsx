@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import { useParams } from 'react-router-dom';
 import ThumbnailResumeOffer from '../../components/Card/ThumbnailResumeOffer';
 import './index.scss';
+import Map from '../../components/Map';
 
 export default function CompanyDetail() {
   const { id } = useParams();
@@ -15,12 +16,10 @@ export default function CompanyDetail() {
 
   const fetchCompanyDetails = async () => {
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}api/companies/${id}`,
-      );
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies/${id}`);
       const data = await response.json();
       setCompany(data);
-      setOffers(data.offers); // Assumes the API returns offers within the company data
+      setOffers(data.internshipOffers);
     } catch (error) {
       console.error('Failed to fetch company details:', error);
     }
@@ -48,7 +47,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Activité</p>
-                <p>{company.activity}</p>
+                <p>{company.socialReason}</p>
               </div>
             </div>
             <div className="d-flex">
@@ -66,7 +65,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Effectifs</p>
-                <p>{company.employees}</p>
+                <p>{company.workforce}</p>
               </div>
             </div>
             <div className="d-flex">
@@ -75,7 +74,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Chiffre d'affaires</p>
-                <p>{company.revenue} M€</p>
+                <p>{company.sellFigure} M€</p>
               </div>
             </div>
             <div className="d-flex">
@@ -84,7 +83,7 @@ export default function CompanyDetail() {
               </div>
               <div>
                 <p>Situation</p>
-                <p>{company.location}</p>
+                <p>{company.address1}</p>
               </div>
             </div>
           </div>
@@ -101,32 +100,32 @@ export default function CompanyDetail() {
               <div>
                 <h3>Réseaux sociaux</h3>
                 <div className="d-flex justify-start">
-                  {company.socialLinks.linkedin && (
-                    <a href={company.socialLinks.linkedin}>
+                  {company.linkedinUrl && (
+                    <a href={company.linkedinUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:linkedin" />
                         <p>linkedin.com</p>
                       </div>
                     </a>
                   )}
-                  {company.socialLinks.twitter && (
-                    <a href={company.socialLinks.twitter}>
+                  {company.xUrl && (
+                    <a href={company.xUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:twitter" />
                         <p>twitter.com</p>
                       </div>
                     </a>
                   )}
-                  {company.socialLinks.facebook && (
-                    <a href={company.socialLinks.facebook}>
+                  {company.facebookUrl && (
+                    <a href={company.facebookUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:facebook" />
                         <p>facebook.com</p>
                       </div>
                     </a>
                   )}
-                  {company.socialLinks.instagram && (
-                    <a href={company.socialLinks.instagram}>
+                  {company.instagramUrl && (
+                    <a href={company.instagramUrl}>
                       <div className="rs d-flex">
                         <Icon icon="mdi:instagram" />
                         <p>Instagram</p>
@@ -137,13 +136,13 @@ export default function CompanyDetail() {
               </div>
               <div className="d-flex gallery">
                 <div className="d-flex direction-column">
-                  <img src={company.images[0]} alt="" />
-                  <img src={company.images[1]} alt="" />
+                  <img src={company.photo1} alt="" />
+                  <img src={company.photo2} alt="" />
                 </div>
                 <div className="d-flex direction-column">
-                  <img src={company.images[2]} alt="" />
-                  <img src={company.images[3]} alt="" />
-                  <img src={company.images[4]} alt="" />
+                  <img src={company.photo1} alt="" />
+                  <img src={company.photo1} alt="" />
+                  <img src={company.photo1} alt="" />
                 </div>
               </div>
             </section>
@@ -154,22 +153,13 @@ export default function CompanyDetail() {
                 <p>{company.name}</p>
                 <p>{company.address}</p>
                 <p>{company.city}</p>
-                <p>{company.postalCode}</p>
+                <p>{company.zipCode}</p>
               </div>
               <div className="map">
                 <a href={company.mapLink} className="link d-flex">
                   Voir sur une carte <Icon icon="tabler:arrow-right" />
                 </a>
-                <iframe
-                  src={company.mapEmbed}
-                  width="420"
-                  height="420"
-                  style={{ border: 0, borderRadius: 6 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-                <span></span>
+                <Map item={company} />
               </div>
               <div className="contact">
                 <h3>Nous joindre</h3>
@@ -182,7 +172,7 @@ export default function CompanyDetail() {
               </div>
               <div className="additional-contact">
                 <h3>Vos contacts</h3>
-                {company.contacts.map((contact, index) => (
+                {/*{company.contacts.map((contact, index) => (
                   <div key={index}>
                     <p>{contact.role}</p>
                     <p>{contact.name}</p>
@@ -208,7 +198,7 @@ export default function CompanyDetail() {
                     </div>
                     <span></span>
                   </div>
-                ))}
+                ))}*/}
               </div>
             </section>
           </div>
@@ -219,16 +209,16 @@ export default function CompanyDetail() {
           <div className="offer-internship">
             <h3>Offres de stage proposées</h3>
             <div className="d-flex wrap justify-start">
-              {offers
-                .filter((offer) => offer.type === 'internship')
-                .map((offer, index) => (
+              {offers && offers
+                .filter(offer => offer.type === 'Stage')
+                .map((offer) => (
                   <ThumbnailResumeOffer
-                    key={index}
-                    nameOffer={offer.name}
+                    key={offer.id}
+                    idOffer={offer.id}
+                    nameOffer={offer.title}
                     periodOffer={offer.period}
                     descriptionOffer={offer.description}
-                    firstTag={offer.firstTag}
-                    secondTag={offer.secondTag}
+                    tags={offer.jobProfiles}
                   />
                 ))}
             </div>
@@ -236,16 +226,16 @@ export default function CompanyDetail() {
           <div className="offer-alternated-training">
             <h3>Offres d'alternance proposées</h3>
             <div className="d-flex wrap justify-start">
-              {offers
-                .filter((offer) => offer.type === 'apprenticeship')
-                .map((offer, index) => (
+              {offers && offers
+                .filter(offer => offer.type === 'Alternance')
+                .map((offer) => (
                   <ThumbnailResumeOffer
-                    key={index + offers.length} // To ensure unique keys
+                    key={offer.id}
+                    idOffer={offer.id}
                     nameOffer={offer.name}
                     periodOffer={offer.period}
                     descriptionOffer={offer.description}
-                    firstTag={offer.firstTag}
-                    secondTag={offer.secondTag}
+                    tags={offer.jobProfiles}
                   />
                 ))}
             </div>
