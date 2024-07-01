@@ -1,9 +1,15 @@
 import './index.scss';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddAdminOffer() {
   const [currentStep, setCurrentStep] = useState(1);
+  const navigate = useNavigate();
+
+  if (localStorage.getItem('role') !== 'ROLE_COMPANY_RESPONSIBLE') {
+    navigate('/admin/mon-profil');
+  }
 
   const nextStep = (e) => {
     e.preventDefault();

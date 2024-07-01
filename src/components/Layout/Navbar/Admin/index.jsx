@@ -20,31 +20,33 @@ export default function NavbarAdmin() {
               Mon profil
             </NavLink>
             {role === 'ROLE_COMPANY_RESPONSIBLE' && (
-              <NavLink
-                to="/admin/entreprise"
-                className="d-flex justify-start"
-                activeClassName="is-active"
-              >
-                <Icon icon="mingcute:building-2-line" />
-                Fiche entreprise
-              </NavLink>
+              <>
+                <NavLink
+                  to="/admin/entreprise"
+                  className="d-flex justify-start"
+                  activeClassName="is-active"
+                >
+                  <Icon icon="mingcute:building-2-line" />
+                  Fiche entreprise
+                </NavLink>
+                <NavLink
+                  to="/admin/liste-candidats"
+                  className="d-flex justify-start"
+                  activeClassName="is-active"
+                >
+                  <Icon icon="bi:people" />
+                  Candidatures
+                </NavLink>
+                <NavLink
+                  to="/admin/offres"
+                  className="d-flex justify-start"
+                  activeClassName="is-active"
+                >
+                  <Icon icon="system-uicons:clipboard-notes" />
+                  Offres
+                </NavLink>
+              </>
             )}
-            <NavLink
-              to="/admin/liste-candidats"
-              className="d-flex justify-start"
-              activeClassName="is-active"
-            >
-              <Icon icon="bi:people" />
-              Candidatures
-            </NavLink>
-            <NavLink
-              to="/admin/offres"
-              className="d-flex justify-start"
-              activeClassName="is-active"
-            >
-              <Icon icon="system-uicons:clipboard-notes" />
-              Offres
-            </NavLink>
           </div>
         </div>
         <span></span>

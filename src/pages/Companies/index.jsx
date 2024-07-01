@@ -215,12 +215,8 @@ export default function Companies() {
             <div className="d-flex wrap">
               {companies.map((company) => (
                 <ThumbnailOfferCompany
+                  item={company}
                   key={company.id}
-                  logoCompany={company.logo}
-                  nameCompany={company.name}
-                  descriptionCompany={company.description}
-                  tags={company.sectors}
-                  idCompany={company.id}
                 />
               ))}
             </div>
