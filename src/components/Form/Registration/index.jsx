@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -36,19 +36,65 @@ const languageOptions = [
   { value: 'chinese_b2', label: 'Chinois B2' },
 ];
 
-export default function FormRegistration() {
+export default function FormRegistration({ isLoggedIn, errorToast, successToast }) {
   const location = useLocation();
 
   const isStudent = location.pathname === '/inscription/etudiant';
   const isCompany = location.pathname === '/inscription/entreprise';
   const isMyProfile = location.pathname === '/admin/mon-profil';
+  const [activityOptions, setActivityOptions] = useState([]);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [diplomaOptions, setDiplomaOptions] = useState([]);
+  const [studyLevelOptions, setStudyLevelOptions] = useState([]);
+
+  const navigate = useNavigate();
+
+  const onLoad = async () => {
+    if (isCompany) {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register/selects/company`, {
+          method: 'GET',
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          setCategoryOptions(result.categories);
+          setActivityOptions(result.sectors);
+        } else {
+          errorToast('Une erreur est survenue. Veuillez réessayer.');
+        }
+      } catch (error) {
+        errorToast('Une erreur est survenue. Veuillez réessayer.');
+      }
+    } else if (isStudent) {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register/selects/student`, {
+            method: 'GET',
+            });
+
+            if (response.ok) {
+            const result = await response.json();
+            setDiplomaOptions(result.diplomasSearched);
+            setStudyLevelOptions(result.studyLevels);
+            } else {
+            errorToast('Une erreur est survenue. Veuillez réessayer.');
+            }
+        } catch (error) {
+            errorToast('Une erreur est survenue. Veuillez réessayer.');
+        }
+    }
+  }
 
   useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
     setFormData((prevData) => ({
       ...prevData,
       isStudent,
       isCompany,
     }));
+    onLoad();
   }, [location.pathname]);
 
   const [formData, setFormData] = useState({
@@ -87,7 +133,6 @@ export default function FormRegistration() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [message, setMessage] = useState('');
 
   const validatePassword = (password, confirmPassword) => {
     const minLength = /^(?=.{8,})/;
@@ -124,7 +169,15 @@ export default function FormRegistration() {
   const handleInputChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     const val = type === 'checkbox' ? checked : files ? files[0] : value;
-    setFormData({ ...formData, [name]: val });
+
+    // Parse the selected value for activity and category selects
+    if (name === 'activity' || name === 'category') {
+      const selectedOption = e.target.options[e.target.selectedIndex];
+      const selectedId = selectedOption.value;
+      setFormData({ ...formData, [name]: selectedId });
+    } else {
+      setFormData({ ...formData, [name]: val });
+    }
   };
 
   const handleSkillsChange = (selectedOptions) => {
@@ -136,7 +189,6 @@ export default function FormRegistration() {
   };
 
   const handleSubmit = async (event) => {
-    console.log('ici');
     event.preventDefault();
     const errorMessages = validatePassword(formData.password, formData.confirmPassword);
 
@@ -161,15 +213,14 @@ export default function FormRegistration() {
           body: formDataToSend,
         });
 
-        const result = await response.json();
-
         if (response.ok) {
-          setMessage('Inscription réussie!');
+          successToast('Inscription réussie. Veuillez vérifier vos e-mails pour valider votre compte.');
         } else {
-          setMessage(result.message || 'Inscription échouée. Veuillez réessayer.');
+          errorToast('Inscription échouée. Veuillez réessayer.');
         }
       } catch (error) {
-        setMessage('Une erreur est survenue. Veuillez réessayer.');
+        console.log(error);
+        errorToast('Une erreur est survenue. Veuillez réessayer.');
       }
     }
   };
@@ -333,19 +384,11 @@ export default function FormRegistration() {
                             value={formData.activity}
                             onChange={handleInputChange}
                         >
-                          <option value="IT">Technologies de l'information</option>
-                          <option value="Finance">Finance / Banque</option>
-                          <option value="Santé">Santé / Pharmaceutique</option>
-                          <option value="Éducation">Éducation / Enseignement</option>
-                          <option value="Commerce">Commerce / Distribution</option>
-                          <option value="Industrie">Industrie</option>
-                          <option value="Consulting">Conseil / Consulting</option>
-                          <option value="Art">Art / Culture</option>
-                          <option value="Tourisme">Tourisme / Hôtellerie</option>
-                          <option value="Transport">Transport / Logistique</option>
-                          <option value="Énergie">Énergie / Environnement</option>
-                          <option value="Services">Services aux entreprises</option>
-                          <option value="Communication">Communication / Médias</option>
+                          {activityOptions.map((activity, index) => (
+                              <option key={activity.id} value={activity.id} selected={index === 0 ? true : undefined}>
+                                {activity.name}
+                              </option>
+                          ))}
                         </select>
                       </div>
                       <div className="d-flex direction-column align-start">
@@ -356,12 +399,11 @@ export default function FormRegistration() {
                             value={formData.category}
                             onChange={handleInputChange}
                         >
-                          <option value="1">Services aux particuliers</option>
-                          <option value="2">Services aux entreprises</option>
-                          <option value="3">Mairie, collectivité</option>
-                          <option value="4">Association, ONG</option>
-                          <option value="5">Organismes d'état</option>
-                          <option value="6">Autres</option>
+                            {categoryOptions.map((category, index) => (
+                                <option key={category.id} value={category.id} selected={index === 0 ? true : undefined}>
+                                    {category.name}
+                                </option>
+                            ))}
                         </select>
                       </div>
                     </div>
@@ -427,41 +469,31 @@ export default function FormRegistration() {
                       <div className="d-flex direction-column align-start">
                         <label htmlFor="studyLevel">Niveau d'étude</label>
                         <select
-                            name="studyLevel"
-                            id="studyLevel"
-                            value={formData.studyLevel}
-                            onChange={handleInputChange}
+                          name="studyLevel"
+                          id="studyLevel"
+                          value={formData.studyLevel}
+                          onChange={handleInputChange}
                         >
-                          <option value="-3">3eme</option>
-                          <option value="-2">Seconde</option>
-                          <option value="-1">Premiere</option>
-                          <option value="-1">Terminal</option>
-                          <option value="0">bac +0</option>
-                          <option value="1">bac +1</option>
-                          <option value="2">bac +2</option>
-                          <option value="3">bac +3</option>
-                          <option value="4">bac +4</option>
-                          <option value="5">bac +5</option>
-                          <option value="6">bac +6</option>
-                          <option value="7">bac +7</option>
-                          <option value="8">bac +8</option>
+                          {studyLevelOptions.map((studyLevel, index) => (
+                            <option key={studyLevel.id} value={studyLevel.id} selected={index === 0 ? true : undefined}>
+                              {studyLevel.level}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <div className="d-flex direction-column align-start">
                         <label htmlFor="diploma">Diplôme préparé</label>
                         <select
-                            name="diploma"
-                            id="diploma"
-                            value={formData.diploma}
-                            onChange={handleInputChange}
+                          name="diploma"
+                          id="diploma"
+                          value={formData.diploma}
+                          onChange={handleInputChange}
                         >
-                          <option value="1">Brevet des colleges</option>
-                          <option value="2">CAP</option>
-                          <option value="3">Baccalaureat</option>
-                          <option value="4">BTS</option>
-                          <option value="5">License</option>
-                          <option value="6">Master</option>
-                          <option value="7">Doctorat</option>
+                          {diplomaOptions.map((diploma, index) => (
+                              <option key={diploma.id} value={diploma.id} selected={index === 0 ? true : undefined}>
+                                {diploma.name}
+                              </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -581,7 +613,6 @@ export default function FormRegistration() {
                   </ul>
                 </div>
             )}
-            {message && <div className="message">{message}</div>}
             <button className="btn" type="submit">
               Créer mon compte
             </button>
