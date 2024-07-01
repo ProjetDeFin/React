@@ -3,6 +3,8 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import './index.scss';
 
 export default function NavbarAdmin() {
+  const role = localStorage.getItem('role');
+
   return (
     <div className="nav-bar-admin">
       <div className="grey">
@@ -17,14 +19,16 @@ export default function NavbarAdmin() {
               <Icon icon="carbon:user-profile" />
               Mon profil
             </NavLink>
-            <NavLink
-              to="/admin/entreprise"
-              className="d-flex justify-start"
-              activeClassName="is-active"
-            >
-              <Icon icon="mingcute:building-2-line" />
-              Fiche entreprise
-            </NavLink>
+            {role === 'ROLE_COMPANY_RESPONSIBLE' && (
+              <NavLink
+                to="/admin/entreprise"
+                className="d-flex justify-start"
+                activeClassName="is-active"
+              >
+                <Icon icon="mingcute:building-2-line" />
+                Fiche entreprise
+              </NavLink>
+            )}
             <NavLink
               to="/admin/liste-candidats"
               className="d-flex justify-start"
