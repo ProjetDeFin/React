@@ -49,6 +49,14 @@
     & > .d-flex {
       gap: 16px;
       margin-bottom: 16px;
+
+      & > .d-flex {
+        width: 100%;
+      }
+
+      &:nth-child(3) > .d-flex {
+        width: 100%;
+      }
     }
   }
   .additional-information {

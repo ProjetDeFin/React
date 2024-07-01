@@ -13,6 +13,22 @@ const skillOptions = [
   { value: 'java', label: 'Java' },
 ];
 
+const sectorsOptions = [
+  { value: 'it', label: "Technologies de l'information" },
+  { value: 'finance', label: "Finance / Banque" },
+  { value: 'sante', label: "Santé / Pharmaceutique" },
+  { value: 'education', label: "Éducation / Enseignement" },
+  { value: 'commerce', label: "Commerce / Distribution" },
+  { value: 'industrie', label: "Industrie" },
+  { value: 'consulting', label: "Conseil / Consulting" },
+  { value: 'art', label: "Art / Culture" },
+  { value: 'tourisme', label: "Tourisme / Hôtellerie" },
+  { value: 'transport', label: "Transport / Logistique" },
+  { value: 'energie', label: "Énergie / Environnement" },
+  { value: 'services', label: "Services aux entreprises" },
+  { value: 'communication', label: "Communication / Médias" }
+];
+
 const languageOptions = [
   { value: 'french_a1', label: 'Français A1' },
   { value: 'french_a2', label: 'Français A2' },
@@ -36,6 +52,15 @@ const languageOptions = [
   { value: 'chinese_b2', label: 'Chinois B2' },
 ];
 
+const categoriesOptions = [
+  { value: '1', label: 'Services aux particuliers' },
+  { value: '2', label: 'Services aux entreprises' },
+  { value: '3', label: 'Mairie, collectivité' },
+  { value: '4', label: 'Association, ONG' },
+  { value: '5', label: 'Organismes d\'état' },
+  { value: '6', label: 'Autres' }
+];
+
 
 export default function FormRegistration() {
   const location = useLocation();
@@ -55,8 +80,8 @@ export default function FormRegistration() {
     position: '',
     organizationName: '',
     siret: '',
-    activity: '',
-    category: '',
+    sectors: '',
+    categories: '',
     address: '',
     addressComplement: '',
     postalCode: '',
@@ -126,6 +151,14 @@ export default function FormRegistration() {
 
   const handleLanguagesChange = (selectedOptions) => {
     setFormData({...formData, languages: selectedOptions})
+  }
+
+  const handleSectorsChange = (sectorsOptions) => {
+    setFormData({...formData, sectors: sectorsOptions})
+  }
+
+  const handleCategoriesChange = (sectorsOptions) => {
+    setFormData({...formData, categories: sectorsOptions})
   }
 
   const handleSubmit = async (event) => {
@@ -327,43 +360,30 @@ export default function FormRegistration() {
                 </div>
                 <div className="d-flex">
                   <div className="d-flex direction-column align-start">
-                    <label htmlFor="activity">Secteur d'activité</label>
-                    <select 
-                      name="activity" 
-                      id="activity"
-                      value={formData.activity}
-                      onChange={handleInputChange}
-                    >
-                      <option value="IT">Technologies de l'information</option>
-                      <option value="Finance">Finance / Banque</option>
-                      <option value="Santé">Santé / Pharmaceutique</option>
-                      <option value="Éducation">Éducation / Enseignement</option>
-                      <option value="Commerce">Commerce / Distribution</option>
-                      <option value="Industrie">Industrie</option>
-                      <option value="Consulting">Conseil / Consulting</option>
-                      <option value="Art">Art / Culture</option>
-                      <option value="Tourisme">Tourisme / Hôtellerie</option>
-                      <option value="Transport">Transport / Logistique</option>
-                      <option value="Énergie">Énergie / Environnement</option>
-                      <option value="Services">Services aux entreprises</option>
-                      <option value="Communication">Communication / Médias</option>
-                    </select>
+                    <label htmlFor="sectors">Secteur d'activité</label>
+                    <Select
+                      isMulti
+                      name="sectors"
+                      options={sectorsOptions}
+                      className="basic-multi-select"
+                      closeMenuOnSelect={false}
+                      classNamePrefix="select"
+                      onChange={handleSectorsChange}
+                      components={animatedComponents}
+                    />
                   </div>
                   <div className="d-flex direction-column align-start">
-                    <label htmlFor="category">Catégorie</label>
-                    <select 
-                      name="category" 
-                      id="category"
-                      value={formData.category}
-                      onChange={handleInputChange}
-                    >
-                      <option value="1">Services aux particuliers</option>
-                      <option value="2">Services aux entreprises</option>
-                      <option value="3">Mairie, collectivité</option>
-                      <option value="4">Association, ONG</option>
-                      <option value="5">Organismes d'état</option>
-                      <option value="6">Autres</option>
-                    </select>
+                    <label htmlFor="categories">Catégorie</label>
+                    <Select
+                      isMulti
+                      name="skills"
+                      options={categoriesOptions}
+                      className="basic-multi-select"
+                      closeMenuOnSelect={false}
+                      classNamePrefix="select"
+                      onChange={handleSkillsChange}
+                      components={animatedComponents}
+                    />
                   </div>
                 </div>
                 <div className="d-flex direction-column align-start">
