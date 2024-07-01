@@ -1,9 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import ListAdmin from '../../../components/List/Admin';
 import './index.scss';
 
 export default function OfferAdmin() {
+  const navigate = useNavigate();
+
+  if (localStorage.getItem('role') !== 'ROLE_COMPANY_RESPONSIBLE') {
+    navigate('/admin/mon-profil');
+  }
+
   const offers = [
     {
       name: 'Développeur Front-End',

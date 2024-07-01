@@ -2,6 +2,7 @@ import Link from "../../../components/Link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import ListAdmin from "../../../components/List/Admin";
 import './index.scss'
+import { useNavigate } from 'react-router-dom';
 
 const candidates = [
     {
@@ -44,8 +45,14 @@ const candidates = [
 ];
 
 export default function AdminCandidat() {
+  const navigate = useNavigate();
+
+  if (localStorage.getItem('role') !== 'ROLE_COMPANY_RESPONSIBLE') {
+    navigate('/admin/mon-profil');
+  }
+
     return (
-        <div className="offer-admin admin-candidate">
+      <div className="offer-admin admin-candidate">
         <div className="content">
           <div className="d-flex">
             <div className="d-flex">

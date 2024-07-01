@@ -1,12 +1,17 @@
 import { useState } from "react";
 import './index.scss'
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminCompany() {
-
     const [showForm, setShowForm] = useState(false);
     const [siret, setSiret] = useState('');
     const [siretError, setSiretError] = useState('');
     const [files, setFiles] = useState([]);
+    const navigate = useNavigate();
+
+    if (localStorage.getItem('role') !== 'ROLE_COMPANY_RESPONSIBLE') {
+        navigate('/admin/mon-profil');
+    }
 
     const toggleForm = () => {
         setShowForm(!showForm);
@@ -35,7 +40,7 @@ export default function AdminCompany() {
     return (
         <div className="company-admin">
             {!showForm && (
-                <div className="d-flex align-center justify-center btn-creation"> 
+                <div className="d-flex align-center justify-center btn-creation">
                     <button className="btn" onClick={toggleForm}>Je crée ma fiche entreprise</button>
                 </div>
             )}
@@ -112,10 +117,10 @@ export default function AdminCompany() {
                             <div className="d-flex direction-column align-start">
                                 <div className="d-flex">
                                     <label htmlFor="logo">Logo</label>
-                                    <input 
-                                        type="file" 
-                                        name="logo" 
-                                        id="logo" 
+                                    <input
+                                        type="file"
+                                        name="logo"
+                                        id="logo"
                                         multiple
                                         accept=".jpg, .jpeg, .png, .gif"
                                         onChange={handleFileChange}
