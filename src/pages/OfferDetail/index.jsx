@@ -236,10 +236,11 @@ export default function OfferDetail() {
             </div>
             <div className="d-flex gallery">
               <div className="d-flex direction-column">
-                {offer.companyPhotos && offer.companyPhotos.map((photo) => (
-                  <img src={`${process.env.REACT_APP_API_URL}${photo}`} alt={offer.companyName} />
+                {offer.companyPhotos && offer.companyPhotos.map((photo, index) => (
+                  <img key={index} src={`${process.env.REACT_APP_API_URL}${photo}`} alt={offer.companyName} />
                 ))}
               </div>
+              <Map lat={offer.companyLat} lng={offer.companyLng} />
             </div>
           </div>
         </section>
@@ -254,9 +255,9 @@ export default function OfferDetail() {
             </Link>
           </div>
           <div className="d-flex wrap">
-            {similarOffers.map((offer, index) => (
+            {similarOffers.map((offer) => (
               <CompanyCard
-                key={index}
+                key={offer.id}
                 logo={offer.companyLogo}
                 typeOffer={offer.type}
                 nameOffer={offer.title}

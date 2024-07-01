@@ -159,7 +159,7 @@ export default function CompanyDetail() {
                 <a href={company.mapLink} className="link d-flex">
                   Voir sur une carte <Icon icon="tabler:arrow-right" />
                 </a>
-                <Map item={company} />
+                <Map lat={company.latitude} lng={company.longitude} />
               </div>
               <div className="contact">
                 <h3>Nous joindre</h3>
