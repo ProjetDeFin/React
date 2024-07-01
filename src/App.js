@@ -17,11 +17,10 @@ import AdminCompany from './pages/Admin/Company';
 import AdminCandidat from './pages/Admin/Candidate';
 import AdminProfil from './pages/Admin/Profil';
 import Registration from './pages/Authentification/Registration';
-import RegistrationCompany from './pages/Authentification/Registration/Company';
-import RegistrationStudent from './pages/Authentification/Registration/Student';
 import Login from './pages/Authentification/Login';
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import FormRegistration from "./components/Form/Registration";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,11 +56,11 @@ export default function App() {
             <Route path="/creation-compte" element={<Registration />} />
             <Route
               path="/inscription/entreprise"
-              element={<RegistrationCompany />}
+              element={<FormRegistration isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />}
             />
             <Route
               path="/inscription/etudiant"
-              element={<RegistrationStudent />}
+              element={<FormRegistration isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />}
             />
             <Route path="/profil/validation/:token" element={<Validation setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />} />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
