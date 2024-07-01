@@ -134,15 +134,15 @@ export default function CompanyDetail() {
                   )}
                 </div>
               </div>
-              <div className="d-flex gallery">
+              <div className="d-flex gallery justify-center">
                 <div className="d-flex direction-column">
-                  <img src={company.photo1} alt="" />
-                  <img src={company.photo2} alt="" />
+                  <img src={`${process.env.REACT_APP_API_URL}${company.detail4}`} alt={company.name} />
+                  <img src={`${process.env.REACT_APP_API_URL}${company.detail1}`} alt={company.name} />
                 </div>
                 <div className="d-flex direction-column">
-                  <img src={company.photo3} alt="" />
-                  <img src={company.photo4} alt="" />
-                  <img src={company.photo5} alt="" />
+                  <img src={`${process.env.REACT_APP_API_URL}${company.detail2}`} alt={company.name} />
+                  <img src={`${process.env.REACT_APP_API_URL}${company.detail3}`} alt={company.name} />
+                  <img src={`${process.env.REACT_APP_API_URL}${company.detail5}`} alt={company.name} />
                 </div>
               </div>
             </section>
@@ -232,7 +232,7 @@ export default function CompanyDetail() {
                   <ThumbnailResumeOffer
                     key={offer.id}
                     idOffer={offer.id}
-                    nameOffer={offer.name}
+                    nameOffer={offer.title}
                     periodOffer={offer.period}
                     descriptionOffer={offer.description}
                     tags={offer.jobProfiles}

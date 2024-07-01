@@ -13,6 +13,8 @@ export default function Companies() {
   });
   const [allSectorsChecked, setAllSectorsChecked] = useState(true);
   const [companies, setCompanies] = useState([]);
+  const [sectors, setSectors] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [order, setOrder] = useState('ASC');
   const [orderBy, setOrderBy] = useState('name');
 
@@ -33,7 +35,9 @@ export default function Companies() {
         return response.json();
       })
       .then((data) => {
-        setCompanies(data);
+        setCompanies(data.companies);
+        setSectors(data.sectors);
+        setCategories(data.categories);
       })
       .catch((error) => {
         console.error('Failed to fetch companies:', error);
@@ -117,32 +121,16 @@ export default function Companies() {
                   />
                   <label>Tous</label>
                 </div>
-                {[
-                  'Commerce',
-                  'Industrie mécanique',
-                  'Industrie chimique',
-                  'Automobile',
-                  'Informatique',
-                  'Réseaux, téléphonie, FAI',
-                  'Tourisme, sport',
-                  'Transport',
-                  'Finances',
-                  'Loisirs',
-                  'Alimentation',
-                  'Santé, bien-être',
-                  'Immobilier, BTP',
-                  'Média',
-                  'Autre',
-                ].map((sector) => (
-                  <div className="d-flex" key={sector}>
+                {sectors.map((sector) => (
+                  <div className="d-flex" key={sector.id}>
                     <input
                       type="checkbox"
-                      value={sector}
-                      checked={filter.sectors.includes(sector)}
+                      value={sector.name}
+                      checked={filter.sectors.includes(sector.name)}
                       onChange={handleSectorChange}
                       disabled={allSectorsChecked}
                     />
-                    <label>{sector}</label>
+                    <label>{sector.name}</label>
                   </div>
                 ))}
               </div>
@@ -153,22 +141,15 @@ export default function Companies() {
                 <Icon icon="iconamoon:arrow-up-2-duotone" />
               </div>
               <div className="d-flex direction-column align-start">
-                {[
-                  'Services aux particuliers',
-                  'Services aux entreprises',
-                  'Mairie, collectivité',
-                  'Association, ONG',
-                  "Organismes d'état",
-                  'Autres',
-                ].map((category) => (
-                  <div className="d-flex" key={category}>
+                {categories.map((category) => (
+                  <div className="d-flex" key={category.id}>
                     <input
                       type="checkbox"
-                      value={category}
-                      checked={filter.categories.includes(category)}
+                      value={category.name}
+                      checked={filter.categories.includes(category.name)}
                       onChange={handleCategoryChange}
                     />
-                    <label>{category}</label>
+                    <label>{category.name}</label>
                   </div>
                 ))}
               </div>
