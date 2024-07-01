@@ -112,7 +112,9 @@ export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successTo
                 </div>
               </div>
               <input className="btn" type="submit" value="SE CONNECTER" />
-              <p className="text-right">Mot de passe oublié ?</p>
+              <div className="d-flex justify-end">
+                <Link to="https://api.groupe-3.lycee-stvincent.net/reset_password/">Mot de passe oublié ?</Link>
+              </div>
             </form>
           </div>
         </div>
