@@ -63,7 +63,7 @@ export default function App() {
               path="/inscription/etudiant"
               element={<RegistrationStudent />}
             />
-            <Route path="/profil/validation/token" element={<Validation />} />
+            <Route path="/profil/validation/:token" element={<Validation setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />} />
             <Route path="/admin/postuler" element={<AdminApplyJob />} />
             <Route path="/admin/offres" element={<AdminOffer />} />
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
