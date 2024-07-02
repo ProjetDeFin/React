@@ -9,7 +9,7 @@ export default function CompaniesForward({ companies }) {
         {companies.slice(0, 5).map((company) => (
           <Link to={`/detail-entreprise/${company.id}`} key={company.name}>
             <li key={company.name}>
-              <img src={`${process.env.REACT_APP_API_URL}/uploads/logo/${company.logo}`} alt={company.name} />
+              <img src={`${process.env.REACT_APP_API_URL}${company.logo}`} alt={company.name} />
             </li>
           </Link>
         ))}
