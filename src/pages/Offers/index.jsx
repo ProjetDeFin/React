@@ -29,6 +29,8 @@ export default function Offers({ type }) {
   const [orderBy, setOrderBy] = useState('title');
 
   useEffect(() => {
+
+
     const queryParams = new URLSearchParams({
       filters: JSON.stringify(filter),
       order: order,
