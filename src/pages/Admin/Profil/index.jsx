@@ -1,9 +1,9 @@
 import FormRegistration from "../../../components/Form/Registration"
 
-export default function AdminProfil () {
+export default function AdminProfil ( { isLoggedIn, errorToast, successToast }) {
     return (
       <div className="admin-profil">
-        <FormRegistration />
+        <FormRegistration isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />
       </div>
     )
 }

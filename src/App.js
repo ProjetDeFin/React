@@ -68,7 +68,7 @@ export default function App() {
             <Route path="/admin/offres/nouveau" element={<AdminAddOffer />} />
             <Route path="/admin/entreprise" element={<AdminCompany />} />
             <Route path="/admin/liste-candidats" element={<AdminCandidat />} />
-            <Route path="/admin/mon-profil" element={<AdminProfil />} />
+            <Route path="/admin/mon-profil" element={<AdminProfil isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />} />
             <Route path="/inscription" element={<Registration />} />
             <Route path="/connexion" element={<Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} errorToast={errorToast} successToast={successToast} />} />
             <Route path="*" element={<Error />} />

@@ -46,10 +46,31 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [diplomaOptions, setDiplomaOptions] = useState([]);
   const [studyLevelOptions, setStudyLevelOptions] = useState([]);
+  const [profileData, setProfileData] = useState({});
 
   const navigate = useNavigate();
 
   const onLoad = async () => {
+    if (isMyProfile) {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/account/profile/${localStorage.getItem('role')}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+          }
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          setProfileData(JSON.parse(result));
+        } else {
+          errorToast('Une erreur est survenue. Veuillez réessayer.');
+        }
+      } catch (error) {
+        errorToast('Une erreur est survenue. Veuillez réessayer.');
+      }
+    }
     if (isCompany) {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register/selects/company`, {
@@ -86,7 +107,7 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
   }
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if ((!isMyProfile && isLoggedIn) || (isMyProfile && !isLoggedIn)) {
       navigate('/');
     }
     setFormData((prevData) => ({
@@ -98,13 +119,13 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
   }, [location.pathname]);
 
   const [formData, setFormData] = useState({
-    gender: 'man',
-    firstName: '',
-    lastName: '',
-    email: '',
+    gender: profileData?.gender ?? 'man',
+    firstName: profileData?.firstName ?? '',
+    lastName: profileData?.lastName ?? '',
+    email: profileData?.email ?? '',
     password: '',
     confirmPassword: '',
-    mobile: '',
+    mobile: profileData?.phone ?? '',
     position: '',
     organizationName: '',
     siret: '',
@@ -229,9 +250,6 @@ export default function FormRegistration({ isLoggedIn, errorToast, successToast 
         'lastName',
         'email',
         'mobile',
-        'address',
-        'postalCode',
-        'city',
         'studyLevel',
       ];
     } else if (isCompany) {

@@ -35,7 +35,6 @@ export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successTo
       const result = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', result.token);
         const decoded = jwtDecode(result.token);
         const detailedResponse = await fetch(
           `${process.env.REACT_APP_API_URL}/api/login/details/${decoded.username}`,
@@ -48,6 +47,7 @@ export default function Login({ setIsLoggedIn, isLoggedIn, errorToast, successTo
           localStorage.setItem('picture', detailedResult.picture);
           localStorage.setItem('id', detailedResult.id);
           localStorage.setItem('role', decoded.roles[0]);
+          localStorage.setItem('token', detailedResult.token);
           setIsLoggedIn(true);
           successToast('Login successful');
           navigate('/');
