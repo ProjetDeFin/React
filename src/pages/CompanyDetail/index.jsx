@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ThumbnailResumeOffer from '../../components/Card/ThumbnailResumeOffer';
 import './index.scss';
 import Map from '../../components/Map';
@@ -9,6 +9,7 @@ export default function CompanyDetail() {
   const { id } = useParams();
   const [company, setCompany] = useState(null);
   const [offers, setOffers] = useState([]);
+  const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
     fetchCompanyDetails();
@@ -18,8 +19,9 @@ export default function CompanyDetail() {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies/${id}`);
       const data = await response.json();
-      setCompany(data);
+      setCompany(data.company);
       setOffers(data.internshipOffers);
+      setContacts(data.contacts);
     } catch (error) {
       console.error('Failed to fetch company details:', error);
     }
@@ -147,7 +149,7 @@ export default function CompanyDetail() {
               </div>
             </section>
             <section>
-              <img className="logo" src={company.logo} alt="" />
+              <img className="logo" src={`${process.env.REACT_APP_API_URL}${company.logo}`} alt={company.name} />
               <div className="situation">
                 <h3>Situation</h3>
                 <p>{company.name}</p>
@@ -156,9 +158,9 @@ export default function CompanyDetail() {
                 <p>{company.zipCode}</p>
               </div>
               <div className="map">
-                <a href={company.mapLink} className="link d-flex">
+                <Link to={`https://www.google.com/maps/search/?api=1&query=${company.latitude},${company.longitude}`} className="link d-flex">
                   Voir sur une carte <Icon icon="tabler:arrow-right" />
-                </a>
+                </Link>
                 <Map lat={company.latitude} lng={company.longitude} />
               </div>
               <div className="contact">
@@ -172,12 +174,12 @@ export default function CompanyDetail() {
               </div>
               <div className="additional-contact">
                 <h3>Vos contacts</h3>
-                {/*{company.contacts.map((contact, index) => (
-                  <div key={index}>
-                    <p>{contact.role}</p>
-                    <p>{contact.name}</p>
+                {contacts && contacts.map((contact) => (
+                  <div key={contact.id}>
+                    <p>{contact.position}</p>
+                    <p>{contact.userName}</p>
                     <div className="d-flex justify-start">
-                      {contact.linkedin && (
+                      {/*{contact.linkedin && (
                         <a
                           href={contact.linkedin}
                           target="_blank"
@@ -185,10 +187,10 @@ export default function CompanyDetail() {
                         >
                           <Icon icon="mdi:linkedin" />
                         </a>
-                      )}
-                      {contact.email && (
+                      )}*/}
+                      {contact.userEmail && (
                         <a
-                          href={`mailto:${contact.email}`}
+                          href={`mailto:${contact.userEmail}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -198,7 +200,7 @@ export default function CompanyDetail() {
                     </div>
                     <span></span>
                   </div>
-                ))}*/}
+                ))}
               </div>
             </section>
           </div>

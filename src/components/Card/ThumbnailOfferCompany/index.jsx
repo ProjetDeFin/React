@@ -8,7 +8,7 @@ export default function ThumbnailOfferCompany({
     <Link to={`/detail-entreprise/${item.id}`}>
       <div className="thumbnail-offer-company">
         <div className="d-flex">
-          <img src={`${process.env.REACT_APP_API_URL}/uploads/logo/${item.logo}`} alt="" />
+          <img src={`${process.env.REACT_APP_API_URL}${item.logo}`} alt="" />
           <p className="available-position">
             {`${item.internshipOffers.filter((offer) => offer.type === 'Stage').length} stages,
              ${item.internshipOffers.filter((offer) => offer.type === 'Alternance').length} alternances`}
