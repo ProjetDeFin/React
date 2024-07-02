@@ -2,6 +2,7 @@ import './index.scss';
 import { Link } from 'react-router-dom';
 
 export default function OfferCompany({
+  item,
   logo,
   typeOffer,
   nameOffer,
@@ -22,7 +23,7 @@ export default function OfferCompany({
   const progress = calculateProgress(restDay);
 
   const defaultTemplate = (
-    <Link to={`/detail-offre/${offerId}`}>
+    <Link to={`/detail-offre/${offerId}`} key={offerId}>
       <div className="company-card">
         <div className="d-flex">
           <img src={`${process.env.REACT_APP_API_URL}${logo}`} alt={nameOffer} />

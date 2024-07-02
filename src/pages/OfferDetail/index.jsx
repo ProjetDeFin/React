@@ -75,76 +75,23 @@ export default function OfferDetail() {
             <div className="mission">
               <h2>Missions</h2>
               <div className="d-flex direction-column align-start">
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Engagement de la communauté pour s'assurer qu'elle est
-                    soutenue et activement représentée en ligne
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Se concentrer sur la publication de contenu sur les médias
-                    sociaux
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>Soutien au marketing et à la stratégie</p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Rester à l'affût des tendances sur les plateformes de médias
-                    sociaux et suggérer des idées de contenu à l'équipe.
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>Participer à des communautés en ligne</p>
-                </div>
+                {offer.missions && offer.missions.map((mission) => (
+                  <div className="d-flex align-start" key={mission.id}>
+                    <Icon icon="simple-line-icons:check" />
+                    <p>{mission.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="profil-wanted">
               <h2>Profil recherché</h2>
               <div className="d-flex direction-column align-start">
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Vous êtes passionné par le digital et pratiquez les
-                    principaux réseaux sociaux
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Vous avez le sens des relations humaines et du travail en
-                    équipe
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Vous avez un état d'esprit positif et confiant et n'hésitez
-                    pas à apprendre de nouvelles compétences et à assumer des
-                    responsabilités supplémentaires
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Vous avez le sens du détail et de la créativité et maîtrisez
-                    Canva
-                  </p>
-                </div>
-                <div className="d-flex align-start">
-                  <Icon icon="simple-line-icons:check" />
-                  <p>
-                    Vous avez déjà assuré des missions de Community Manager sur
-                    Instagram, Linkedin, Facebook, TikTok et X
-                  </p>
-                </div>
+                {offer.desiredProfiles && offer.desiredProfiles.map((profile) => (
+                  <div className="d-flex align-start" key={profile.id}>
+                    <Icon icon="simple-line-icons:check" />
+                    <p>{profile.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -208,8 +155,8 @@ export default function OfferDetail() {
             <div className="skill">
               <h3>Compétences recherchées</h3>
               <div className="d-flex justify-start wrap">
-                {offer.skill &&
-                  offer.skill.map((skill) => (
+                {offer.skills &&
+                  offer.skills.map((skill) => (
                     <p className="type-offer" key={skill.id}>
                       {skill.name}
                     </p>
