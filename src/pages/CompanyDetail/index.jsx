@@ -8,7 +8,6 @@ import Map from '../../components/Map';
 export default function CompanyDetail() {
   const { id } = useParams();
   const [company, setCompany] = useState(null);
-  const [offers, setOffers] = useState([]);
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -20,7 +19,6 @@ export default function CompanyDetail() {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/companies/${id}`);
       const data = await response.json();
       setCompany(data.company);
-      setOffers(data.internshipOffers);
       setContacts(data.contacts);
     } catch (error) {
       console.error('Failed to fetch company details:', error);
@@ -211,7 +209,7 @@ export default function CompanyDetail() {
           <div className="offer-internship">
             <h3>Offres de stage proposées</h3>
             <div className="d-flex wrap justify-start">
-              {offers && offers
+              {company.internshipOffers && company.internshipOffers
                 .filter(offer => offer.type === 'Stage')
                 .map((offer) => (
                   <ThumbnailResumeOffer
@@ -228,7 +226,7 @@ export default function CompanyDetail() {
           <div className="offer-alternated-training">
             <h3>Offres d'alternance proposées</h3>
             <div className="d-flex wrap justify-start">
-              {offers && offers
+              {company.internshipOffers && company.internshipOffers
                 .filter(offer => offer.type === 'Alternance')
                 .map((offer) => (
                   <ThumbnailResumeOffer
